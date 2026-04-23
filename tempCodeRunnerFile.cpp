@@ -1,4 +1,11 @@
-//search stock
+/* This is the final project of team Debuggers for Programming 
+Fundamentals. The team members are Abdullah Arif Roll# BITF25A012,
+Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
+*/
+
+//THIS IS STOCK MANAGEMENT AND BILLING PROGRAM WHICH WILL HELP IN EDITING, 
+//MAINTAINING AND CHECKING STOCK AND WILL ALSO GENERATE RECIEPT
+
 #include<iostream>
 #include<String>
 #include<fstream>
@@ -7,16 +14,43 @@
 using namespace std;
 
 int StockFileCount();
-void inputsFromstockFile(int[], string[], int[], int[], int);
+void inputsFromstockFile(string[], int[], int[],string[], int);
 
 int main()
 {
-    int choice1=2,choice2;
-    ofstream fout;
-    ifstream fin;
+    int choice1;
 
-    if (choice1==2)
+    cout<<"Welcome to Stock Management and Billing Program!"<<endl;
+    cout<<"Please select your role:"<<endl;
+    cout<<"0. Exit"<<endl;
+    cout<<"1. Admin"<<endl;
+    cout<<"2. User"<<endl;
+    cout<<"Enter choice: ";
+    cin>>choice1;
+    cout<<endl;
+
+    while(choice1>2||choice1<0)
     {
+        cout<<"INVALID INPUT! \a "<<endl<<endl;
+        cout<<"Please select your role:"<<endl;
+        cout<<"0. Exit"<<endl;
+        cout<<"1. Admin"<<endl;
+        cout<<"2. User"<<endl;
+        cout<<"Enter choice: ";
+        cin>>choice1;
+        cout<<endl;
+    }
+
+    if(choice1 ==1)
+    {
+        
+    }
+    else if (choice1==2)
+    {
+        int choice2;
+        ofstream fout;
+        ifstream fin;
+
         cout<<"Welcome User!"<<endl;
         cout<<"PLease select one from below:"<<endl;
         cout<<"0. Exit"<<endl;
@@ -66,12 +100,12 @@ int main()
 
             int fileItemCount = StockFileCount();
 
-            int fileItemCodes[fileItemCount] ;
-            string fileItemNames[fileItemCount];
+            string fileItemCodes[fileItemCount] ;
             int fileItemQuantity[fileItemCount];
             int fileItemPrice[fileItemCount];
+            string fileItemNames[fileItemCount];
 
-            inputsFromstockFile(fileItemCodes,fileItemNames,fileItemQuantity,fileItemPrice,fileItemCount);
+            inputsFromstockFile(fileItemCodes,fileItemQuantity,fileItemPrice,fileItemNames,fileItemCount);
 
 
             if(choice3==1)
@@ -111,7 +145,7 @@ int main()
             }
             else if(choice3==2)
             {
-                int userItemCode;
+                string userItemCode;
                 int searchedItemNumber=-1;
 
                 cout<<"Please enter item code: ";
@@ -147,27 +181,30 @@ int main()
 
           
 
-    }
+    } 
+    
 }
 
+   
 
 
 int StockFileCount()
 {
-  string fileItemName;
-  int fileItemCode=0,fileItemPrice=0,fileItemCount=0,fileItemQuanity=0;
+  string fileItemName,fileItemCode;
+  int fileItemPrice=0,fileItemCount=0,fileItemQuanity=0;
   ofstream fout;
   ifstream fin;
+
   fin.open("stock.txt");
   if (!fin.fail())
   {
      while(fin>>fileItemCode)
       {
-        fin.ignore();
-        getline(fin,fileItemName);
         fin>>fileItemQuanity;
         fin>>fileItemPrice;
         fin.ignore();
+        getline(fin,fileItemName);
+       
         fileItemCount++;
         
       }
@@ -182,20 +219,21 @@ int StockFileCount()
    return fileItemCount;
 }
 
-void inputsFromstockFile(int fileItemCodes[],string fileitemName[],int fileItemQuantity[],int fileItemprice[],int fileItemCount)
+void inputsFromstockFile(string fileItemCodes[],int fileItemQuantity[],int fileItemprice[],string fileitemName[],int fileItemCount)
 {
-   ifstream fin;
+  ifstream fin;
   fin.open("stock.txt");
+
   if(!fin.fail())
   {
     for(int i=0;i<fileItemCount;i++)
     {
       fin >>fileItemCodes[i];
-      fin.ignore();
-      getline(fin,fileitemName[i]);
       fin >>fileItemQuantity[i];
       fin >>fileItemprice[i];
       fin.ignore();
+      getline(fin,fileitemName[i]);
+     
     }
     fin.close();
   }
