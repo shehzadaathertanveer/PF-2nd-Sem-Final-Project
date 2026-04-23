@@ -7,5 +7,3 @@
 5445 shoop noodle 50 45
 0210 mango ice cream 23 60
 0032 chocos 70 35
-5 9
--1
