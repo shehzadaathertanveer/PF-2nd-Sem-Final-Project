@@ -7,7 +7,7 @@
 using namespace std;
 
 int StockFileCount();
-void inputsFromstockFile(int[], int[], int[],string[], int);
+void inputsFromstockFile(int[], string[], int[], int[], int);
 
 int main()
 {
@@ -67,11 +67,11 @@ int main()
             int fileItemCount = StockFileCount();
 
             int fileItemCodes[fileItemCount] ;
+            string fileItemNames[fileItemCount];
             int fileItemQuantity[fileItemCount];
             int fileItemPrice[fileItemCount];
-            string fileItemNames[fileItemCount];
 
-            inputsFromstockFile(fileItemCodes,fileItemQuantity,fileItemPrice,fileItemNames,fileItemCount);
+            inputsFromstockFile(fileItemCodes,fileItemNames,fileItemQuantity,fileItemPrice,fileItemCount);
 
 
             if(choice3==1)
@@ -158,17 +158,16 @@ int StockFileCount()
   int fileItemCode=0,fileItemPrice=0,fileItemCount=0,fileItemQuanity=0;
   ofstream fout;
   ifstream fin;
-
   fin.open("stock.txt");
   if (!fin.fail())
   {
      while(fin>>fileItemCode)
       {
+        fin.ignore();
+        getline(fin,fileItemName);
         fin>>fileItemQuanity;
         fin>>fileItemPrice;
         fin.ignore();
-        getline(fin,fileItemName);
-        fin.ignore(100, '\n');
         fileItemCount++;
         
       }
@@ -183,7 +182,7 @@ int StockFileCount()
    return fileItemCount;
 }
 
-void inputsFromstockFile(int fileItemCodes[],int fileItemQuantity[],int fileItemprice[],string fileitemName[],int fileItemCount)
+void inputsFromstockFile(int fileItemCodes[],string fileitemName[],int fileItemQuantity[],int fileItemprice[],int fileItemCount)
 {
    ifstream fin;
   fin.open("stock.txt");
@@ -192,11 +191,11 @@ void inputsFromstockFile(int fileItemCodes[],int fileItemQuantity[],int fileItem
     for(int i=0;i<fileItemCount;i++)
     {
       fin >>fileItemCodes[i];
+      fin.ignore();
+      getline(fin,fileitemName[i]);
       fin >>fileItemQuantity[i];
       fin >>fileItemprice[i];
       fin.ignore();
-      getline(fin,fileitemName[i]);
-      fin.ignore(100, '\n');
     }
     fin.close();
   }

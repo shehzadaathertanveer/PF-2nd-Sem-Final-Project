@@ -14,7 +14,7 @@ Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
 using namespace std;
 
 int StockFileCount();
-void inputsFromstockFile(int[], string[], int[], int[], int);
+void inputsFromstockFile(int[], int[], int[],string[], int);
 
 int main()
 {
@@ -54,16 +54,19 @@ int StockFileCount()
   int fileItemCode=0,fileItemPrice=0,fileItemCount=0,fileItemQuanity=0;
   ofstream fout;
   ifstream fin;
+
   fin.open("stock.txt");
   if (!fin.fail())
   {
      while(fin>>fileItemCode)
       {
-        getline(fin,fileItemName);
         fin>>fileItemQuanity;
         fin>>fileItemPrice;
+        fin.ignore();
+        getline(fin,fileItemName);
+        fin.ignore(100, '\n');
         fileItemCount++;
-        fin>>fileItemCode;
+        
       }
 
      fin.close();
@@ -76,7 +79,7 @@ int StockFileCount()
    return fileItemCount;
 }
 
-void inputsFromstockFile(int fileItemCodes[],string fileitemName[],int fileItemQuantity[],int fileItemprice[],int fileItemCount)
+void inputsFromstockFile(int fileItemCodes[],int fileItemQuantity[],int fileItemprice[],string fileitemName[],int fileItemCount)
 {
    ifstream fin;
   fin.open("stock.txt");
@@ -84,10 +87,12 @@ void inputsFromstockFile(int fileItemCodes[],string fileitemName[],int fileItemQ
   {
     for(int i=0;i<fileItemCount;i++)
     {
-      fin >> fileItemCodes[i];
+      fin >>fileItemCodes[i];
+      fin >>fileItemQuantity[i];
+      fin >>fileItemprice[i];
+      fin.ignore();
       getline(fin,fileitemName[i]);
-      fin >> fileItemQuantity[i];
-      fin >> fileItemprice[i];
+      fin.ignore(100, '\n');
     }
     fin.close();
   }
