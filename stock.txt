@@ -1,0 +1,11 @@
+3435 aqua water 23 250
+2344 biryani masala 45 125
+0988 masala lays 60 40
+3455 cafe biscuit 30 40
+2400 mango juice 45 50
+4554 chocolate brownie 30 210
+5445 shoop noodle 50 45
+0210 mango ice cream 23 60
+0032 chocos 70 35
+5 9
+-1
