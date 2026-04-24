@@ -1,11 +1,6 @@
-/* This is the final project of team Debuggers for Programming 
-Fundamentals. The team members are Abdullah Arif Roll# BITF25A012,
-Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
-*/
-
-//THIS IS STOCK MANAGEMENT AND BILLING PROGRAM WHICH WILL HELP IN EDITING, 
-//MAINTAINING AND CHECKING STOCK AND WILL ALSO GENERATE RECIEPT
-
+// eidt stock
+//hello check.
+// check ack 1
 #include<iostream>
 #include<String>
 #include<fstream>
@@ -13,233 +8,296 @@ Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
 
 using namespace std;
 
-int StockFileCount();
-void inputsFromstockFile(string[], int[], int[],string[], int);
+int adminFileCount();
+void inputsFromAdminFile(string[], int[], int);
+
 
 int main()
 {
-    int choice1;
+   int choice1=1;
 
-    cout<<"Welcome to Stock Management and Billing Program!"<<endl;
-    cout<<"Please select your role:"<<endl;
-    cout<<"0. Exit"<<endl;
-    cout<<"1. Admin"<<endl;
-    cout<<"2. User"<<endl;
-    cout<<"Enter choice: ";
-    cin>>choice1;
-    cout<<endl;
-
-    while(choice1>2||choice1<0)
-    {
-        cout<<"INVALID INPUT! \a "<<endl<<endl;
-        cout<<"Please select your role:"<<endl;
-        cout<<"0. Exit"<<endl;
-        cout<<"1. Admin"<<endl;
-        cout<<"2. User"<<endl;
-        cout<<"Enter choice: ";
-        cin>>choice1;
-        cout<<endl;
-    }
-
-    if(choice1 ==1)
-    {
-        
-    }
-    else if (choice1==2)
+    if(choice1 == 1)
     {
         int choice2;
-        ofstream fout;
-        ifstream fin;
-
-        cout<<"Welcome User!"<<endl;
-        cout<<"PLease select one from below:"<<endl;
-        cout<<"0. Exit"<<endl;
-        cout<<"1. Stock search"<<endl;
-        cout<<"2. Billing"<<endl;
-        cout<<"3. Back"<<endl;
-        cout<<"enter your choice: ";
-        cin>>choice2;
-        cout<<endl;
-
-        while( choice2<0||choice2>3)
+        do
         {
-            cout<<"INVALID INPUT! \a "<<endl<<endl;
-            cout<<"PLease select one from below:"<<endl;
-            cout<<"0. Exit"<<endl;
-            cout<<"1. Stock search."<<endl;
-            cout<<"2. Billing."<<endl;
-            cout<<"3. Back"<<endl;
-            cout<<"enter your choice: ";
-            cin>>choice2;
-            cout<<endl;
-        }
-        if(choice2==1)
-        {
-            int choice3;
-            cout<<"PLease select one from below:"<<endl;
-            cout<<"0. Exit"<<endl;
-            cout<<"1. Search by item name"<<endl;
-            cout<<"2. Search by item code"<<endl;
-            cout<<"3. Back"<<endl;
-            cout<<"Enter your choice: ";
-            cin>>choice3;
-            cout<<endl;
+            ofstream fout;
 
-            while( choice3<0||choice3>3)
+            int choice3,choice4;
+            int adminCount=adminFileCount();
+            int adminPin[adminCount];
+            string adminname[adminCount];
+            string userName;
+            int userPin,adminNumber=-1;
+
+            inputsFromAdminFile(adminname,adminPin,adminCount);
+
+            cout<<"Welcome Admin!"<<endl;
+  
+            cout<<"Please enter User Name: ";
+            getline(cin,userName);
+
+            for(int i=0;i<adminCount;i++)
             {
-               cout<<"INVALID INPUT! \a "<<endl<<endl;
-               cout<<"PLease select one from below:"<<endl;
-               cout<<"0. Exit"<<endl;
-               cout<<"1. Search by item name"<<endl;
-               cout<<"2. Search by item code"<<endl;
-               cout<<"3. Back"<<endl;
-               cout<<"Enter your choice: ";
-               cin>>choice3;
-               cout<<endl;
-            }
-
-            int fileItemCount = StockFileCount();
-
-            string fileItemCodes[fileItemCount] ;
-            int fileItemQuantity[fileItemCount];
-            int fileItemPrice[fileItemCount];
-            string fileItemNames[fileItemCount];
-
-            inputsFromstockFile(fileItemCodes,fileItemQuantity,fileItemPrice,fileItemNames,fileItemCount);
-
-
-            if(choice3==1)
-            {
-                string userItemName;
-                int searchedItemNumber=-1;
-
-                cout<<"Please enter item name: ";
-                cin.ignore();
-                getline(cin,userItemName);
-                
-                for(int i=0 ; i < fileItemCount; i++ )
+                if(adminname[i]==userName)
                 {
-                    if(fileItemNames[i]==userItemName)
-                    {
-                        searchedItemNumber = i;
-                    }
-                }
-
-                if(searchedItemNumber !=-1)
-                {
-                    cout<<"The Item you Searched:"<<endl;
-                    cout<<fileItemCodes[searchedItemNumber] <<" "
-                    <<fileItemNames[searchedItemNumber]<<" "
-                    <<fileItemQuantity[searchedItemNumber]<<" "
-                    <<fileItemPrice[searchedItemNumber];
-
-                }
-                else
-                {
-                    cout<<endl;
-                    cout<<"The item u searched does not exist in stock" 
-                    <<" try searching again with item code or exact item name"<<endl;
-                }
-
-
-            }
-            else if(choice3==2)
-            {
-                string userItemCode;
-                int searchedItemNumber=-1;
-
-                cout<<"Please enter item code: ";
-                cin>>userItemCode;
-                
-                for(int i=0 ; i < fileItemCount; i++ )
-                {
-                    if(fileItemCodes[i]==userItemCode)
-                    {
-                        searchedItemNumber = i;
-                    }
-                }
-
-                if(searchedItemNumber !=-1)
-                {
-                    cout<<"The Item you Searched:"<<endl;
-                    cout<<fileItemCodes[searchedItemNumber] <<" "
-                    <<fileItemNames[searchedItemNumber]<<" "
-                    <<fileItemQuantity[searchedItemNumber]<<" "
-                    <<fileItemPrice[searchedItemNumber];
-
-                }
-                else
-                {
-                    cout<<endl;
-                    cout<<"The item u searched does not exist in stock" 
-                    <<" try searching again with item name or exact item code"<<endl;
+                  adminNumber=i;
                 }
             }
-
-
-        }
-
-          
-
-    } 
-    
-}
-
+            cout<<"Please enter your PIN: ";
+            cin>>userPin;
+            cin.ignore();
    
+            if (adminNumber!=-1 && userPin==adminPin[adminNumber])
+            {  
+                do
+                {
+                
+                    cout<<"Please select an options "<<endl;
+                    cout<<"0. Exit"<<endl;
+                    cout<<"1. Update stock "<<endl;
+                    cout<<"2. Add Admin"<<endl;
+                    cout<<"3. Change User Name or PIN "<<endl;
+                    cout<<"4. Back"<<endl;
+                    cout<<"Please enter your choice: ";
+                    cin>> choice2;
+                    cin.ignore();
 
+                    while ( choice2 < 0 || choice2 > 4 )
+                    {
+                        cout<<endl<<"Invalid Input!"<<endl;
+                        cout<<"Please select an options "<<endl;
+                        cout<<"0. Exit"<<endl;
+                        cout<<"1. Update stock "<<endl;
+                        cout<<"2. Add Admin"<<endl;
+                        cout<<"3. Change User Name or PIN "<<endl;
+                        cout<<"4. Back"<<endl;
+                        cout<<"Please enter your choice: ";
+                        cin>> choice2;
+                        cin.ignore();
 
-int StockFileCount()
-{
-  string fileItemName,fileItemCode;
-  int fileItemPrice=0,fileItemCount=0,fileItemQuanity=0;
-  ofstream fout;
-  ifstream fin;
+                    } 
 
-  fin.open("stock.txt");
-  if (!fin.fail())
-  {
-     while(fin>>fileItemCode)
-      {
-        fin>>fileItemQuanity;
-        fin>>fileItemPrice;
-        fin.ignore();
-        getline(fin,fileItemName);
-       
-        fileItemCount++;
-        
-      }
+                    if (choice2==0)
+                    {
+                        cout<<"thank you for using the program";
+                        return 0;
+                    }
+                    else if(choice2==1)
+                    {
+                    
+                    }
+                    else if(choice2==2)
+                    {
+                        int newAdminPin;
+                        string newAdminName;
 
-     fin.close();
-  }
-  else
-  {
-    cout<<endl;
-    cout<<"Error!\aCould not open stock.txt file"<<endl;
-  }
-   return fileItemCount;
+                        cout<<"Please enter new admin user name: ";
+                        getline(cin,newAdminName);
+                        cout<<"please enter new admin Pin: ";
+                        cin>>newAdminPin;
+                        cin.ignore();
+
+                        fout.open("admin.txt");
+
+                        if(!fout.fail())
+                        {
+                            fout<<newAdminPin<<" ";
+                            fout<<newAdminName; 
+                            fout<<endl;
+                            for(int i=0;i<adminCount;i++)
+                            {
+                                fout<<adminPin[i]<<" ";
+                                fout<<adminname[i];
+                                fout<<endl;
+                            }
+                            fout.close();
+
+                        }
+                        else
+                        {
+                            cout<<endl;
+                            cout<<"Error!\aCould not open admin.txt file for adding a new admin"<<endl;
+                        }
+
+                    }
+                    else if(choice2==3)
+                    {
+                        do
+                        {
+                            cout<<"Please select one of following:"<<endl;
+                            cout<<"0. Exit"<<endl;
+                            cout<<"1. Change username"<<endl;
+                            cout<<"2. Change Pin"<<endl;
+                            cout<<"3. Back"<<endl;
+                            cout<<"Enter choice: ";
+                            cin>>choice4;
+                            cin.ignore();
+
+                            while(choice4<0||choice4>3)
+                            {
+                                cout<<endl<<"Invalid Input!"<<endl;
+                                cout<<"Please select one of following:"<<endl;
+                                cout<<"0. Exit"<<endl;
+                                cout<<"1. Change username"<<endl;
+                                cout<<"2. Change Pin"<<endl;
+                                cout<<"3. Back"<<endl;
+                                cout<<"Enter choice: ";
+                                cin>>choice4;
+                                cin.ignore();
+                            }
+
+                            if(choice4==0)
+                            {
+                                cout<<endl<<"Thank you for using the program "<<endl;
+                                return 0;
+                            }
+                            else if(choice4==1)
+                            {
+                                choice4=3;
+                                choice2=3;
+                                string newUserName;
+                                cout<<"Please enter the new username: ";
+                                getline(cin,newUserName);
+
+                                fout.open("admin.txt");
+
+                                if(!fout.fail())
+                                {
+                                    for(int i=0;i<adminCount;i++)
+                                    {
+                                        if(i==adminNumber)
+                                        {
+                                            fout<<adminPin[i]<<" ";
+                                            fout<<newUserName;
+                                            fout<<endl;
+                                        }
+                                        else
+                                        {
+                                            fout<<adminPin[i]<<" ";
+                                            fout<<adminname[i];
+                                            fout<<endl;
+                                        }
+                                    }
+                                    fout.close();
+                                }
+                                else
+                                {
+                                    cout<<endl;
+                                    cout<<"Error!\aCould not open admin.txt file for editing admin's username"<<endl;
+                                }
+                            }
+                            else if(choice4==2)
+                            {
+                                choice4=3;
+                                choice2=3;
+                                int newUserPin;
+                                cout<<"Please enter the new Pin: ";
+                                cin>>newUserPin;
+                                cin.ignore();
+
+                                fout.open("admin.txt");
+
+                                if(!fout.fail())
+                                {
+                                    for(int i=0;i<adminCount;i++)
+                                    {
+                                        if(i==adminNumber)
+                                        {
+                                            fout<<newUserPin<<" ";
+                                            fout<<adminname[i];
+                                            fout<<endl;
+                                        }   
+                                        else
+                                        {
+                                            fout<<adminPin[i]<<" ";
+                                            fout<<adminname[i];
+                                            fout<<endl;
+                                        }
+                                    }
+                                    fout.close();
+                                }
+                                else
+                                {
+                                    cout<<endl;
+                                    cout<<"Error!\aCould not open admin.txt file for editing admin's Pin"<<endl;
+                                }
+                            }
+                        }while(choice4!=3);
+                    }
+                }while(choice2!=3);
+            }
+            else
+            {
+                cout<<endl<<"Invalid credentials!\aplease try again "<<endl;
+            }
+        }while(choice1!=4);
+    }         
 }
 
-void inputsFromstockFile(string fileItemCodes[],int fileItemQuantity[],int fileItemprice[],string fileitemName[],int fileItemCount)
-{
-  ifstream fin;
-  fin.open("stock.txt");
 
-  if(!fin.fail())
-  {
-    for(int i=0;i<fileItemCount;i++)
+int adminFileCount()
+{
+    string fileAdminName;
+    int fileAdminPin=0, fileAdminCount=0;
+    ifstream fin;
+
+    fin.open("Admin.txt");
+    if (!fin.fail())
     {
-      fin >>fileItemCodes[i];
-      fin >>fileItemQuantity[i];
-      fin >>fileItemprice[i];
-      fin.ignore();
-      getline(fin,fileitemName[i]);
-     
+        while(fin>>fileAdminPin)
+        {
+            fin.ignore();
+            getline(fin,fileAdminName);
+            fileAdminCount++;
+        }
+        fin.close();
     }
-    fin.close();
-  }
+    else
+    {
+        cout<<endl;
+        cout<<"Error!\aCould not open Admin.txt file"<<endl;
+    }
+    return fileAdminCount;
+}
+
+void inputsFromAdminFile(string fileAdminNames[], int fileAdminPins[], int fileAdminCount)
+{
+    ifstream fin;
+    fin.open("Admin.txt");
+
+    if(!fin.fail())
+    {
+        for(int i=0; i<fileAdminCount; i++)
+        {
+            fin>>fileAdminPins[i];
+            fin.ignore();
+            getline(fin,fileAdminNames[i]);
+        }
+        fin.close();
+    }
+    else
+    {
+        cout<<endl;
+        cout<<"Error!\aCould not open Admin.txt file"<<endl;
+    }
+}
+
+void changeAdminCredentials(int adminPin,string AdminName)
+{
+   ofstream fout;
+   
+   fout.open("admin.txt");
+
+   if(!fout.fail())
+   {
+      fout<<adminPin;
+      fout<<AdminName; 
+      fout<<endl;
+   }
    else
-  {
+   {
     cout<<endl;
-    cout<<"Error!\aCould not open stock.txt file"<<endl;
-  }
+    cout<<"Error!\aCould not open admin.txt file"<<endl;
+   }
 }
