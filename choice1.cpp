@@ -48,32 +48,27 @@ int main()
     cout<<"Please enter your choice: ";
     cin>> choice3;
 
-    while ( choice3 < 0 || choice3 >=4 )
+    while ( choice3 < 0 || choice3 > 4 )
     {
-            if(choice3 == 1)
-
-            {
-                    ofstream foutAdmin;
-                    string newUserName;
-                    int newUserPin; 
-                    foutAdmin.open("Admin.txt");
-
-                    if(foutAdmin)
-                    {
-                    cout<<"Please enter new user name: ";
-                    foutAdmin << newUserName;
-                    foutAdmin<<endl;
-                    cout<<"Please enter new PIN: ";
-                    foutAdmin << newUserPin;
-                    foutAdmin.close();
-                    }
-                    else
-                    {
-                        cout<<"no";
-                    }
-            }
+        cout<<"Invalid Input!"<<endl;
+        cout<<"Please select an options "<<endl;
+        cout<<"0. Exit"<<endl;
+        cout<<"1. Update stock "<<endl;
+        cout<<"2. Add Admin"<<endl;
+        cout<<"3. Change User Name or PIN "<<endl;
+        cout<<"4. Back"<<endl;
 
      }   
+
+     if (choice3 == 1)
+     {
+        
+     }
+
+     if ( choice3 == 2)
+     {
+
+     } 
 }
 }
 }

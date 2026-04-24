@@ -63,7 +63,7 @@ int main()
 
             if(choice3==1)
             {
-                string userItemName
+                string userItemName;
 
                 cout<<"Please enter item name";
                 getline(cin,userItemName);
