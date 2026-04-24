@@ -6,6 +6,8 @@ using namespace std;
 
 int adminFileCount();
 void inputsFromAdminFile(string[], int[], int);
+int StockFileCount();
+void inputsFromstockFile(string[], int[], int[],string[], int);
 
 int main()
 {
@@ -213,6 +215,62 @@ int main()
             }
         } while (choice1 != 3);
     }
+}
+
+int StockFileCount()
+{
+  string fileItemName,fileItemCode;
+  int fileItemPrice=0,fileItemCount=0,fileItemQuanity=0;
+  ofstream fout;
+  ifstream fin;
+
+  fin.open("stock.txt");
+  if (!fin.fail())
+  {
+     while(fin>>fileItemCode)
+      {
+        fin>>fileItemQuanity;
+        fin>>fileItemPrice;
+        fin.ignore();
+        getline(fin,fileItemName);
+       
+        fileItemCount++;
+        
+      }
+
+     fin.close();
+  }
+  else
+  {
+    cout<<endl;
+    cout<<"Error!\a Could not open stock.txt file"<<endl;
+  }
+   return fileItemCount;
+}
+
+void inputsFromstockFile(string fileItemCodes[],int fileItemQuantity[],int fileItemprice[],string fileitemName[],int fileItemCount)
+{
+  ifstream fin;
+  fin.open("stock.txt");
+
+  if(!fin.fail())
+  {
+    for(int i=0;i<fileItemCount;i++)
+    {
+      fin >>fileItemCodes[i];
+      fin >>fileItemQuantity[i];
+      fin >>fileItemprice[i];
+      fin.ignore();
+      getline(fin,fileitemName[i]);
+     
+    }
+    fin.close();
+  }
+   else
+  {
+    cout<<endl;
+    cout<<"Error!\a Could not open stock.txt file"<<endl;
+  }
 }
 
 int adminFileCount()

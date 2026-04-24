@@ -1,9 +1,5 @@
-3435 23 250 aqua water
+3435 16 250 aqua water
 2344 45 125 biryani masala
-0988 60 40 masala lays
-3455 30 40 cafe biscuit
-2400 45 50 mango juice
-4554 30 210 chocolate brownie
-5445 50 45 shoop noodle
-0210 23 60 mango ice cream
-0032 70 35 chocos 
+0988 57 40 masala lays
+3455 29 40 cafe biscuit
+2400 42 50 mango juice

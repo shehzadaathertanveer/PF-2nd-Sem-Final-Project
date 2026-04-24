@@ -249,7 +249,7 @@ int main()
                 choice2 = 4;
             }
         }while (choice2 != 4);
-       }
+        }
         else if (choice1==2)
         { 
            do
@@ -421,7 +421,152 @@ int main()
                 }
                 else if(choice2==2)
                 {
-                    cout<<"Billing is under construction! Please check back later!"<<endl;
+                    int boughtItemCount=0;
+                    int itemTotal;
+
+                    int choice2=2,choice3;
+                    int itemCount=StockFileCount();
+
+                    string boughtItemCodes[500];
+                    int boughtItemtotal[500];
+                    int boughtItemPrices[500];
+                    int BoughtItemQuantity[500];
+                    string boughtItemNames[500];
+
+                    string itemCode[itemCount];
+                    int itemQuantity[itemCount];
+                    int itemPrice[itemCount];
+                    string itemName[itemCount];
+
+                    inputsFromstockFile(itemCode,itemQuantity,itemPrice,itemName,itemCount);
+
+                    cout<<endl<<"----------------------stock---------------------------"<<endl;
+                    cout<<left;
+                    cout<<setw(6)<<"Item code "<<setw(15)<<"Item name "<<setw(6)<<" ItemPrice"<<setw(6)<<" item quantity "<<endl<<endl;
+
+                    for(int i=0;i<itemCount;i++)
+                    {
+                        cout<<setw(6)<<itemCode[i]
+                        <<setw(25)<<itemName[i]
+                        <<setw(6)<<itemPrice[i]
+                        <<setw(6)<<itemQuantity[i]<<endl;
+                    }
+
+                    cout<<endl<<endl;
+                    char again='y';
+                    string boughtItem;
+                    int boughtItemNumber=-1,boughtItemQuantity=0,boughtItemPrice=0;
+                    do
+                    {
+                        boughtItemNumber=-1;
+                        cout<<"Please enter item code of the item: ";
+                        cin>>boughtItem;
+
+
+                        for(int i=0;i<itemCount;i++)
+                        {
+                            if(boughtItem==itemCode[i])
+                            {
+                                boughtItemNumber=i;
+                            }
+                        }
+
+                        if(boughtItemNumber!=-1)
+                        {
+                            cout<<"Please enter the quantity of item ";
+                            cin>>boughtItemQuantity;
+
+                            if(boughtItemQuantity<itemQuantity[boughtItemNumber])
+                            {
+                                int boughtItemPrice=itemPrice[boughtItemNumber];
+                                int remainingItemQuantity=itemQuantity[boughtItemNumber]-boughtItemQuantity;
+                                itemTotal=boughtItemPrice*boughtItemQuantity;
+                                itemQuantity[boughtItemNumber] -= boughtItemQuantity;
+         
+                                ofstream fout;
+                                fout.open("stock.txt");
+                                if(!fout.fail())
+                                {
+                                    for(int i=0;i<itemCount;i++)
+                                    {
+                                        if(boughtItem==itemCode[i])
+                                        {
+                                            fout<<itemCode[i]<<" ";
+                                            fout<<remainingItemQuantity<<" ";
+                                            fout<<itemPrice[i]<<" ";
+                                            fout<<itemName[i]<<endl;
+
+                                        }
+                                        else
+                                        {
+                                            fout<<itemCode[i]<<" ";
+                                            fout<<itemQuantity[i]<<" ";
+                                            fout<<itemPrice[i]<<" ";
+                                            fout<<itemName[i]<<endl;
+                                        }
+                                    }
+
+                                    cout<<endl<<"would you like to purchase another Item (Y/N): ";
+                                    cin>>again;
+                                    cin.ignore();
+                                    fout.close();
+                                }
+                                else
+                                {
+                                    cout<<endl<<"Error\a could not update stock file after purchasing"<<endl;
+                                }
+                            }
+                            else
+                            {
+                                cout<<"the quantity u entered "<<boughtItemQuantity
+                                <<" is greater than availble quantity "
+                                <<itemQuantity[boughtItemNumber]<<" please try again";
+                                again='y';
+                            }
+
+                            boughtItemCodes[boughtItemCount]=boughtItem;
+                            boughtItemNames[boughtItemCount]=itemName[boughtItemNumber];
+                            boughtItemPrices[boughtItemCount]=itemPrice[boughtItemNumber];
+                            boughtItemtotal[boughtItemCount]=itemTotal;
+                            BoughtItemQuantity[boughtItemCount]=boughtItemQuantity;
+
+                            boughtItemCount++;
+                        }
+                        else
+                        {
+                            cout<<endl<<"Invalid\aInput The item code does not exist Please try again"<<endl;
+                            again='y';
+                        }
+                    } while(again!='n'&&again!='N');
+        
+                    int grandTotal=0;
+                    string customername,customerphone;
+
+                    cout<<"Please enter coustomer name: ";
+                    cin.ignore(1000,'\n');
+                    getline(cin,customername);
+                    cout<<"Please enter coustomer phone number: ";
+                    getline(cin,customerphone);
+
+                    cout<<endl<<"--------------Reciept-------------"<<endl;
+                    cout<<customername<<endl;
+                    cout<<customerphone<<endl<<endl;
+                    cout<<setw(17)<<"Item name "
+                    <<setw(6)<<"item Quantity"
+                    <<setw(6)<<" item proce "
+                    <<setw(8)<<"Item total";
+                    cout<<endl;
+
+                    for(int i=0;i<boughtItemCount;i++)
+                    {
+                        cout<<setw(17)<<boughtItemNames[i] 
+                        <<setw(6)<<BoughtItemQuantity[i]
+                        <<setw(6)<<boughtItemPrices[i]
+                        <<setw(8)<<boughtItemtotal[i];
+                        grandTotal=grandTotal+boughtItemtotal[i];
+                        cout<<endl;
+                    }
+                    cout<<endl<<"Grand total: "<<grandTotal<<endl;
                 }
             }while(choice2 !=3);
          }
