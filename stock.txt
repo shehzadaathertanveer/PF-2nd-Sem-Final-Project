@@ -1,15 +1,3 @@
 3435 16 250 aqua water
 2344 45 125 biryani masala
-<<<<<<< HEAD
-0988 57 40 masala lays
-3455 29 40 cafe biscuit
-2400 42 50 mango juice
-=======
-988 60 40 masala lays
-3455 30 40 cafe biscuit
-2400 45 50 mango juice
-4554 30 210 chocolate brownie
-5445 62 45 shoop noodle
-210 18 60 mango ice cream
-32 60 42 chocos 
->>>>>>> 2e287a5bb71a5ae2978e8f599d1c869656d04a05
+2323 5 222 aaa
