@@ -7,7 +7,7 @@ Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
 //MAINTAINING AND CHECKING STOCK AND WILL ALSO GENERATE RECIEPT
 
 #include<iostream>
-#include<String>
+#include<string>
 #include<fstream>
 #include<iomanip>
 
@@ -35,7 +35,7 @@ int main()
 
         while(choice1>2||choice1<0)
         {
-            cout<<"INVALID INPUT! \a "<<endl<<endl;
+            cout<<"----INVALID INPUT!-----\a "<<endl<<endl;
             cout<<"Please select your role:"<<endl;
             cout<<"0. Exit"<<endl;
             cout<<"1. Admin"<<endl;
@@ -62,7 +62,7 @@ int main()
 
             inputsFromAdminFile(adminname, adminPin, adminCount);
 
-            cout << "Welcome Admin!" << endl;
+            cout<<endl << "----Welcome Admin!-----" << endl<<endl;
 
             cout << "Please enter User Name: ";
             getline(cin, userName);
@@ -94,7 +94,7 @@ int main()
 
                     while (choice2 < 0 || choice2 > 4)
                     {
-                        cout << endl << "Invalid Input!" << endl;
+                        cout << endl << "----Invalid Input!-----\a" << endl;
                         cout << "Please select an options " << endl;
                         cout << "0. Exit" << endl;
                         cout << "1. Update stock " << endl;
@@ -108,277 +108,321 @@ int main()
 
                     if (choice2 == 0)
                     {
-                        cout << "thank you for using the program";
+                        cout << endl << "Thank you for using the program" << endl;
                         return 0;
                     }
                     else if (choice2 == 1)
                     {
                         int choice = 0;
-
-                        cout << "which type of  update you want " << endl;
-                        cout << "1. Add item" << endl;
-                        cout << "2. increase/ decrease quantity of an item" << endl;
-                        cout << "3. increase/ decrease price of an item" << endl;
-                        cout << "4. delete item" << endl;
-                        cout << "Please enter your choice: ";
-                        cin >> choice;
-
-                        while (choice < 1 && choice > 4)
+                        do
                         {
-                            cout << "Invalid input";
+                            choice = 0;
+
                             cout << "which type of  update you want " << endl;
                             cout << "1. Add item" << endl;
                             cout << "2. increase/ decrease quantity of an item" << endl;
                             cout << "3. increase/ decrease price of an item" << endl;
                             cout << "4. delete item" << endl;
+                            cout << "5. back"<<endl;
                             cout << "Please enter your choice: ";
                             cin >> choice;
-                        }
 
-                        if (choice == 1)
-
-                        {
-
-                            int itemCodeFile[100], itemQuantityFile[100];
-                            int itemPriceFile[100];
-                            string itemNameFile[100];
-                            int count = 0;
-                            ifstream stockFile("stock.txt");
-
-                            while (stockFile >> itemCodeFile[count] >> itemQuantityFile[count] >> itemPriceFile[count])
+                            while (choice < 1 && choice > 5)
                             {
-                                stockFile.ignore();
-                                getline(stockFile, itemNameFile[count]);
-                                count++;
+                                cout << "Invalid input";
+                                cout << "which type of  update you want " << endl;
+                                cout << "1. Add item" << endl;
+                                cout << "2. increase/ decrease quantity of an item" << endl;
+                                cout << "3. increase/ decrease price of an item" << endl;
+                                cout << "4. delete item" << endl;
+                                cout << "5. back"<<endl;
+                                cout << "Please enter your choice: ";
+                                cin >> choice;
                             }
-                            stockFile.close();
 
-                            int newItems;
-                            cout << "How many new items: ";
-                            cin >> newItems;
-                            cin.ignore();
+                            if (choice == 1)
 
-                            for (int i = 0; i < newItems; i++)
                             {
-                                cout << "Enter item code: ";
-                                cin >> itemCodeFile[count];
-                                cout << "Enter quantity: ";
-                                cin >> itemQuantityFile[count];
-                                cout << "Enter price: ";
-                                cin >> itemPriceFile[count];
+                                int count = StockFileCount();
+                            
+                                string itemCodeFile[count]; 
+                                int itemQuantityFile[count];
+                                int itemPriceFile[count];
+                                string itemNameFile[count];
+                               
+                                inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
+
+                                int newItems;
+
+                                cout << "How many new items: ";
+                                cin >> newItems;
                                 cin.ignore();
-                                cout << "Enter item name: ";
-                                getline(cin, itemNameFile[count]);
-                                count++;
-                            }
 
-                            ofstream outStockfile("stock.txt");
+                                string newItemCode[newItems]; 
+                                int newItemQuantity[newItems];
+                                int newItemPrice[newItems];
+                                string newItemName[newItems];
 
-                            for (int i = 0; i < count; i++)
-                            {
-                                outStockfile << itemCodeFile[i] << " " << itemQuantityFile[i] << " " << itemPriceFile[i] << " " << itemNameFile[i] << endl;
-                            }
-                            outStockfile.close();
-                            cout << "All items saved successfully!" << endl;
-                        }
-                        
-                        else if (choice == 2)
-                        {
+                                ofstream fout;
+                                fout.open("stock.txt");
 
-                            int itemCodeFile[100], itemQuantityFile[100];
-                            int itemPriceFile[100];
-                            string itemNameFile[100];
-                            int count = 0;
-                            ifstream stockFile("stock.txt");
+                                if(!fout.fail())
+                                {  
 
-                            while (stockFile >> itemCodeFile[count] >> itemQuantityFile[count] >> itemPriceFile[count])
-                            {
-                                stockFile.ignore();
-                                getline(stockFile, itemNameFile[count]);
-                                count++;
-                            }
-                            stockFile.close();
+                                    for (int i = 0; i < newItems; i++)
+                                    {
+                                        int j=i;
+                                        cout<<endl<<"please enter for item "<<j+1<<endl;
 
-                            int searchCode;
-                            cout << "Enter item code: ";
-                            cin >> searchCode;
+                                        cout << "Enter item code: ";
+                                        cin >> newItemCode[i];
+                                        fout << newItemCode[i]<<" ";     
 
-                            char choice;
-                            int changeQuantity;
+                                        cout << "Enter quantity: ";                                            
+                                        cin >> newItemQuantity[i];
+                                        fout << newItemQuantity[i]<<" ";
 
-                            cout << "Enter '+' to increase or '-' to decrease: ";
-                            cin >> choice;
+                                        cout << "Enter price: ";
+                                        cin >> newItemPrice[i];
+                                        fout << newItemPrice[i] <<" ";
 
-                            cout << "Enter quantity change: ";
-                            cin >> changeQuantity;
-
-                            int found = 0;
-
-                            for (int i = 0; i < count; i++)
-                            {
-                                if (itemCodeFile[i] == searchCode)
+                                        cin.ignore();
+                                        cout << "Enter item name: ";
+                                        getline(cin, newItemName[i]);
+                                        fout <<newItemName[i]<<endl;
+                                    }
+                
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        fout << itemCodeFile[i] << " " 
+                                        << itemQuantityFile[i] << " "
+                                        << itemPriceFile[i] << " " 
+                                        << itemNameFile[i] << endl;
+                                    }
+                                    fout.close();
+                                    cout << "All items saved successfully!" << endl;
+                                }
+                                else
                                 {
-                                    found = 1;
-
-                                    if (choice == '+')
-                                    {
-                                        itemQuantityFile[i] = itemQuantityFile[i] + changeQuantity;
-                                    }
-                                    else if (choice == '-')
-                                    {
-                                        if (itemQuantityFile[i] >= changeQuantity)
-                                        {
-                                            itemQuantityFile[i] = itemQuantityFile[i] - changeQuantity;
-                                        }
-                                        else
-                                        {
-                                            cout << "Not enough stock!" << endl;
-                                        }
-                                    }
-                                    break;
+                                    cout<<endl<<"Error\a in editing stock file "<<endl;
                                 }
                             }
-
-                            if (found == 0)
+                            else if (choice == 2)
                             {
-                                cout << "Item not found!" << endl;
-                            }
-
-                            ofstream outStockfile("stock.txt");
-
-                            for (int i = 0; i < count; i++)
-                            {
-                                outStockfile << itemCodeFile[i] << " " << itemQuantityFile[i] << " " << itemPriceFile[i] << " " << itemNameFile[i] << endl;
-                            }
-                            outStockfile.close();
-
-                            cout << "Quantity updated successfully!" << endl;
-                        }
-
-                        else if (choice == 3)
-                        {
-
-                            int itemCodeFile[100], itemQuantityFile[100];
-                            int itemPriceFile[100];
-                            string itemnameFile[100];
-
-                            int count = 0;
-                            ifstream stockFile("stock.txt");
-
-                            while (stockFile >> itemCodeFile[count] >> itemQuantityFile[count] >> itemPriceFile[count])
-                            {
-                                stockFile.ignore();
-                                getline(stockFile, itemnameFile[count]);
-                                count++;
-                            }
-
-                            stockFile.close();
-
-                            int searchCode;
-                            cout << "Enter item code: ";
-                            cin >> searchCode;
-
-                            char choice;
-                            float changePrice;
-
-                            cout << "Enter '+' to increase price or '-' to decrease: ";
-                            cin >> choice;
-
-                            cout << "Enter price change: ";
-                            cin >> changePrice;
-                            int i;
-                            for (i = 0; i < count; i++)
-                            {
-                                if (itemCodeFile[i] == searchCode)
+                                char again='y';
+                                do 
                                 {
+                                    int count = StockFileCount();
 
-                                    if (choice == '+')
+                                    string itemCodeFile[count]; 
+                                    int itemQuantityFile[count];
+                                    int itemPriceFile[count];
+                                    string itemNameFile[count];
+                               
+                                    inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
+
+                                    string searchCode;
+                                    cout << "Enter item code: ";
+                                    cin >> searchCode;
+
+                                    char choice;
+                                    int changeQuantity;
+
+                                    cout << "Enter '+' to increase or '-' to decrease quantity: ";
+                                    cin >> choice;
+
+                                    while(choice!='+'&&choice!='-')
                                     {
-                                        itemPriceFile[i] = itemPriceFile[i] + changePrice;
-                                    }
-                                    else if (choice == '-')
-                                    {
-                                        if (itemPriceFile[i] >= changePrice)
-                                        {
-                                            itemPriceFile[i] = itemPriceFile[i] - changePrice;
-                                        }
-                                        else
-                                        {
-                                            cout << "Error: Price cannot be negative!" << endl;
-                                        }
+                                        cout<<endl<<"----Invalid input!----"<<endl;
+                                        cout << "Enter '+' to increase or '-' to decrease quantity: ";
+                                        cin >> choice;
                                     }
 
-                                    break;
-                                }
-                            }
+                                    cout << "Enter quantity change: ";
+                                    cin >> changeQuantity;
 
-                            if (i == count)
+                                    int found = 0;
+
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        if (itemCodeFile[i] == searchCode)
+                                        {
+                                            found = 1;
+
+                                            if (choice == '+')
+                                            {
+                                                itemQuantityFile[i] = itemQuantityFile[i] + changeQuantity;
+                                            }
+                                            else if (choice == '-')
+                                            {
+                                                if (itemQuantityFile[i] >= changeQuantity)
+                                                {
+                                                    itemQuantityFile[i] = itemQuantityFile[i] - changeQuantity;
+                                                }
+                                                else
+                                                {
+                                                    cout << "Not enough stock!" << endl;
+                                                    again='y';
+                                                }
+                                            }
+                                        }
+                                    }
+                                
+                                    if (found == 0)
+                                    {
+                                        cout << "Item not found!.Try again." << endl;
+                                        again='y';
+                                    }
+
+                                    ofstream outStockfile("stock.txt");
+
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        outStockfile << itemCodeFile[i] << " " << itemQuantityFile[i] << " " << itemPriceFile[i] << " " << itemNameFile[i] << endl;
+                                    }
+                                    outStockfile.close();
+
+                                    cout << "Quantity updated successfully!" << endl;
+                                    cout<<endl<<"Do you want to update another item? (Y/N): ";
+                                    cin>>again;
+
+                                }while(again!='n'&&again!='N'); 
+                            }   
+                            else if (choice == 3)
                             {
-                                cout << "Item not found!" << endl;
-                            }
-
-                            ofstream outStockfile("stock.txt");
-
-                            for (int j = 0; j < count; j++)
-                            {
-                                outStockfile << itemCodeFile[j] << " " << itemQuantityFile[j] << " " << itemPriceFile[j] << " " << itemnameFile[j] << endl;
-                            }
-
-                            outStockfile.close();
-
-                            cout << "Price updated successfully!" << endl;
-                        }
-
-                        else if (choice == 4)
-                        {
-
-                            int itemCodeFile[100], itemQuantityFile[100];
-                            int itemPriceFile[100];
-                            string itemNameFile[100];
-                            int count = 0;
-                            ifstream StockFile("stock.txt");
-
-                            while (StockFile >> itemCodeFile[count] >> itemQuantityFile[count] >> itemPriceFile[count])
-                            {
-                                StockFile.ignore();
-                                getline(StockFile, itemNameFile[count]);
-                                count++;
-                            }
-                            StockFile.close();
-
-                            int deleteCode;
-                            cout << "Enter item code to delete: ";
-                            cin >> deleteCode;
-
-                            ofstream outStockFile("stock.txt");
-
-                            int i;
-                            for (i = 0; i < count; i++)
-                            {
-                                if (itemCodeFile[i] != deleteCode)
+                                char again='y';
+                                do 
                                 {
+                                    int count = StockFileCount();
 
-                                    outStockFile << itemCodeFile[i] << " " << itemQuantityFile[i] << " " << itemPriceFile[i] << " " << itemNameFile[i] << endl;
-                                }
+                                    string itemCodeFile[count]; 
+                                    int itemQuantityFile[count];
+                                    int itemPriceFile[count];
+                                    string itemNameFile[count];
+                               
+                                    inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
+
+                                    string searchCode;
+                                    cout << "Enter item code: ";
+                                    cin >> searchCode;
+
+                                    char choice;
+                                    int changePrice;
+
+                                    cout << "Enter '+' to increase or '-' to decrease price: ";
+                                    cin >> choice;
+
+                                    while(choice!='+'&&choice!='-')
+                                    {
+                                        cout<<endl<<"----Invalid input!----"<<endl;
+                                        cout << "Enter '+' to increase or '-' to decrease price: ";
+                                        cin >> choice;
+                                    }
+
+                                    cout << "Enter price change: ";
+                                    cin >> changePrice;
+
+                                    int found = 0;
+
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        if (itemCodeFile[i] == searchCode)
+                                        {
+                                            found = 1;
+
+                                            if (choice == '+')
+                                            {
+                                                itemPriceFile[i] = itemPriceFile[i] + changePrice;
+                                            }
+                                            else if (choice == '-')
+                                            {
+                                                if (itemPriceFile[i] >= changePrice)
+                                                {
+                                                    itemPriceFile[i] = itemPriceFile[i] - changePrice;
+                                                }
+                                                else
+                                                {
+                                                    cout << "Not enough price!" << endl;
+                                                    again='y';
+                                                }
+                                            }
+                                        }
+                                    }
+                                
+                                    if (found == 0)
+                                    {
+                                        cout << "Item not found!.Try again." << endl;
+                                        again='y';
+                                    }
+
+                                    ofstream outStockfile("stock.txt");
+
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        outStockfile << itemCodeFile[i] << " " << itemQuantityFile[i] << " " << itemPriceFile[i] << " " << itemNameFile[i] << endl;
+                                    }
+                                    outStockfile.close();
+
+                                    cout << "Quantity updated successfully!" << endl;
+                                    cout<<endl<<"Do you want to update another item? (Y/N): ";
+                                    cin>>again;
+
+                                }while(again!='n'&&again!='N'); 
                             }
 
-                            outStockFile.close();
-
-                            for (i = 0; i < count; i++)
+                            else if (choice == 4)
                             {
-                                if (itemCodeFile[i] == deleteCode)
+                                char again='y';
+                                do
                                 {
-                                    cout << "Item deleted successfully!" << endl;
-                                    break;
-                                }
-                            }
+                                    int count = StockFileCount();
 
-                            if (i == count)
-                            {
-                                cout << "Item not found!" << endl;
-                            }
-                        }
-                    
+                                    string itemCodeFile[count]; 
+                                    int itemQuantityFile[count];
+                                    int itemPriceFile[count];
+                                    string itemNameFile[count];
+                               
+                                    inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
+
+                                    string deleteCode;
+                                    cout << "Enter item code to delete: ";
+                                    cin >> deleteCode;
+
+                                    ofstream fout("stock.txt");
+
+                                    int i;
+                                    for (i = 0; i < count; i++)
+                                    {
+                                        if (itemCodeFile[i] != deleteCode)
+                                        {
+
+                                            fout << itemCodeFile[i] << " " << itemQuantityFile[i] << " " << itemPriceFile[i] << " " << itemNameFile[i] << endl;
+                                        }
+                                    }
+
+                                    fout.close();
+
+                                    for (i = 0; i < count; i++)
+                                    {
+                                        if (itemCodeFile[i] == deleteCode)
+                                        {
+                                            cout << "Item deleted successfully!" << endl;
+                                            cout<<endl<<"Do you want to delete another item? (Y/N): ";
+                                            cin>>again;
+                                            break;
+                                        }
+                                    }
+
+                                    if (i == count)
+                                    {
+                                        cout << "Item not found! try again." << endl;
+                                        again='y';
+                                    }
+                               }while (again != 'n' && again != 'N');
+                             
+                               
+                            }   
+                        }while(choice!=5);
                     }
                     else if (choice2 == 2)
                     {
@@ -685,152 +729,157 @@ int main()
                 }
                 else if(choice2==2)
                 {
-                    int boughtItemCount=0;
-                    int itemTotal;
-
-                    int choice2=2,choice3;
-                    int itemCount=StockFileCount();
-
-                    string boughtItemCodes[500];
-                    int boughtItemtotal[500];
-                    int boughtItemPrices[500];
-                    int BoughtItemQuantity[500];
-                    string boughtItemNames[500];
-
-                    string itemCode[itemCount];
-                    int itemQuantity[itemCount];
-                    int itemPrice[itemCount];
-                    string itemName[itemCount];
-
-                    inputsFromstockFile(itemCode,itemQuantity,itemPrice,itemName,itemCount);
-
-                    cout<<endl<<"----------------------stock---------------------------"<<endl;
-                    cout<<left;
-                    cout<<setw(6)<<"Item code "<<setw(15)<<"Item name "<<setw(6)<<" ItemPrice"<<setw(6)<<" item quantity "<<endl<<endl;
-
-                    for(int i=0;i<itemCount;i++)
-                    {
-                        cout<<setw(6)<<itemCode[i]
-                        <<setw(25)<<itemName[i]
-                        <<setw(6)<<itemPrice[i]
-                        <<setw(6)<<itemQuantity[i]<<endl;
-                    }
-
-                    cout<<endl<<endl;
-                    char again='y';
-                    string boughtItem;
-                    int boughtItemNumber=-1,boughtItemQuantity=0,boughtItemPrice=0;
+                    char anotherReceipt='y';
                     do
                     {
-                        boughtItemNumber=-1;
-                        cout<<"Please enter item code of the item: ";
-                        cin>>boughtItem;
+                        int boughtItemCount=0;
+                        int itemTotal;
 
+                        int choice2=2,choice3;
+                        int itemCount=StockFileCount();
+
+                        string boughtItemCodes[500];
+                        int boughtItemtotal[500];
+                        int boughtItemPrices[500];
+                        int BoughtItemQuantity[500];
+                        string boughtItemNames[500];
+
+                        string itemCode[itemCount];
+                        int itemQuantity[itemCount];
+                        int itemPrice[itemCount];
+                        string itemName[itemCount];
+
+                        inputsFromstockFile(itemCode,itemQuantity,itemPrice,itemName,itemCount);
+
+                        cout<<endl<<"----------------------stock---------------------------"<<endl;
+                        cout<<left;
+                        cout<<setw(6)<<"Item code "<<setw(15)<<"Item name "<<setw(6)<<" ItemPrice"<<setw(6)<<" item quantity "<<endl<<endl;
 
                         for(int i=0;i<itemCount;i++)
                         {
-                            if(boughtItem==itemCode[i])
-                            {
-                                boughtItemNumber=i;
-                            }
+                            cout<<setw(6)<<itemCode[i]
+                            <<setw(25)<<itemName[i]
+                            <<setw(6)<<itemPrice[i]
+                            <<setw(6)<<itemQuantity[i]<<endl;
                         }
 
-                        if(boughtItemNumber!=-1)
+                        cout<<endl<<endl;
+                        char again='y';
+                        string boughtItem;
+                        int boughtItemNumber=-1,boughtItemQuantity=0,boughtItemPrice=0;
+                        do
                         {
-                            cout<<"Please enter the quantity of item ";
-                            cin>>boughtItemQuantity;
+                            boughtItemNumber=-1;
+                            cout<<"Please enter item code of the item: ";
+                            cin>>boughtItem;
 
-                            if(boughtItemQuantity<itemQuantity[boughtItemNumber])
+                            for(int i=0;i<itemCount;i++)
                             {
-                                int boughtItemPrice=itemPrice[boughtItemNumber];
-                                int remainingItemQuantity=itemQuantity[boughtItemNumber]-boughtItemQuantity;
-                                itemTotal=boughtItemPrice*boughtItemQuantity;
-                                itemQuantity[boughtItemNumber] -= boughtItemQuantity;
-         
-                                ofstream fout;
-                                fout.open("stock.txt");
-                                if(!fout.fail())
+                                if(boughtItem==itemCode[i])
                                 {
-                                    for(int i=0;i<itemCount;i++)
+                                    boughtItemNumber=i;
+                                }
+                            }                        
+
+                            if(boughtItemNumber!=-1)
+                            {
+                                cout<<"Please enter the quantity of item ";
+                                cin>>boughtItemQuantity;
+
+                                if(boughtItemQuantity<itemQuantity[boughtItemNumber])
+                                {
+                                    int boughtItemPrice=itemPrice[boughtItemNumber];
+                                    int remainingItemQuantity=itemQuantity[boughtItemNumber]-boughtItemQuantity;
+                                    itemTotal=boughtItemPrice*boughtItemQuantity;
+                                    itemQuantity[boughtItemNumber] -= boughtItemQuantity;
+         
+                                    ofstream fout;
+                                    fout.open("stock.txt");
+                                    if(!fout.fail())
                                     {
-                                        if(boughtItem==itemCode[i])
+                                        for(int i=0;i<itemCount;i++)
                                         {
-                                            fout<<itemCode[i]<<" ";
-                                            fout<<remainingItemQuantity<<" ";
-                                            fout<<itemPrice[i]<<" ";
-                                            fout<<itemName[i]<<endl;
+                                            if(boughtItem==itemCode[i])
+                                            {
+                                                fout<<itemCode[i]<<" ";
+                                                fout<<remainingItemQuantity<<" ";
+                                                fout<<itemPrice[i]<<" ";
+                                                fout<<itemName[i]<<endl;
 
-                                        }
-                                        else
-                                        {
-                                            fout<<itemCode[i]<<" ";
-                                            fout<<itemQuantity[i]<<" ";
-                                            fout<<itemPrice[i]<<" ";
-                                            fout<<itemName[i]<<endl;
-                                        }
+                                            }
+                                            else
+                                            {
+                                                fout<<itemCode[i]<<" ";
+                                                fout<<itemQuantity[i]<<" ";
+                                                fout<<itemPrice[i]<<" ";
+                                                fout<<itemName[i]<<endl;
+                                            }
+                                       }
+
+                                        cout<<endl<<"would you like to purchase another Item (Y/N): ";
+                                        cin>>again;
+                                        fout.close();
                                     }
-
-                                    cout<<endl<<"would you like to purchase another Item (Y/N): ";
-                                    cin>>again;
-                                    cin.ignore();
-                                    fout.close();
+                                    else
+                                    {
+                                        cout<<endl<<"Error\a could not update stock file after purchasing"<<endl;
+                                    }
                                 }
                                 else
                                 {
-                                    cout<<endl<<"Error\a could not update stock file after purchasing"<<endl;
+                                    cout<<"the quantity u entered "<<boughtItemQuantity
+                                    <<" is greater than availble quantity "
+                                    <<itemQuantity[boughtItemNumber]<<" please try again";
+                                    again='y';
                                 }
+
+                                boughtItemCodes[boughtItemCount]=boughtItem;
+                                boughtItemNames[boughtItemCount]=itemName[boughtItemNumber];
+                                boughtItemPrices[boughtItemCount]=itemPrice[boughtItemNumber];
+                                boughtItemtotal[boughtItemCount]=itemTotal;
+                                BoughtItemQuantity[boughtItemCount]=boughtItemQuantity;
+
+                                boughtItemCount++;
                             }
                             else
                             {
-                                cout<<"the quantity u entered "<<boughtItemQuantity
-                                <<" is greater than availble quantity "
-                                <<itemQuantity[boughtItemNumber]<<" please try again";
+                                cout<<endl<<"Invalid\aInput The item code does not exist Please try again"<<endl;
                                 again='y';
-                            }
-
-                            boughtItemCodes[boughtItemCount]=boughtItem;
-                            boughtItemNames[boughtItemCount]=itemName[boughtItemNumber];
-                            boughtItemPrices[boughtItemCount]=itemPrice[boughtItemNumber];
-                            boughtItemtotal[boughtItemCount]=itemTotal;
-                            BoughtItemQuantity[boughtItemCount]=boughtItemQuantity;
-
-                            boughtItemCount++;
-                        }
-                        else
-                        {
-                            cout<<endl<<"Invalid\aInput The item code does not exist Please try again"<<endl;
-                            again='y';
-                        }
-                    } while(again!='n'&&again!='N');
+                            }                        
+                        } while(again!='n'&&again!='N');
         
-                    int grandTotal=0;
-                    string customername,customerphone;
+                        int grandTotal=0;
+                        string customername,customerphone;
 
-                    cout<<"Please enter coustomer name: ";
-                    cin.ignore(1000,'\n');
-                    getline(cin,customername);
-                    cout<<"Please enter coustomer phone number: ";
-                    getline(cin,customerphone);
+                        cout<<"Please enter coustomer name: ";
+                        cin.ignore();
+                        getline(cin,customername);
+                        cout<<"Please enter coustomer phone number: ";
+                        getline(cin,customerphone);
 
-                    cout<<endl<<"--------------Reciept-------------"<<endl;
-                    cout<<customername<<endl;
-                    cout<<customerphone<<endl<<endl;
-                    cout<<setw(17)<<"Item name "
-                    <<setw(6)<<"item Quantity"
-                    <<setw(6)<<" item proce "
-                    <<setw(8)<<"Item total";
-                    cout<<endl;
-
-                    for(int i=0;i<boughtItemCount;i++)
-                    {
-                        cout<<setw(17)<<boughtItemNames[i] 
-                        <<setw(6)<<BoughtItemQuantity[i]
-                        <<setw(6)<<boughtItemPrices[i]
-                        <<setw(8)<<boughtItemtotal[i];
-                        grandTotal=grandTotal+boughtItemtotal[i];
+                        cout<<endl<<"--------------Reciept-------------"<<endl;
+                        cout<<"coustomer: "<<customername<<endl;
+                        cout<<"phone: "<<customerphone<<endl<<endl;
+                        cout<<setw(17)<<"Item name "
+                        <<setw(6)<<"item Quantity"
+                        <<setw(6)<<" item proce "
+                        <<setw(8)<<"Item total";
                         cout<<endl;
-                    }
-                    cout<<endl<<"Grand total: "<<grandTotal<<endl;
+
+                        for(int i=0;i<boughtItemCount;i++)
+                        {
+                            cout<<setw(17)<<boughtItemNames[i] 
+                            <<setw(6)<<BoughtItemQuantity[i]
+                            <<setw(6)<<boughtItemPrices[i]
+                            <<setw(8)<<boughtItemtotal[i];
+                            grandTotal=grandTotal+boughtItemtotal[i];
+                            cout<<endl;
+                        }
+                        cout<<endl<<"Grand total: "<<grandTotal<<endl;
+                        cout<<endl<<"Would you like to generate another receipt? (Y/N): ";
+                        cin>>anotherReceipt;
+
+                    }while(anotherReceipt!='n'&&anotherReceipt!='N');
                 }
             }while(choice2 !=3);
          }
