@@ -46,7 +46,7 @@ int main()
             cout<<endl;
         }
 
-        if(choice1 ==1)
+        if(choice1 ==1)//Admin Permissions
         {
             int choice2;
         do
@@ -62,24 +62,46 @@ int main()
 
             inputsFromAdminFile(adminname, adminPin, adminCount);
 
-            cout<<endl << "----Welcome Admin!-----" << endl<<endl;
+            char againAdmin='y';
 
-            cout << "Please enter User Name: ";
-            getline(cin, userName);
+            againAdmin = 'n'; 
 
-            for (int i = 0; i < adminCount; i++)
+            do
             {
-                if (adminname[i] == userName)
+                adminNumber = -1;
+
+                cout << "Please enter User Name: ";
+                getline(cin, userName);
+
+                for (int i = 0; i < adminCount; i++)
                 {
+                    if (adminname[i] == userName) 
+                    {
                     adminNumber = i;
+                    }
                 }
-            }
-            cout << "Please enter your PIN: ";
-            cin >> userPin;
-            cin.ignore();
+
+                cout << "Please enter your PIN: ";
+                cin >> userPin;
+                cin.ignore(); 
+
+                if (adminNumber == -1 || userPin != adminPin[adminNumber])
+                {
+                    cout << endl << "Invalid credentials!\a Do you wish to try again (y/n): ";
+                    cin >> againAdmin;
+                    cin.ignore();
+                }
+                else
+                {
+                    againAdmin = 'n';
+                    cout << "Access Granted." << endl;
+                }
+
+            } while (againAdmin == 'y' || againAdmin == 'Y');
 
             if (adminNumber != -1 && userPin == adminPin[adminNumber])
             {
+                cout<<endl << "----Welcome Admin!-----" << endl<<endl;
                 do
                 {
                     cout << "Please select an options " << endl;
@@ -129,7 +151,7 @@ int main()
 
                             while (choice < 1 && choice > 5)
                             {
-                                cout << "Invalid input";
+                                cout << "Invalid input" << endl << endl;
                                 cout << "which type of  update you want " << endl;
                                 cout << "1. Add item" << endl;
                                 cout << "2. increase/ decrease quantity of an item" << endl;
@@ -172,7 +194,7 @@ int main()
                                     for (int i = 0; i < newItems; i++)
                                     {
                                         int j=i;
-                                        cout<<endl<<"please enter for item "<<j+1<<endl;
+                                        cout<<endl<<"please enter for item "<<j+1<<": "<<endl;
 
                                         cout << "Enter item code: ";
                                         cin >> newItemCode[i];
@@ -426,35 +448,64 @@ int main()
                     }
                     else if (choice2 == 2)
                     {
+                        char TryAgain='n';
+                        int adminCheck=0;
                         int newAdminPin;
                         string newAdminName;
 
-                        cout << "Please enter new admin user name: ";
-                        getline(cin, newAdminName);
-                        cout << "please enter new admin Pin: ";
-                        cin >> newAdminPin;
-                        cin.ignore();
-
-                        fout.open("Admin.txt");
-
-                        if (!fout.fail())
+                        do
                         {
-                            fout << newAdminPin << " " << newAdminName << endl;
-                            for (int i = 0; i < adminCount; i++)
+                            adminCheck=0;
+                            TryAgain='n';
+
+                            cout << "Please enter new admin user name: ";
+                            getline(cin, newAdminName);
+
+                            for(int i=0;i<adminCount;i++)
                             {
-                                fout << adminPin[i] << " " << adminname[i] << endl;
+                                if(newAdminName==adminname[i])
+                                {
+                                    adminCheck=-1;
+                                }
                             }
-                            fout.close();
-                        }
-                        else
-                        {
-                            cout << endl;
-                            cout << "Error!\aCould not open Admin.txt file for adding a new admin" << endl;
-                        }
+                            if(adminCheck==0)
+                            {
+                                cout << "please enter new admin Pin: ";
+                                cin >> newAdminPin;
+                                cin.ignore();
+                            }
+                            else
+                            {
+                                cout<<endl<<"Admin with this username already exists! do you want to try again(y/n): ";
+                                cin>>TryAgain;
+                                cin.ignore();
+                            }
+                        }while(TryAgain=='y'||TryAgain=='Y');
 
+                        if(adminCheck==0)
+                        {
+                            fout.open("Admin.txt");
+
+                            if (!fout.fail())
+                            {
+                                fout << newAdminPin << " " << newAdminName << endl;
+                                for (int i = 0; i < adminCount; i++)
+                                {
+                                    fout << adminPin[i] << " " << adminname[i] << endl;
+                                }
+                                fout.close();
+                            }
+                            else
+                            {
+                                cout << endl;
+                                cout << "Error!\aCould not open Admin.txt file for adding a new admin" << endl;
+                            }
+                        }
                     }
                     else if (choice2 == 3)
                     {
+                        char newUserTryAgain='n';
+
                         do
                         {
                             cout << "Please select one of following:" << endl;
@@ -478,75 +529,113 @@ int main()
                                 cin >> choice4;
                                 cin.ignore();
                             }
-
-                            if (choice4 == 0)
-                            {
-                                cout << endl << "Thank you for using the program " << endl;
-                                return 0;
-                            }
-                            else if (choice4 == 1)
-                            {
-                                choice4 = 3;
-                                choice2 = 4;
-                                string newUserName;
-                                cout << "Please enter the new username: ";
-                                getline(cin, newUserName);
-
-                                fout.open("Admin.txt");
-
-                                if (!fout.fail())
+                     
+                            
+                            
+                                if (choice4 == 0)
                                 {
-                                    for (int i = 0; i < adminCount; i++)
+                                    cout << endl << "Thank you for using the program " << endl;
+                                    return 0;
+                                }
+                                else if (choice4 == 1)
+                                { 
+                                    
+                                        int newUserCheck=0;
+                                        string newUserName;
+                                        do
+                                        {
+                                            newUserTryAgain='n';
+                                            newUserCheck=0;
+
+                                            cout << "Please enter the new username: ";
+                                            getline(cin, newUserName);
+                                
+                                          for(int i=0;i<adminCount;i++)
+                                            {
+                                                if(newUserName==adminname[i])
+                                                {
+                                                    newUserCheck=-1;
+                                                }
+                                            }
+                                    
+                                            if(newUserCheck==-1)
+                                            {
+                                                cout<<endl<<"Admin with this username already exists! do you want to try again(y/n): ";
+                                                cin>>newUserTryAgain;
+                                                cin.ignore();
+                                            }
+                                            else
+                                            {
+                                                newUserCheck=0;
+                                                newUserTryAgain='n';
+                                            }
+                                        }while(newUserCheck==-1&&(newUserTryAgain=='y'||newUserTryAgain=='Y'));
+                                
+                                       if(newUserCheck==0&&(newUserTryAgain=='n')||newUserTryAgain=='N')
+                                        {
+                                            choice4 = 3;
+                                            choice2 = 4;
+
+                                            fout.open("Admin.txt");
+
+                                            if (!fout.fail())
+                                            {
+                                                for (int i = 0; i < adminCount; i++)
+                                                {
+                                                    if (i == adminNumber)
+                                                    {
+                                                        fout << adminPin[i] << " " << newUserName << endl;
+                                                    }
+                                                    else
+                                                    {
+                                                    fout << adminPin[i] << " " << adminname[i] << endl;
+                                                    }
+                                            
+                                                }
+                                                fout.close();
+                                                cout << endl << "Admin username updated successfully! Please login again with the new username." << endl<<endl;
+                                            }
+                                            else
+                                            {
+                                                cout << endl;
+                                                cout << "Error!\aCould not open Admin.txt file for editing admin's username" << endl;
+                                            }
+                                        }
+
+                                }
+                                else if (choice4 == 2)
+                                {
+                                    choice4 = 3;
+                                    choice2 = 4;
+                                    int newUserPin;
+                                    cout << "Please enter the new Pin: ";
+                                    cin >> newUserPin;
+                                    cin.ignore();
+
+                                    fout.open("Admin.txt");
+
+                                    if (!fout.fail())
                                     {
-                                        if (i == adminNumber)
+                                        for (int i = 0; i < adminCount; i++)
                                         {
-                                            fout << adminPin[i] << " " << newUserName << endl;
-                                        }
-                                        else
-                                        {
-                                            fout << adminPin[i] << " " << adminname[i] << endl;
-                                        }
+                                            if (i == adminNumber)
+                                            {
+                                                fout << newUserPin << " " << adminname[i] << endl;
+                                            }
+                                            else
+                                            {
+                                                fout << adminPin[i] << " " << adminname[i] << endl;
+                                            }
+                                       }
+                                       fout.close();
+                                        cout << endl << "Admin Pin updated successfully! Please login again with the new Pin." << endl<<endl;
                                     }
-                                    fout.close();
-                                }
-                                else
-                                {
-                                    cout << endl;
-                                    cout << "Error!\aCould not open Admin.txt file for editing admin's username" << endl;
-                                }
-                            }
-                            else if (choice4 == 2)
-                            {
-                                choice4 = 3;
-                                choice2 = 4;
-                                int newUserPin;
-                                cout << "Please enter the new Pin: ";
-                                cin >> newUserPin;
-                                cin.ignore();
-
-                                fout.open("Admin.txt");
-
-                                if (!fout.fail())
-                                {
-                                    for (int i = 0; i < adminCount; i++)
+                                    else
                                     {
-                                        if (i == adminNumber)
-                                        {
-                                            fout << newUserPin << " " << adminname[i] << endl;
-                                        }
-                                        else
-                                        {
-                                            fout << adminPin[i] << " " << adminname[i] << endl;
-                                        }
+                                        cout << endl;
+                                        cout << "Error!\aCould not open Admin.txt file for editing admin's Pin" << endl;
                                     }
-                                    fout.close();
                                 }
-                                else
-                                {
-                                    cout << endl;
-                                    cout << "Error!\aCould not open Admin.txt file for editing admin's Pin" << endl;
-                                }
-                            }
                         } while (choice4 != 3);
                     }
                 } while (choice2 != 4);
