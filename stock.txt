@@ -1,5 +1,0 @@
-7777 3 195 cake
-1111 5 10 banana
-2222 50 25 apple
-3435 16 250 aqua water
-2344 40 125 biryani masala
