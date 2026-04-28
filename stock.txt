@@ -1,5 +1,5 @@
-7777 5 200 cake
-1111 5 10 banana
-2222 50 20 apple
+7777 23 200 cake
+1111 43 10 banana
+2222 31 20 apple
 3435 16 250 aqua water
-2344 43 125 biryani masala
+2344 36 125 biryani masala

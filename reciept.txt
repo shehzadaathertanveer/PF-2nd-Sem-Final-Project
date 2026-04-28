@@ -1,0 +1,9 @@
+Bill no: 2
+Coustomer name: abdullah
+Coustomer phone: 0908e89234214
+Item name        item Quantity item proce Item total
+
+cake             3     200   600     
+banana           4     10    40      
+apple            1     20    20      
+grand Total: 660

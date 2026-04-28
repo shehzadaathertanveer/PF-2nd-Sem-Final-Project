@@ -13,6 +13,8 @@ Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
 
 using namespace std;
 
+int customerRecordCount();
+void inputsFromCustomerRecord(string[], int[], int[],string[], int);
 int adminFileCount();
 void inputsFromAdminFile(string[], int[], int);
 int StockFileCount();
@@ -23,7 +25,17 @@ int main()
     int choice1,choice2,choice3;
     do
     {
-       cout<<"Welcome to Stock Management and Billing Program!"<<endl;
+        cout<<"\t\t\t\t\t\t\t\t\t\t---------------------------------------------"<<endl;
+        cout<<"\t\t\t\t\t\t\t\t\t\t     Stock Management and Billing System"<<endl;
+        cout<<"\t\t\t\t\t\t\t\t\t\t---------------------------------------------"<<endl;
+
+       cout<<endl<<"\t\t\t\t\t\t Welcome to Stock Management and Billing Program by Debbugers!"<<endl<<endl;
+       cout<<"\t\t\t\t\t\t\t\t\t\t\t   ________________________"<<endl;
+       cout<<"\t\t\t\t\t\t\t\t\t\t\t   |                      |"<<endl;
+       cout<<"...........................................................................................|   Introductive part  |..........................................................................................."<<endl;
+       cout<<"\t\t\t\t\t\t\t\t\t\t\t   |______________________|"<<endl;
+    
+       
        cout<<"Please select your role:"<<endl;
        cout<<"0. Exit"<<endl;
        cout<<"1. Admin"<<endl;
@@ -936,6 +948,15 @@ int main()
                                 again='y';
                             }                        
                         } while(again!='n'&&again!='N');
+
+                        int RecordCount=customerRecordCount();
+                        
+                        int billNo[RecordCount];
+                        int CustomerTotal[RecordCount];
+                        string customerPhone[RecordCount];
+                        string customerName[RecordCount];
+
+                        void inputsFromCustomerRecordFile(int billNo[],int CustomerTotal[],string customerPhone[],string customerName[],int RecordCount);
         
                         int grandTotal=0;
                         string customername,customerphone;
@@ -946,7 +967,11 @@ int main()
                         cout<<"Please enter coustomer phone number: ";
                         getline(cin,customerphone);
 
+                        int customerBillNo=RecordCount+1;
+
                         cout<<endl<<"--------------Reciept-------------"<<endl;
+                        cout<<left;
+                        cout<<setw(17)<<"Bill No: "<<customerBillNo<<endl;
                         cout<<"coustomer: "<<customername<<endl;
                         cout<<"phone: "<<customerphone<<endl<<endl;
                         cout<<setw(17)<<"Item name "
@@ -958,15 +983,63 @@ int main()
                         for(int i=0;i<boughtItemCount;i++)
                         {
                             cout<<setw(17)<<boughtItemNames[i] 
-                            <<setw(6)<<BoughtItemQuantity[i]
-                            <<setw(6)<<boughtItemPrices[i]
-                            <<setw(8)<<boughtItemtotal[i];
+                                <<setw(6)<<BoughtItemQuantity[i]
+                                <<setw(6)<<boughtItemPrices[i]
+                                <<setw(8)<<boughtItemtotal[i];
                             grandTotal=grandTotal+boughtItemtotal[i];
                             cout<<endl;
                         }
                         cout<<endl<<"Grand total: "<<grandTotal<<endl;
                         cout<<endl<<"Would you like to generate another receipt? (Y/N): ";
                         cin>>anotherReceipt;
+                        
+                        ofstream fout;
+                        fout.open("customerRecord.txt");
+
+                        if(!fout.fail())
+                        {
+                        
+                            fout<<customerBillNo<<" "<<grandTotal<<" "<<customerphone<<" "<<customername<<endl;
+
+                            for(int i=0;i<RecordCount;i++)
+                            {
+                                fout<<billNo[i]<<" "<<CustomerTotal[i]<<" "<<customerPhone[i]<<" "<<customerName[i]<<endl;
+                            }
+                            fout.close();
+                        }
+                        else
+                        {
+                            cout<<endl<<"Error\a could not update customer record file after generating receipt"<<endl;
+                        }
+
+                        fout.open("reciept.txt");
+                        if(!fout.fail())
+                        {
+                            fout<<left;
+                            fout<<"Bill no: "<<customerBillNo<<endl;
+                            fout<<"Coustomer name: "<<customername<<endl;
+                            fout<<"Coustomer phone: "<<customerphone<<endl;
+                            fout<<setw(17)<<"Item name "
+                                <<setw(6)<<"item Quantity"
+                                <<setw(6)<<" item proce "
+                                <<setw(8)<<"Item total";
+                            fout<<endl<<endl;
+
+                            for(int i=0;i<boughtItemCount;i++)
+                            {
+                                fout<<setw(17)<<boughtItemNames[i] 
+                                    <<setw(6)<<BoughtItemQuantity[i]
+                                    <<setw(6)<<boughtItemPrices[i]
+                                    <<setw(8)<<boughtItemtotal[i];
+                                fout<<endl;
+                            }
+
+                            fout<<"grand Total: "<<grandTotal;
+                        }
+                        else
+                        {
+                            cout<<endl<<"Error!\a in generating reciept file."<<endl;
+                        }
 
                     }while(anotherReceipt!='n'&&anotherReceipt!='N');
                 }
@@ -976,6 +1049,56 @@ int main()
 
     cout<<"Thank you for using our program!"<<endl;
     return 0;
+}
+
+int customerRecordCount()
+{
+    string coustomerName,customerPhone;
+    int customerRecordCount=0,billNo,total;
+    ifstream fin;
+    fin.open("customerRecord.txt");
+    if (!fin.fail())
+    {
+        while (fin>>billNo)
+        {
+            fin>>total;
+            fin>>customerPhone;
+            fin.ignore();
+            getline(fin, coustomerName);
+            customerRecordCount++;
+        }
+        fin.close();
+    }
+    else
+    {
+        cout << endl;
+        cout << "Error!\a Could not open customerRecord.txt file" << endl;
+    }
+    return customerRecordCount;
+}
+
+void inputsFromCustomerRecordFile(int billNo[],int CustomerTotal[],string customerPhone[],string customerName[],int customerRecordCount)
+{
+    ifstream fin;
+    fin.open("customerRecord.txt");
+
+    if (!fin.fail())
+    {
+        for (int i = 0; i < customerRecordCount; i++)
+        {
+            fin >> billNo[i];
+            fin >> CustomerTotal[i];
+            fin>>customerPhone[i];
+            fin.ignore();
+            getline(fin, customerName[i]);
+        }
+        fin.close();
+    }
+    else
+    {
+        cout << endl;
+        cout << "Error!\a Could not open customerRecord.txt file" << endl;
+    }
 }
 
 int StockFileCount()
