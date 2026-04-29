@@ -1,5 +1,5 @@
-7777 2 200 cake
-1111 20 10 banana
-2222 27 20 apple
-3435 5 250 aqua water
-2344 36 125 biryani masala
+7777 40 250 cake
+6666 39 10 apple
+1234 100 25 water
+1111 30 90 soda
+2222 40 75 birani mysala

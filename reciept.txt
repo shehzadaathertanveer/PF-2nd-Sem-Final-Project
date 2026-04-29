@@ -1,9 +1,9 @@
-Bill no: 2
-Coustomer name: ahad
-Coustomer phone: 989
-Item name        item Quantity item proce Item total
+Bill no: 6
+Coustomer name: ather
+Coustomer phone: 12345676543
+Item name        item Quantity item price Item total
 
-cake             2     200   400     
-aqua water       6     250   1500    
-cake             9     200   1800    
+cake             5     250   1250    
+apple            1     10    10      
 
+ Grand Total: 1260
