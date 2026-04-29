@@ -25,34 +25,34 @@ int main()
     int choice1,choice2,choice3;
     do
     {
-        cout<<"\t\t\t\t\t\t\t\t\t\t---------------------------------------------"<<endl;
-        cout<<"\t\t\t\t\t\t\t\t\t\t     Stock Management and Billing System"<<endl;
-        cout<<"\t\t\t\t\t\t\t\t\t\t---------------------------------------------"<<endl;
+        cout<<setw(125)<<"----------------------------------------"<<endl;
+        cout<<setw(122)<<" Stock Management and Billing System"<<endl;
+        cout<<setw(125)<<"----------------------------------------"<<endl;
 
-       cout<<endl<<"\t\t\t\t\t\t Welcome to Stock Management and Billing Program by Debbugers!"<<endl<<endl;
-       cout<<"\t\t\t\t\t\t\t\t\t\t\t   ________________________"<<endl;
-       cout<<"\t\t\t\t\t\t\t\t\t\t\t   |                      |"<<endl;
-       cout<<"...........................................................................................|   Introductive part  |..........................................................................................."<<endl;
-       cout<<"\t\t\t\t\t\t\t\t\t\t\t   |______________________|"<<endl;
-    
+       cout<<endl<<setw(136)<<"Welcome to Stock Management and Billing Program by Debbugers!"<<endl<<endl;
+       cout<<setw(118)<<"============================"<<endl;
+       cout.fill('.');
+       cout<<setw(118)<<"|  SYSTEM ACCESS CONTROLS  |"<<setw(91)<<"";
+       cout.fill(' ');
+       cout<<setw(118)<<"============================"<<endl;
        
-       cout<<"Please select your role:"<<endl;
-       cout<<"0. Exit"<<endl;
-       cout<<"1. Admin"<<endl;
-       cout<<"2. User"<<endl;
-       cout<<"Enter choice: ";
+       cout<<" Please select your role:"<<endl;
+       cout<<" 0. Exit program"<<endl;
+       cout<<" 1. Admin Login"<<endl;
+       cout<<" 2. User Login"<<endl;
+       cout<<" Enter your choice: ";
        cin>>choice1;
        cin.ignore();
        cout<<endl;
 
         while(choice1>2||choice1<0)
         {
-            cout<<"----INVALID INPUT!-----\a "<<endl<<endl;
-            cout<<"Please select your role:"<<endl;
-            cout<<"0. Exit"<<endl;
-            cout<<"1. Admin"<<endl;
-            cout<<"2. User"<<endl;
-            cout<<"Enter choice: ";
+            cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+            cout<<" Please select your role:"<<endl;
+            cout<<" 0. Exit Program"<<endl;
+            cout<<" 1. Admin Login"<<endl;
+            cout<<" 2. User Login"<<endl;
+            cout<<" Enter your choice: ";
             cin>>choice1;
             cin.ignore();
             cout<<endl;
@@ -77,12 +77,14 @@ int main()
             char againAdmin='y';
 
             againAdmin = 'n'; 
+            cout<<setw(118)<<"-----ADMIN CREDENTIALS-----"<<endl;
+
 
             do
             {
                 adminNumber = -1;
 
-                cout << "Please enter User Name: ";
+                cout <<endl<< " Please enter your User Name: ";
                 getline(cin, userName);
 
                 for (int i = 0; i < adminCount; i++)
@@ -93,109 +95,146 @@ int main()
                     }
                 }
 
-                cout << "Please enter your PIN: ";
+                cout << " Please enter your PIN: ";
                 cin >> userPin;
                 cin.ignore(); 
 
                 if (adminNumber == -1 || userPin != adminPin[adminNumber])
                 {
-                    cout << endl << "Invalid credentials!\a Do you wish to try again (y/n): ";
+                    cout << endl << " Invalid credentials!\a Do you wish to try again (y/n): ";
                     cin >> againAdmin;
                     cin.ignore();
                 }
                 else
                 {
                     againAdmin = 'n';
-                    cout << "Access Granted." << endl;
+                    cout<<endl << " Access Granted." << endl;
                 }
 
             } while (againAdmin == 'y' || againAdmin == 'Y');
 
             if (adminNumber != -1 && userPin == adminPin[adminNumber])
             {
-                cout<<endl << "----Welcome Admin!-----" << endl<<endl;
+                cout<<endl << " Access Granted." << endl;
+                cout<<endl;
+
+                cout<<setw(115)<<"===================="<<endl;
+                cout.fill('.');
+                cout<<setw(115)<<"|  ADMIN CONTROLS  |"<<setw(94)<<"";
+                cout.fill(' ');
+                cout<<setw(115)<<"===================="<<endl;
+                cout<<endl;
+                cout<<endl<<setw(117)<< "-----WELCOME ADMIN!-----" << endl<<endl;
+
+
                 do
-                {
-                    cout << "Please select an options " << endl;
-                    cout << "0. Exit" << endl;
-                    cout << "1. Update stock " << endl;
-                    cout << "2. Add Admin" << endl;
-                    cout << "3. Change User Name or PIN " << endl;
-                    cout << "4. Back" << endl;
-                    cout << "Please enter your choice: ";
+                {                    
+                    cout << " Please select an option " << endl;
+                    cout << " 0. Exit Program" << endl;
+                    cout << " 1. Update stock " << endl;
+                    cout << " 2. Add an Admin" << endl;
+                    cout << " 3. Change User Name or PIN " << endl;
+                    cout << " 4. Back" << endl;
+                    cout << " Enter your choice: ";
                     cin >> choice2;
                     cin.ignore();
 
                     while (choice2 < 0 || choice2 > 4)
                     {
-                        cout << endl << "----Invalid Input!-----\a" << endl;
-                        cout << "Please select an options " << endl;
-                        cout << "0. Exit" << endl;
-                        cout << "1. Update stock " << endl;
-                        cout << "2. Add Admin" << endl;
-                        cout << "3. Change User Name or PIN " << endl;
-                        cout << "4. Back" << endl;
-                        cout << "Please enter your choice: ";
+                        cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                        cout << " Please select an options " << endl;
+                        cout << " 0. Exit Program" << endl;
+                        cout << " 1. Update stock " << endl;
+                        cout << " 2. Add an Admin" << endl;
+                        cout << " 3. Change User Name or PIN " << endl;
+                        cout << " 4. Back" << endl;
+                        cout << " Please enter your choice: ";
                         cin >> choice2;
                         cin.ignore();
                     }
 
                     if (choice2 == 0)
                     {
-                        cout << endl << "Thank you for using the program" << endl;
-                        return 0;
+                        char exit='n';
+                        do
+                        {
+                            cout<<" Do you really wish to exit program (y/n): ";
+                            cin>>exit;
+                            if(exit=='y' ||exit=='y')
+                            {
+                                cout << endl << " Thank you for using the program" << endl;
+                                return 0;
+                            }
+                        }while(exit=='y'||exit=='Y');
                     }
                     else if (choice2 == 1)
                     {
+                        cout<<endl<<setw(121)<< "-----STOCK UPDATING SECTION!-----" << endl<<endl;
                         int choice = 0;
                         do
                         {
                             choice = 0;
 
-                            cout << "which type of  update you want " << endl;
-                            cout << "1. Add item" << endl;
-                            cout << "2. increase/ decrease quantity of an item" << endl;
-                            cout << "3. increase/ decrease price of an item" << endl;
-                            cout << "4. delete item" << endl;
-                            cout << "5. back"<<endl;
-                            cout << "Please enter your choice: ";
+                            cout <<endl<< " Please select one of following " << endl;
+                            cout << " 0. Exit Program" << endl;
+                            cout << " 1. Add an item" << endl;
+                            cout << " 2. increase (or) decrease quantity of an item" << endl;
+                            cout << " 3. increase (or) decrease price of an item" << endl;
+                            cout << " 4. delete an item" << endl;
+                            cout << " 5. back"<<endl;
+                            cout << " Enter your choice: ";
                             cin >> choice;
 
-                            while (choice < 1 && choice > 5)
+                            while (choice < 0 || choice > 5)
                             {
-                                cout << "Invalid input" << endl << endl;
-                                cout << "which type of  update you want " << endl;
-                                cout << "1. Add item" << endl;
-                                cout << "2. increase/ decrease quantity of an item" << endl;
-                                cout << "3. increase/ decrease price of an item" << endl;
-                                cout << "4. delete item" << endl;
-                                cout << "5. back"<<endl;
-                                cout << "Please enter your choice: ";
+                                cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                cout <<endl<< " Please select one of following " << endl; 
+                                cout << " 0. Exit Program" << endl;
+                                cout << " 1. Add an item" << endl;
+                                cout << " 2. increase (or) decrease quantity of an item" << endl;
+                                cout << " 3. increase (or) decrease price of an item" << endl;
+                                cout << " 4. delete an item" << endl;
+                                cout << " 5. back"<<endl;
+                                cout << " Enter your choice: ";
                                 cin >> choice;
                             }
-
-                            if (choice == 1)
-
+                            if(choice==0)
                             {
+                                char exit='n';
+                                do
+                                {
+                                    cout<<" Do you really wish to exit program (y/n): ";
+                                    cin>>exit;
+                                    if(exit=='y' ||exit=='y')
+                                    {
+                                        cout << endl << " Thank you for using the program" << endl;
+                                        return 0;
+                                     }
+                                }while(exit=='y'||exit=='Y');
+                            }
+                            else if (choice == 1)
+                            {
+                                cout<<endl<<setw(120)<< "-----ADDING A NEW ITEM-----" << endl<<endl;
+
                                 int count = StockFileCount();
                             
-                                string itemCodeFile[count]; 
-                                int itemQuantityFile[count];
-                                int itemPriceFile[count];
-                                string itemNameFile[count];
+                                string itemCodeFile[count]={0}; 
+                                int itemQuantityFile[count]={0};
+                                int itemPriceFile[count]={0};
+                                string itemNameFile[count]={0};
                                
                                 inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
 
                                 int newItems;
 
-                                cout << "How many new items: ";
+                                cout << " Please enter the number of new items you wish to add: ";
                                 cin >> newItems;
                                 cin.ignore();
 
-                                string newItemCode[newItems]; 
-                                int newItemQuantity[newItems];
-                                int newItemPrice[newItems];
-                                string newItemName[newItems];
+                                string newItemCode[newItems]={0}; 
+                                int newItemQuantity[newItems]={0};
+                                int newItemPrice[newItems]={0};
+                                string newItemName[newItems]={0};
 
                                 ofstream fout;
                                 fout.open("stock.txt");
@@ -206,22 +245,22 @@ int main()
                                     for (int i = 0; i < newItems; i++)
                                     {
                                         int j=i;
-                                        cout<<endl<<"please enter for item "<<j+1<<": "<<endl;
+                                        cout<<endl<<" Please enter for item no "<<j+1<<": "<<endl;
 
-                                        cout << "Enter item code: ";
+                                        cout << " Enter item code: ";
                                         cin >> newItemCode[i];
                                         fout << newItemCode[i]<<" ";     
 
-                                        cout << "Enter quantity: ";                                            
+                                        cout << " Enter item's quantity: ";                                            
                                         cin >> newItemQuantity[i];
                                         fout << newItemQuantity[i]<<" ";
 
-                                        cout << "Enter price: ";
+                                        cout << " Enter item's price: ";
                                         cin >> newItemPrice[i];
                                         fout << newItemPrice[i] <<" ";
 
                                         cin.ignore();
-                                        cout << "Enter item name: ";
+                                        cout << " Enter item's name: ";
                                         getline(cin, newItemName[i]);
                                         fout <<newItemName[i]<<endl;
                                     }
@@ -234,15 +273,16 @@ int main()
                                         << itemNameFile[i] << endl;
                                     }
                                     fout.close();
-                                    cout << "All items saved successfully!" << endl;
+                                    cout <<endl<< " All items saved successfully!" << endl;
                                 }
                                 else
                                 {
-                                    cout<<endl<<"Error\a in editing stock file "<<endl;
+                                    cout<<endl<<"Error\a in editing stock.txt file "<<endl;
                                 }
                             }
                             else if (choice == 2)
                             {
+                                cout<<endl<<setw(118)<< "-----EDITING QUANTITY-----" << endl<<endl;
                                 char again='y';
                                 do 
                                 {
@@ -256,23 +296,23 @@ int main()
                                     inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
 
                                     string searchCode;
-                                    cout << "Enter item code: ";
+                                    cout << " Please enter item code of the item : ";
                                     cin >> searchCode;
 
                                     char choice;
                                     int changeQuantity;
 
-                                    cout << "Enter '+' to increase or '-' to decrease quantity: ";
+                                    cout << "Please enter '+' to increase the quantity (or) enter '-' to decrease the quantity of the item: ";
                                     cin >> choice;
 
                                     while(choice!='+'&&choice!='-')
                                     {
-                                        cout<<endl<<"----Invalid input!----"<<endl;
-                                        cout << "Enter '+' to increase or '-' to decrease quantity: ";
+                                        cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                        cout << "Please enter '+' to increase the quantity (or) enter '-' to decrease the quantity of the item: ";
                                         cin >> choice;
                                     }
 
-                                    cout << "Enter quantity change: ";
+                                    cout << "Please enter change in quantity: ";
                                     cin >> changeQuantity;
 
                                     int found = 0;
@@ -295,7 +335,7 @@ int main()
                                                 }
                                                 else
                                                 {
-                                                    cout << "Not enough stock!" << endl;
+                                                    cout <<endl<< " Not enough stock to decrease from! please try again" << endl;
                                                     again='y';
                                                 }
                                             }
@@ -304,7 +344,7 @@ int main()
                                 
                                     if (found == 0)
                                     {
-                                        cout << "Item not found!.Try again." << endl;
+                                        cout <<endl<< " Item not found! Please Try again with correct item code." << endl;
                                         again='y';
                                     }
 
@@ -316,14 +356,15 @@ int main()
                                     }
                                     outStockfile.close();
 
-                                    cout << "Quantity updated successfully!" << endl;
-                                    cout<<endl<<"Do you want to update another item? (Y/N): ";
+                                    cout << " Quantity updated successfully!" << endl;
+                                    cout<<endl<<" Do you wish to update another item? (y/n): ";
                                     cin>>again;
 
                                 }while(again!='n'&&again!='N'); 
                             }   
                             else if (choice == 3)
                             {
+                                cout<<endl<<setw(115)<< "-----EDITING PRICE-----" << endl<<endl;
                                 char again='y';
                                 do 
                                 {
@@ -337,23 +378,23 @@ int main()
                                     inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
 
                                     string searchCode;
-                                    cout << "Enter item code: ";
+                                    cout << " Enter item code: ";
                                     cin >> searchCode;
 
                                     char choice;
                                     int changePrice;
 
-                                    cout << "Enter '+' to increase or '-' to decrease price: ";
+                                    cout << " Please enter '+' to increase the price (or) enter '-' to decrease the price of the item: ";
                                     cin >> choice;
 
                                     while(choice!='+'&&choice!='-')
                                     {
-                                        cout<<endl<<"----Invalid input!----"<<endl;
-                                        cout << "Enter '+' to increase or '-' to decrease price: ";
+                                        cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                        cout << " Please enter '+' to increase the price (or) enter '-' to decrease the price of the item: ";
                                         cin >> choice;
                                     }
 
-                                    cout << "Enter price change: ";
+                                    cout << " Please enter change in price of the item: ";
                                     cin >> changePrice;
 
                                     int found = 0;
@@ -376,7 +417,7 @@ int main()
                                                 }
                                                 else
                                                 {
-                                                    cout << "Not enough price!" << endl;
+                                                    cout << " Not enough price to decrease from! please try again" << endl;
                                                     again='y';
                                                 }
                                             }
@@ -385,7 +426,7 @@ int main()
                                 
                                     if (found == 0)
                                     {
-                                        cout << "Item not found!.Try again." << endl;
+                                        cout <<endl<< " Item not found! Please Try again with correct item code." << endl;
                                         again='y';
                                     }
 
@@ -397,8 +438,8 @@ int main()
                                     }
                                     outStockfile.close();
 
-                                    cout << "Quantity updated successfully!" << endl;
-                                    cout<<endl<<"Do you want to update another item? (Y/N): ";
+                                    cout <<endl<< " Price updated successfully!" << endl;
+                                    cout<<endl<<" Do you wish to update another item? (y/n): ";
                                     cin>>again;
 
                                 }while(again!='n'&&again!='N'); 
@@ -406,6 +447,7 @@ int main()
 
                             else if (choice == 4)
                             {
+                                cout<<endl<<setw(115)<< "-----DELETING ITEM-----" << endl<<endl;
                                 char again='y';
                                 do
                                 {
@@ -419,7 +461,7 @@ int main()
                                     inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
 
                                     string deleteCode;
-                                    cout << "Enter item code to delete: ";
+                                    cout << " Please enter item code for item to delete: ";
                                     cin >> deleteCode;
 
                                     ofstream fout("stock.txt");
@@ -440,8 +482,8 @@ int main()
                                     {
                                         if (itemCodeFile[i] == deleteCode)
                                         {
-                                            cout << "Item deleted successfully!" << endl;
-                                            cout<<endl<<"Do you want to delete another item? (Y/N): ";
+                                            cout<<endl<<" Item deleted successfully!" << endl;
+                                            cout<<endl<<" Do you wish to delete another item? (y/n): ";
                                             cin>>again;
                                             break;
                                         }
@@ -449,7 +491,7 @@ int main()
 
                                     if (i == count)
                                     {
-                                        cout << "Item not found! try again." << endl;
+                                        cout <<endl<< " Item not found! Please Try again with correct item code." << endl;
                                         again='y';
                                     }
                                }while (again != 'n' && again != 'N');
@@ -654,7 +696,6 @@ int main()
             }
             else
             {
-                cout << endl << "Invalid credentials!\aplease try again " << endl;
                 choice2 = 4;
             }
         }while (choice2 != 4);
@@ -990,20 +1031,19 @@ int main()
                             cout<<endl;
                         }
                         cout<<endl<<"Grand total: "<<grandTotal<<endl;
-                        cout<<endl<<"Would you like to generate another receipt? (Y/N): ";
-                        cin>>anotherReceipt;
-                        
+
+                        void inputsFromCustomerRecordFile(int billNo[],int CustomerTotal[],string customerPhone[],string customerName[],int RecordCount);
                         ofstream fout;
                         fout.open("customerRecord.txt");
 
                         if(!fout.fail())
                         {
                         
-                            fout<<customerBillNo<<" "<<grandTotal<<" "<<customerphone<<" "<<customername<<endl;
+                            fout<<customerBillNo<<" "<<grandTotal<<" "<<customerphone<<" "<<customername;
 
                             for(int i=0;i<RecordCount;i++)
                             {
-                                fout<<billNo[i]<<" "<<CustomerTotal[i]<<" "<<customerPhone[i]<<" "<<customerName[i]<<endl;
+                                fout<<endl<<billNo[i]<<" "<<CustomerTotal[i]<<" "<<customerPhone[i]<<" "<<customerName[i];
                             }
                             fout.close();
                         }
@@ -1034,13 +1074,16 @@ int main()
                                 fout<<endl;
                             }
 
-                            fout<<"grand Total: "<<grandTotal;
+                            fout<<endl<<"grand Total: "<<grandTotal;
                         }
                         else
                         {
                             cout<<endl<<"Error!\a in generating reciept file."<<endl;
                         }
 
+                        cout<<endl<<"Would you like to generate another receipt? (Y/N): ";
+                        cin>>anotherReceipt;
+                        
                     }while(anotherReceipt!='n'&&anotherReceipt!='N');
                 }
             }while(choice2 !=3);
@@ -1059,10 +1102,8 @@ int customerRecordCount()
     fin.open("customerRecord.txt");
     if (!fin.fail())
     {
-        while (fin>>billNo)
+        while (fin>>billNo>>total>>customerPhone)
         {
-            fin>>total;
-            fin>>customerPhone;
             fin.ignore();
             getline(fin, coustomerName);
             customerRecordCount++;
