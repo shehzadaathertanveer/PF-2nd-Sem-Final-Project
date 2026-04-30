@@ -1,5 +1,4 @@
-7777 40 250 cake
-6666 39 10 apple
-1234 100 25 water
-1111 30 90 soda
-2222 40 75 birani mysala
+5467 30 230 football
+1234 25 150 bottle
+1111 30 100 soda
+3333 45 100 water

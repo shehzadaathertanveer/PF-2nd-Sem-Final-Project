@@ -22,9 +22,9 @@ void inputsFromstockFile(string[], int[], int[],string[], int);
 
 int main()
 {
-    cout<<setw(125)<<"----------------------------------------"<<endl;
+    cout<<setw(125)<<"++++++++++++++++++++++++++++++++++++++++"<<endl;
     cout<<setw(122)<<" Stock Management and Billing System"<<endl;
-    cout<<setw(125)<<"----------------------------------------"<<endl;
+    cout<<setw(125)<<"++++++++++++++++++++++++++++++++++++++++"<<endl;
 
     cout<<endl<<setw(136)<<"Welcome to Stock Management and Billing Program by Debbugers!"<<endl<<endl;
 
@@ -37,7 +37,7 @@ int main()
        cout.fill(' ');
        cout<<setw(118)<<"============================"<<endl;
        
-       cout<<" Please select your role:"<<endl;
+       cout<<endl<<" Please select your role:"<<endl;
        cout<<" 0. Exit program"<<endl;
        cout<<" 1. Admin Login"<<endl;
        cout<<" 2. User Login"<<endl;
@@ -48,7 +48,7 @@ int main()
 
         while(choice1>2||choice1<0)
         {
-            cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+            cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
             cout<<" Please select your role:"<<endl;
             cout<<" 0. Exit Program"<<endl;
             cout<<" 1. Admin Login"<<endl;
@@ -117,19 +117,19 @@ int main()
             {
                 cout<<endl << " Access Granted." << endl;
                 cout<<endl;
-
-                cout<<setw(115)<<"===================="<<endl;
-                cout.fill('.');
-                cout<<setw(115)<<"|  ADMIN CONTROLS  |"<<setw(94)<<"";
-                cout.fill(' ');
-                cout<<setw(115)<<"===================="<<endl;
-                cout<<endl;
-                cout<<endl<<setw(117)<< "-----WELCOME ADMIN!-----" << endl<<endl;
+                cout<<endl<<endl<<setw(117)<< "-----WELCOME ADMIN!-----" << endl<<endl;
 
 
                 do
-                {                    
-                    cout << " Please select an option " << endl;
+                { 
+                    cout<<setw(115)<<"===================="<<endl;
+                    cout.fill('.');
+                    cout<<setw(115)<<"|  ADMIN CONTROLS  |"<<setw(94)<<"";
+                    cout.fill(' ');
+                    cout<<setw(115)<<"===================="<<endl;
+                    cout<<endl;
+                   
+                    cout <<endl<< " Please select an option " << endl;
                     cout << " 0. Exit Program" << endl;
                     cout << " 1. Update stock " << endl;
                     cout << " 2. Add an Admin" << endl;
@@ -141,7 +141,7 @@ int main()
 
                     while (choice2 < 0 || choice2 > 4)
                     {
-                        cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                        cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                         cout << " Please select an options " << endl;
                         cout << " 0. Exit Program" << endl;
                         cout << " 1. Update stock " << endl;
@@ -158,7 +158,7 @@ int main()
                         char exit='n';
                         do                
                         {
-                            cout<<" Do you really wish to exit program (y/n): ";
+                            cout<<endl<<" Do you really wish to exit program (y/n): ";
                             cin>>exit;
                             cin.ignore();
                             if(exit=='y' ||exit=='y')
@@ -172,16 +172,17 @@ int main()
                     else if (choice2 == 1)//stock updating
                     {
                         
-                        cout<<setw(115)<<"===================="<<endl;
-                        cout.fill('.');
-                        cout<<setw(115)<<"|  STOCK UPDATING  |"<<setw(94)<<"";
-                        cout.fill(' ');
-                        cout<<setw(115)<<"===================="<<endl;
-                        cout<<endl;
 
                         int choice = 0;
                         do
                         {
+                            cout<<setw(115)<<"===================="<<endl;
+                            cout.fill('.');
+                            cout<<setw(115)<<"|  STOCK UPDATING  |"<<setw(94)<<"";
+                            cout.fill(' ');
+                            cout<<setw(115)<<"===================="<<endl;
+                            cout<<endl;
+
                             choice = 0;
 
                             cout <<endl<< " Please select one of following " << endl;
@@ -196,8 +197,8 @@ int main()
 
                             while (choice < 0 || choice > 5)
                             {
-                                cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
-                                cout <<endl<< " Please select one of following " << endl; 
+                                cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                cout << " Please select one of following " << endl; 
                                 cout << " 0. Exit Program" << endl;
                                 cout << " 1. Add an item" << endl;
                                 cout << " 2. increase (or) decrease quantity of an item" << endl;
@@ -247,40 +248,46 @@ int main()
                                 int newItemPrice[newItems]={0};
                                 string newItemName[newItems];
 
+                 
+                                for (int i = 0; i < newItems; i++)
+                                {
+                                    int j=i;
+                                    cout<<endl<<" Please enter for item number "<<j+1<<": "<<endl;
+
+                                    cout << " Enter item code: ";
+                                    cin >> newItemCode[i];     
+
+                                    cout << " Enter item's quantity: ";                                            
+                                    cin >> newItemQuantity[i];
+
+                                    cout << " Enter item's price: ";
+                                    cin >> newItemPrice[i];
+
+                                    cin.ignore();
+                                    cout << " Enter item's name: ";
+                                    getline(cin, newItemName[i]);
+                                }
+
                                 ofstream fout;
                                 fout.open("stock.txt");
 
                                 if(!fout.fail())
-                                {  
-                                    for (int i = 0; i < newItems; i++)
+                                {
+                                    for(int i=0;i<newItems;i++)
                                     {
-                                        int j=i;
-                                        cout<<endl<<" Please enter for item number "<<j+1<<": "<<endl;
+                                        fout<<newItemCode[i] <<" "
+                                            <<newItemQuantity[i] <<" "
+                                            <<newItemPrice[i] <<" "
+                                            <<newItemName[i] <<endl;
 
-                                        cout << " Enter item code: ";
-                                        cin >> newItemCode[i];
-                                        fout << newItemCode[i]<<" ";     
-
-                                        cout << " Enter item's quantity: ";                                            
-                                        cin >> newItemQuantity[i];
-                                        fout << newItemQuantity[i]<<" ";
-
-                                        cout << " Enter item's price: ";
-                                        cin >> newItemPrice[i];
-                                        fout << newItemPrice[i] <<" ";
-
-                                        cin.ignore();
-                                        cout << " Enter item's name: ";
-                                        getline(cin, newItemName[i]);
-                                        fout <<newItemName[i]<<endl;
                                     }
                 
                                     for (int i = 0; i < count; i++)
                                     {
-                                        fout << itemCodeFile[i] << " " 
-                                        << itemQuantityFile[i] << " "
-                                        << itemPriceFile[i] << " " 
-                                        << itemNameFile[i] << endl;
+                                        fout<< itemCodeFile[i] << " " 
+                                            << itemQuantityFile[i] << " "
+                                            << itemPriceFile[i] << " " 
+                                            << itemNameFile[i] << endl;
                                     }
                                     fout.close();
                                     cout <<endl<< " All items are saved successfully!" << endl;
@@ -317,7 +324,7 @@ int main()
 
                                     while(choice!='+'&&choice!='-')
                                     {
-                                        cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                        cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                                         cout << " Please enter '+' to increase the quantity (or) enter '-' to decrease the quantity of the item: ";
                                         cin >> choice;
                                     }
@@ -374,7 +381,7 @@ int main()
                             }   
                             else if (choice == 3) //editing price of an item
                             {
-                                cout<<endl<<setw(120)<< "-----EDITING PRICE-----" << endl<<endl;
+                                cout<<endl<<setw(118)<< "-----EDITING PRICE-----" << endl<<endl;
                                 char again='y';
                                 do 
                                 {
@@ -399,7 +406,7 @@ int main()
 
                                     while(choice!='+'&&choice!='-')
                                     {
-                                        cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                        cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                                         cout << " Please enter '+' to increase the price (or) enter '-' to decrease the price of the item: ";
                                         cin >> choice;
                                     }
@@ -457,7 +464,7 @@ int main()
 
                             else if (choice == 4) // deleting an item
                             {
-                                cout<<endl<<setw(115)<< "-----DELETING ITEM-----" << endl<<endl;
+                                cout<<endl<<setw(117)<< "-----DELETING ITEM-----" << endl<<endl;
                                 char again='y';
                                 do
                                 {
@@ -512,7 +519,7 @@ int main()
                     }
                     else if (choice2 == 2) //adding new admin
                     {
-                        cout<<endl<<setw(115)<< "-----ADDING NEW ADMIN-----" << endl<<endl;
+                        cout<<endl<<setw(118)<< "-----ADDING NEW ADMIN-----" << endl<<endl;
 
                         char TryAgain='n';
                         int adminCheck=0;
@@ -570,18 +577,19 @@ int main()
                     }
                     else if (choice2 == 3) //editing admin's username or pin
                     {
-                        cout<<setw(120)<<"========================"<<endl;
-                        cout.fill('.');
-                        cout<<setw(120)<<"|  EDITING CREDENTIALS  |"<<setw(94)<<"";
-                        cout.fill(' ');
-                        cout<<setw(120)<<"========================="<<endl;
-                        cout<<endl;
 
                         char newUserTryAgain='n';
 
                         do
                         {
-                            cout << " Please select one of following:" << endl;
+                            cout<<setw(119)<<"========================="<<endl;
+                            cout.fill('.');
+                            cout<<setw(119)<<"|  EDITING CREDENTIALS  |"<<setw(90)<<"";
+                            cout.fill(' ');
+                            cout<<setw(119)<<"========================="<<endl;
+                            cout<<endl;
+
+                            cout <<endl<< " Please select one of following:" << endl;
                             cout << " 0. Exit" << endl;
                             cout << " 1. Change username" << endl;
                             cout << " 2. Change Pin" << endl;
@@ -592,8 +600,8 @@ int main()
 
                             while (choice4 < 0 || choice4 > 3)
                             {
-                                cout << endl << "Invalid Input!" << endl;
-                                cout << " Please select one of following:" << endl;
+                                cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                cout <<endl<< " Please select one of following:" << endl;
                                 cout << " 0. Exit" << endl;
                                 cout << " 1. Change username" << endl;
                                 cout << " 2. Change Pin" << endl;
@@ -620,7 +628,7 @@ int main()
                             }
                             else if (choice4 == 1) // changing username
                             { 
-                                cout<<endl<<setw(115)<< "-----CHANGING USERNAME-----" << endl<<endl;
+                                cout<<endl<<setw(117)<< "-----CHANGING USERNAME-----" << endl<<endl;
                                     
                                 int newUserCheck=0;
                                 string newUserName;
@@ -731,19 +739,21 @@ int main()
         }
         else if (choice1==2) //user work ara
         { 
-            cout<<setw(115)<<"==================="<<endl;
-            cout.fill('.');
-            cout<<setw(115)<<"|  USER CONTROLS  |"<<setw(94)<<"";
-            cout.fill(' ');
-            cout<<setw(115)<<"==================="<<endl;
-            cout<<endl;
-
+         
             cout<<endl<<setw(115)<< "-----WELCOME USER-----" << endl<<endl;
 
 
 
            do
             {
+
+                cout<<setw(113)<<"==================="<<endl;
+                cout.fill('.');
+                cout<<setw(113)<<"|  USER CONTROLS  |"<<setw(96)<<"";
+                cout.fill(' ');
+                cout<<setw(113)<<"==================="<<endl;
+                cout<<endl;
+
                 int choice3;
                 ofstream fout;
                 ifstream fin;
@@ -760,7 +770,7 @@ int main()
 
                 while( choice2<0||choice2>3)
                 {
-                    cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                    cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                     cout<<" PLease select one of following:"<<endl;
                     cout<<" 0. Exit Program"<<endl;
                     cout<<" 1. Search an Item from stock"<<endl;
@@ -789,17 +799,17 @@ int main()
                 }
                 else if(choice2==1) //searching an item from stock
                 {
-                    cout<<setw(116)<<"===================="<<endl;
-                    cout.fill('.');
-                    cout<<setw(116)<<"|  SEARCHING ITEM  |"<<setw(94)<<"";
-                    cout.fill(' ');
-                    cout<<setw(116)<<"===================="<<endl;
-                    cout<<endl;
-
                     char continueChoice ='y';
 
                     do
                     {
+                        cout<<setw(114)<<"===================="<<endl;
+                        cout.fill('.');
+                        cout<<setw(114)<<"|  SEARCHING ITEM  |"<<setw(95)<<"";
+                        cout.fill(' ');
+                        cout<<setw(114)<<"===================="<<endl;
+                        cout<<endl;
+
                         cout<<" Please select one of following:"<<endl;
                         cout<<" 0. Exit Program"<<endl;
                         cout<<" 1. Search item by item name"<<endl;
@@ -812,7 +822,7 @@ int main()
 
                         while( choice3<0||choice3>3)
                         {
-                            cout<<endl<<setw(119)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                            cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                             
                             cout<<" Please select one of following:"<<endl;
                             cout<<" 0. Exit Program"<<endl;
@@ -858,7 +868,7 @@ int main()
                                 string userItemName;
                                 int searchedItemNumber=-1;
 
-                                cout<<" Please enter item name: ";
+                                cout<<endl<<" Please enter item name: ";
                                 getline(cin,userItemName);
                 
                                 for(int i=0 ; i < fileItemCount; i++ )
@@ -872,7 +882,7 @@ int main()
 
                                 if(searchedItemNumber !=-1)
                                 {
-                                    cout<<" The Item you Searched :"<<endl;
+                                    cout<<endl<<" The Item you Searched :"<<endl<<endl;
                                     cout<<" Item Code: "<<fileItemCodes[searchedItemNumber] <<endl;
                                     cout<<" Item Name: "<<fileItemNames[searchedItemNumber] <<endl;
                                     cout<<" Item Quantity: "<<fileItemQuantity[searchedItemNumber] <<endl;
@@ -888,7 +898,7 @@ int main()
                                     cout<<endl;
                                     cout<<" The item you searched does not exist in stock"<<endl
                                     <<" Try searching again with item code or exact item name"<<endl<<endl;
-                                    cout<<"Do you wish to try again? (Y/N): ";
+                                    cout<<" Do you wish to try again? (Y/N): ";
                                     cin>>continueChoice;
                                     cin.ignore();
                                 }
@@ -896,14 +906,14 @@ int main()
                         }
                         else if(choice3==2) //searching item by code
                         {
-                            cout<<endl<<setw(115)<< "-----SEARCHING ITEM BY CODE-----" << endl<<endl;
+                            cout<<endl<<setw(120)<< "-----SEARCHING ITEM BY CODE-----" << endl<<endl;
 
                             do
                             {
                                 string userItemCode;
                                 int searchedItemNumber=-1;
 
-                                cout<<" Please enter item code: ";
+                                cout<<endl<<" Please enter item code: ";
                                 cin>>userItemCode;
                                 cin.ignore();
                 
@@ -917,7 +927,7 @@ int main()
 
                                 if(searchedItemNumber !=-1)
                                 {
-                                    cout<<"The Item you Searched: "<<endl;
+                                    cout<<endl<<" The Item you Searched: "<<endl<<endl;
                                     cout<<" Item Code: "<<fileItemCodes[searchedItemNumber] <<endl;
                                     cout<<" Item Name: "<<fileItemNames[searchedItemNumber] <<endl;
                                     cout<<" Item Quantity: "<<fileItemQuantity[searchedItemNumber] <<endl;
