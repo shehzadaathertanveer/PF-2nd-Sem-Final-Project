@@ -1,4 +1,4 @@
 5467 30 230 football
-1234 25 150 bottle
-1111 30 100 soda
-3333 45 100 water
+1234 15 150 bottle
+1111 25 100 soda
+3333 38 100 water

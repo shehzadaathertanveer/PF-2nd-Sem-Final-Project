@@ -952,16 +952,10 @@ int main()
                 }
                 else if(choice2==2) //generating bill
                 {
-                    cout<<setw(109)<<"============"<<endl;
-                    cout.fill('.');
-                    cout<<setw(109)<<"|  BILLING  |"<<setw(100)<<"";
-                    cout.fill(' ');
-                    cout<<setw(109)<<"============"<<endl;
-                    cout<<endl;
-
                     char anotherReceipt='y';
                     do
                     {
+
                         int boughtItemCount=0;
                         int itemTotal;
 
@@ -981,18 +975,32 @@ int main()
 
                         inputsFromstockFile(itemCode,itemQuantity,itemPrice,itemName,itemCount);
 
-                        cout<<endl<<setw(115)<< "-----AVALIBLE STOCK-----" << endl<<endl;
+                        cout<<setw(114)<<"==================="<<endl;
+                        cout.fill('.');
+                        cout<<setw(114)<<"| AVAILBLE STOCK  |"<<setw(95)<<"";
+                        cout.fill(' ');
+                        cout<<setw(114)<<"==================="<<endl;
+                        cout<<endl;
                         
                         cout<<left;
-                        cout<<setw(6)<<"Item code "<<setw(15)<<"Item name "<<setw(6)<<" ItemPrice"<<setw(6)<<" item quantity "<<endl<<endl;
+                        cout<<" "<<setw(14)<<"Item Code "<<setw(24)<<"Item Name "<<setw(14)<<"Item Price"<<setw(15)<<" Item Quantity "<<endl<<endl;
 
                         for(int i=0;i<itemCount;i++)
                         {
-                            cout<<setw(6)<<itemCode[i]
+                            cout<<" "<<setw(15)<<itemCode[i]
                             <<setw(25)<<itemName[i]
-                            <<setw(6)<<itemPrice[i]
-                            <<setw(6)<<itemQuantity[i]<<endl;
+                            <<setw(15)<<itemPrice[i]
+                            <<setw(15)<<itemQuantity[i]<<endl;
                         }
+                        cout<<endl<<endl;
+                        cout<<right;
+                        cout<<setw(111)<<"============="<<endl;
+                        cout.fill('.');
+                        cout<<setw(111)<<"|  BILLING  |"<<setw(98)<<"";
+                        cout.fill(' ');
+                        cout<<setw(111)<<"============="<<endl;
+                        cout<<endl;
+                        
 
                         cout<<endl<<endl;
                         char again='y';
@@ -1099,28 +1107,38 @@ int main()
 
                         int customerBillNo=RecordCount+1;
 
-                        cout<<endl<<setw(115)<< "-----RECEIPT-----" << endl<<endl;
-                        cout<<left;
-                        cout<<"Bill No: "<<customerBillNo<<endl;
-                        cout<<"coustomer: "<<customername<<endl;
-                        cout<<"phone: "<<customerphone<<endl<<endl;
-                        cout<<setw(17)<<"Item name "
-                        <<setw(6)<<"item Quantity"
-                        <<setw(6)<<" item price "
-                        <<setw(8)<<"Item total";
+                        cout<<right;
+                        cout<<setw(111)<<"============="<<endl;
+                        cout.fill('.');
+                        cout<<setw(111)<<"|  RECIEPT  |"<<setw(98)<<"";
+                        cout.fill(' ');
+                        cout<<setw(111)<<"============="<<endl;
+
                         cout<<endl;
+                        cout<<left;
+                        cout<<" Bill Number  : "<<customerBillNo<<endl;
+                        cout<<" Customer Name: "<<customername<<endl;
+                        cout<<" Phone Number : "<<customerphone<<endl<<endl;
+                        
+                        cout<<" "<<setw(14)<<"Item Code "<<setw(24)<<"Item Name "<<setw(14)<<"Item Price"<<setw(15)<<" Item Quantity "<<endl<<endl;
 
-                        for(int i=0;i<boughtItemCount;i++)
+                        for(int i=0;i<itemCount;i++)
                         {
-                            cout<<setw(17)<<boughtItemNames[i] 
-                                <<setw(6)<<BoughtItemQuantity[i]
-                                <<setw(6)<<boughtItemPrices[i]
-                                <<setw(8)<<boughtItemtotal[i];
-                            grandTotal=grandTotal+boughtItemtotal[i];
-                            cout<<endl;
+                            cout<<" "<<setw(15)<<itemCode[i]
+                            <<setw(25)<<itemName[i]
+                            <<setw(15)<<itemPrice[i]
+                            <<setw(15)<<itemQuantity[i]<<endl;
+                            grandTotal+=boughtItemtotal[i];
                         }
+                        cout<<endl<<endl;
                         cout<<endl<<" Grand total: "<<grandTotal<<endl;
+                        cout<<right;
 
+                        for(int i=0 ; i<209;i++)
+                        {
+                            cout<<"-";
+                        }
+                        cout<<endl;
                         ofstream fout;
                         fout.open("customerRecord.txt");
 
@@ -1144,25 +1162,25 @@ int main()
                         if(!fout.fail())
                         {
                             fout<<left;
-                            fout<<"Bill no: "<<customerBillNo<<endl;
-                            fout<<"Coustomer name: "<<customername<<endl;
-                            fout<<"Coustomer phone: "<<customerphone<<endl;
-                            fout<<setw(17)<<"Item name "
-                                <<setw(6)<<"item Quantity"
-                                <<setw(6)<<" item price "
-                                <<setw(8)<<"Item total";
-                            fout<<endl<<endl;
+                            fout<<" Bill Number  : "<<customerBillNo<<endl;
+                            fout<<" Customer Name: "<<customername<<endl;
+                            fout<<" Phone Number : "<<customerphone<<endl<<endl;
+                        
+                            fout<<" "<<setw(14)<<"Item Code "<<setw(24)<<"Item Name "<<setw(14)<<"Item Price"<<setw(15)<<" Item Quantity "<<endl<<endl;
 
-                            for(int i=0;i<boughtItemCount;i++)
+                            for(int i=0;i<itemCount;i++)
                             {
-                                fout<<setw(17)<<boughtItemNames[i] 
-                                    <<setw(6)<<BoughtItemQuantity[i]
-                                    <<setw(6)<<boughtItemPrices[i]
-                                    <<setw(8)<<boughtItemtotal[i];
-                                fout<<endl;
+                                fout<<" "<<setw(15)<<itemCode[i]
+                                <<setw(25)<<itemName[i]
+                                <<setw(15)<<itemPrice[i]
+                                <<setw(15)<<itemQuantity[i]<<endl;
+                                grandTotal+=boughtItemtotal[i];
                             }
+                            fout<<endl<<endl;
+                            fout<<" Grand total: "<<grandTotal<<endl;
 
-                            fout<<endl<<" Grand Total: "<<grandTotal;
+                            cout<<endl<<" Receipt is generated successfully! Please check reciept.txt file."<<endl;
+                            
                         }
                         else
                         {

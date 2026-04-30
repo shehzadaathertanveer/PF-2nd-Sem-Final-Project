@@ -1,9 +1,13 @@
-Bill no: 6
-Coustomer name: ather
-Coustomer phone: 12345676543
-Item name        item Quantity item price Item total
+ Bill Number  : 9
+ Customer Name: ather
+ Phone Number : 93456789887654
 
-cake             5     250   1250    
-apple            1     10    10      
+ Item Code     Item Name               Item Price     Item Quantity 
 
- Grand Total: 1260
+ 5467           football                 230            30             
+ 1234           bottle                   150            15             
+ 1111           soda                     100            25             
+ 3333           water                    100            38             
+
+
+ Grand total: 1200
