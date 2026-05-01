@@ -1,13 +1,16 @@
- Bill Number  : 9
- Customer Name: ather
- Phone Number : 93456789887654
+ Date         : Fri May  1
+ Time         : 12:04:17
+ Bill Number  : 3
+ Customer Name: manan
+ Phone Number : 23456543234
 
  Item Code     Item Name               Item Price     Item Quantity 
 
- 5467           football                 230            30             
+ 6767           water                    90             245            
+ 5467           football                 230            29             
  1234           bottle                   150            15             
  1111           soda                     100            25             
- 3333           water                    100            38             
+ 3333           banana                   100            38             
 
 
- Grand total: 1200
+ Grand total: 900

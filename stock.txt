@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 8787 12 45 ball
 7676 34 78 chips
 1456 12 65 soda 500 ml
@@ -5,3 +6,10 @@
 5467 30 230 football
 1234 15 150 bottle
 1111 25 100 soda
+=======
+6767 245 90 water
+5467 29 230 football
+1234 15 150 bottle
+1111 25 100 soda
+3333 38 100 banana
+>>>>>>> 216651c996f832550b3a1301d2f9fcdc2cfe3def
