@@ -10,15 +10,17 @@ Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
 #include<string>
 #include<fstream>
 #include<iomanip>
+#include<ctime>
 
 using namespace std;
 
 int customerRecordCount();
-void inputsFromCustomerRecordFile(int[], int[],string[],string[], int);
+void inputsFromCustomerRecordFile(int[], int[],string[],string[],string[],string[],string[], string[], int);
 int adminFileCount();
 void inputsFromAdminFile(string[], int[], int);
 int StockFileCount();
 void inputsFromstockFile(string[], int[], int[],string[], int);
+void timeAndDate( string &currentDate,string &exactTime);
 
 int main()
 {
@@ -131,23 +133,25 @@ int main()
                    
                     cout <<endl<< " Please select an option " << endl;
                     cout << " 0. Exit Program" << endl;
-                    cout << " 1. Update stock " << endl;
-                    cout << " 2. Add an Admin" << endl;
-                    cout << " 3. Change User Name or PIN " << endl;
-                    cout << " 4. Back" << endl;
+                    cout << " 1. View and manage stock " << endl;
+                    cout << " 2. View customer records " << endl;
+                    cout << " 3. Add an Admin" << endl;
+                    cout << " 4. Change User Name or PIN " << endl;
+                    cout << " 5. Back" << endl;
                     cout << " Enter your choice: ";
                     cin >> choice2;
                     cin.ignore();
 
-                    while (choice2 < 0 || choice2 > 4)
+                    while (choice2 < 0 || choice2 > 5)
                     {
                         cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                         cout << " Please select an options " << endl;
                         cout << " 0. Exit Program" << endl;
-                        cout << " 1. Update stock " << endl;
-                        cout << " 2. Add an Admin" << endl;
-                        cout << " 3. Change User Name or PIN " << endl;
-                        cout << " 4. Back" << endl;
+                        cout << " 1. View and manage stock " << endl;
+                        cout << " 2. View customer records " << endl;
+                        cout << " 3. Add an Admin" << endl;
+                        cout << " 4. Change User Name or PIN " << endl;
+                        cout << " 5. Back" << endl;
                         cout << " Please enter your choice: ";
                         cin >> choice2;
                         cin.ignore();
@@ -178,7 +182,7 @@ int main()
                         {
                             cout<<setw(115)<<"===================="<<endl;
                             cout.fill('.');
-                            cout<<setw(115)<<"|  STOCK UPDATING  |"<<setw(94)<<"";
+                            cout<<setw(115)<<"|  MANAGING STOCK  |"<<setw(94)<<"";
                             cout.fill(' ');
                             cout<<setw(115)<<"===================="<<endl;
                             cout<<endl;
@@ -187,24 +191,26 @@ int main()
 
                             cout <<endl<< " Please select one of following " << endl;
                             cout << " 0. Exit Program" << endl;
-                            cout << " 1. Add an item" << endl;
-                            cout << " 2. increase (or) decrease quantity of an item" << endl;
-                            cout << " 3. increase (or) decrease price of an item" << endl;
-                            cout << " 4. delete an item" << endl;
-                            cout << " 5. back"<<endl;
+                            cout << " 1. View stock " << endl;
+                            cout << " 2. Add an item" << endl;
+                            cout << " 3. increase (or) decrease quantity of an item" << endl;
+                            cout << " 4. increase (or) decrease price of an item" << endl;
+                            cout << " 5. delete an item" << endl;
+                            cout << " 6. back"<<endl;
                             cout << " Enter your choice: ";
                             cin >> choice;
 
-                            while (choice < 0 || choice > 5)
+                            while (choice < 0 || choice > 6)
                             {
                                 cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                                 cout << " Please select one of following " << endl; 
                                 cout << " 0. Exit Program" << endl;
-                                cout << " 1. Add an item" << endl;
-                                cout << " 2. increase (or) decrease quantity of an item" << endl;
-                                cout << " 3. increase (or) decrease price of an item" << endl;
-                                cout << " 4. delete an item" << endl;
-                                cout << " 5. back"<<endl;
+                                cout << " 1. View stock " << endl;
+                                cout << " 2. Add an item" << endl;
+                                cout << " 3. increase (or) decrease quantity of an item" << endl;
+                                cout << " 4. increase (or) decrease price of an item" << endl;
+                                cout << " 5. delete an item" << endl;
+                                cout << " 6. back"<<endl;
                                 cout << " Enter your choice: ";
                                 cin >> choice;
                                 cin.ignore();
@@ -224,7 +230,57 @@ int main()
                                      }
                                 }while(exit=='y'||exit=='Y');
                             }
-                            else if (choice == 1) //adding new item
+                            else if (choice == 1) //viewing stock
+                            {  
+                                char continueChoice ='y';
+                                do
+                                {
+                                    int itemCount = StockFileCount();
+                                    string itemCode[itemCount];
+                                    int itemQuantity[itemCount] = {0};
+                                    int itemPrice[itemCount] = {0};
+                                    string itemName[itemCount];
+
+                                    inputsFromstockFile(itemCode, itemQuantity, itemPrice, itemName, itemCount);
+                                    cout<<setw(114)<<"==================="<<endl;
+                                    cout.fill('.');
+                                    cout<<setw(114)<<"| AVAILBLE STOCK  |"<<setw(95)<<"";
+                                    cout.fill(' ');
+                                    cout<<setw(114)<<"==================="<<endl;
+                                    cout<<endl;
+                        
+                                    cout<<left;
+                                    cout<<" "<<setw(14)<<"Item Code "<<setw(24)<<"Item Name "<<setw(14)<<"Item Price"<<setw(15)<<" Item Quantity "<<endl<<endl;
+
+                                    for(int i=0;i<itemCount;i++)
+                                    {
+                                        cout<<" "<<setw(15)<<itemCode[i]
+                                        <<setw(25)<<itemName[i]
+                                        <<setw(15)<<itemPrice[i]
+                                        <<setw(15)<<itemQuantity[i]<<endl;
+                                    }
+                                    cout<<endl<<endl;
+                                    cout<<right;
+
+                                    for(int i=0;i<209;i++)
+                                    {
+                                        cout<<"-";
+                                    }
+
+                                    cout<<endl<<endl<<"Please enter (y) to continue using program: ";
+                                    cin>>continueChoice;
+                                    cin.ignore();
+                                    while(continueChoice!='y'&&continueChoice!='Y')
+                                    {
+                                        cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
+                                        cout<<endl<<endl<<"Please enter (y) to continue using program: ";
+                                        cin>>continueChoice;
+                                        cin.ignore();
+                                    }
+
+                                }while(continueChoice!='y'&&continueChoice!='Y');
+                            }
+                            else if (choice == 2) //adding new item
                             {
                                 cout<<endl<<setw(119)<< "-----ADDING A NEW ITEM-----" << endl<<endl;
                                 
@@ -297,7 +353,7 @@ int main()
                                     cout<<endl<<"Error\a in editing stock.txt file "<<endl;
                                 }
                             }
-                            else if (choice == 2) //editing quantity of an item
+                            else if (choice == 3) //editing quantity of an item
                             {
                                 cout<<endl<<setw(118)<< "-----EDITING QUANTITY-----" << endl<<endl;
                                 char again='y';
@@ -379,7 +435,7 @@ int main()
 
                                 }while(again!='n'&&again!='N'); 
                             }   
-                            else if (choice == 3) //editing price of an item
+                            else if (choice == 4) //editing price of an item
                             {
                                 cout<<endl<<setw(118)<< "-----EDITING PRICE-----" << endl<<endl;
                                 char again='y';
@@ -462,7 +518,7 @@ int main()
                                 }while(again!='n'&&again!='N'); 
                             }
 
-                            else if (choice == 4) // deleting an item
+                            else if (choice == 5) // deleting an item
                             {
                                 cout<<endl<<setw(117)<< "-----DELETING ITEM-----" << endl<<endl;
                                 char again='y';
@@ -515,9 +571,68 @@ int main()
                              
                                
                             }   
-                        }while(choice!=5);
+                        }while(choice!=6);
                     }
-                    else if (choice2 == 2) //adding new admin
+                    else if (choice2 == 2)//customer record management
+                    {
+                        int billNumber;
+                        int customerRcordCount1 = customerRecordCount();
+
+                        int customerBill[customerRcordCount1];
+                        int customerTotal[customerRcordCount1];
+                        string customerPhone[customerRcordCount1];
+                        string billTime[customerRcordCount1];
+                        string billDay[customerRcordCount1];
+                        string billMonth[customerRcordCount1];
+                        string billDate[customerRcordCount1];
+                        string customerName[customerRcordCount1] ;
+                        inputsFromCustomerRecordFile(customerBill, customerTotal, customerPhone,billTime,billDay,billMonth,billDate, customerName, customerRcordCount1);
+
+                        cout<<endl<< setw(115) << "-----CUSTOMER RECORD-----" << endl <<endl;
+                        int found=0;
+                        char continueChoice ='y';
+
+                        do
+                        {
+                            found=0;
+                            int foundBill=0;
+                        
+                            cout<<" Please enter Bill Number of the record you wish to view: ";
+                            cin>>billNumber;
+
+                            for(int i=0;i<customerRcordCount1;i++)
+                            {
+                                if(customerBill[i]==billNumber)
+                                {
+                                    found = -1;
+                                    foundBill=i;
+                                }
+                            }
+
+                            if(found==-1)
+                            {
+                                cout<<endl<<" Record found!" << endl<<endl;
+                                cout<<" Bill number             : "<<customerBill[foundBill]<<endl;
+                                cout<<" Customer name           : "<<customerName[foundBill]<<endl;
+                                cout<<" Customer phone number   : "<<customerPhone[foundBill]<<endl;
+                                cout<<" Time of bill generation : "<<billTime[foundBill]<<endl;
+                                cout<<" Date of bill generation : "<<billDay[foundBill]<<" "<<billMonth[foundBill]<<" "<<billDate[foundBill]<<endl;
+                                cout<<" Total amount of bill    : "<<customerTotal[foundBill]<<endl<<endl;
+                                cout<<endl<<" Do you wish to view another record? (y/n): ";
+                                cin>>continueChoice;
+                                cin.ignore();
+                            }
+                            else if(found==0)
+                            {
+                                cout<<endl<<" Record with this bill number not found! Please try again with correct bill number." << endl;
+                                cout<<endl<<" Do you wish to try again? (y/n): ";
+                                cin>>continueChoice;
+                                cin.ignore();
+                            }
+
+                        }while(continueChoice=='y'||continueChoice=='Y');
+                    }
+                    else if (choice2 == 3) //adding new admin
                     {
                         cout<<endl<<setw(118)<< "-----ADDING NEW ADMIN-----" << endl<<endl;
 
@@ -575,7 +690,7 @@ int main()
                             }
                         }
                     }
-                    else if (choice2 == 3) //editing admin's username or pin
+                    else if (choice2 == 4) //editing admin's username or pin
                     {
 
                         char newUserTryAgain='n';
@@ -664,7 +779,7 @@ int main()
                                 if(newUserCheck==0&&(newUserTryAgain=='n')||newUserTryAgain=='N')
                                 {
                                     choice4 = 3;
-                                    choice2 = 4;
+                                    choice2 = 5;
 
                                     fout.open("Admin.txt");
 
@@ -696,46 +811,88 @@ int main()
                             else if (choice4 == 2) // changing pin
                             {
                                 cout<<endl<<setw(115)<< "-----CHANGING PIN-----" << endl<<endl;
-                                choice4 = 3;
-                                choice2 = 4;
+
                                 int newUserPin=0;
-                                cout << " Please enter your new Pin: ";
-                                cin >> newUserPin;
-                                cin.ignore();
-
-                                fout.open("Admin.txt");
-
-                                if (!fout.fail())
+                                int adminNumber=0;
+                                int newUserCheck=0;
+                              
+                                do
                                 {
-                                    for (int i = 0; i < adminCount; i++)
+                                    newUserCheck=0;
+                            
+                                    cout << " Please enter your new Pin: ";
+                                    cin >> newUserPin;
+                                    cin.ignore();
+                                    for(int i=0;i<adminCount;i++)
                                     {
-                                        if (i == adminNumber)
+                                        if(newUserPin==adminPin[i])                                                
                                         {
-                                            fout << newUserPin << " " << adminname[i] << endl;
+                                            newUserCheck=-1;
                                         }
-                                        else
+                                        if(userName==adminname[i])                                                
                                         {
-                                            fout << adminPin[i] << " " << adminname[i] << endl;
+                                            adminNumber=i;
                                         }
-                                   }
-                                    fout.close();
-                                    cout << endl << " Admin's Pin is updated successfully! Please login again with your new Pin." << endl<<endl;                                   
-                                }
-                                else
-                                {
-                                    cout << endl;
-                                    cout << " Error!\aCould not open Admin.txt file for editing admin's Pin" << endl;
+                                    }
+                                    
+                                    if(newUserPin==adminPin[adminNumber])
+                                    {
+                                        cout<<endl<<"The Pin you entered is already saved as your current Pin. Please enter a different Pin"<<endl <<"Do you wish to try again(y/n): ";
+                                        cin>>newUserTryAgain;
+                                        cin.ignore();
+                                    }
+                                    else if(newUserCheck==-1)
+                                    {
+                                        cout<<endl<<" Admin with this Pin already exists! do you wish to try again(y/n): ";
+                                        cin>>newUserTryAgain;
+                                        cin.ignore();
+                                    }
+                                    else
+                                    {
+                                        newUserCheck=0;
+                                        newUserTryAgain='n';
+                                    }
+                                
+                                }while(newUserCheck==-1 &&(newUserTryAgain=='y'||newUserTryAgain=='Y'));
+                               
+                                if(newUserCheck==0 &&(newUserTryAgain=='n'||newUserTryAgain=='N'))
+                                {                                        
+                                    choice4 = 3;
+                                    choice2 = 5;
+                                    fout.open("Admin.txt");
+
+                                    if (!fout.fail())
+                                    {
+                                        for (int i = 0; i < adminCount; i++)
+                                        {
+                                            if (i == adminNumber)
+                                            {
+                                                fout << newUserPin << " " << adminname[i] << endl;
+                                            }
+                                            else
+                                            {
+                                                fout << adminPin[i] << " " << adminname[i] << endl;
+                                            }
+                                       }
+                                        fout.close();
+                                        cout << endl << " Admin's Pin is updated successfully! Please login again with your new Pin." << endl<<endl;                                   
+                                    }
+                                    else
+                                    {
+                                        cout << endl;
+                                        cout << " Error!\aCould not open Admin.txt file for editing admin's Pin" << endl;
+                                    }
                                 }
                             }
                         } while (choice4 != 3);
                     }
-                } while (choice2 != 4);
+                } while (choice2 != 5);
             }
             else
             {
-                choice2 = 4;
+                choice2 = 5;
             }
-        }while (choice2 != 4);
+        }while (choice2 != 5);
         }
         else if (choice1==2) //user work ara
         { 
@@ -1025,7 +1182,7 @@ int main()
                                 cout<<" Please enter the quantity of item ";
                                 cin>>boughtItemQuantity;
 
-                                if(boughtItemQuantity<itemQuantity[boughtItemNumber])
+                                if(boughtItemQuantity<=itemQuantity[boughtItemNumber])
                                 {
                                     int boughtItemPrice=itemPrice[boughtItemNumber];
                                     int remainingItemQuantity=itemQuantity[boughtItemNumber]-boughtItemQuantity;
@@ -1087,14 +1244,21 @@ int main()
                             }                        
                         } while(again!='n'&&again!='N');
 
+                        string time,date;
+                        timeAndDate(date,time);
+
                         int RecordCount=customerRecordCount();
                         
                         int billNo[RecordCount]={0};
                         int CustomerTotal[RecordCount]={0} ;
                         string customerPhone[RecordCount];
                         string customerName[RecordCount];
+                        string customerTime[RecordCount];
+                        string customerDate[RecordCount];
+                        string customerDateDay[RecordCount];
+                        string customerDateMonth[RecordCount];
 
-                        inputsFromCustomerRecordFile(billNo ,CustomerTotal, customerPhone, customerName, RecordCount);
+                        inputsFromCustomerRecordFile(billNo ,CustomerTotal, customerPhone,customerTime, customerDateDay, customerDateMonth, customerDate, customerName, RecordCount);
         
                         int grandTotal=0;
                         string customername,customerphone;
@@ -1116,6 +1280,8 @@ int main()
 
                         cout<<endl;
                         cout<<left;
+                        cout<<" Date         : "<<date<<endl;
+                        cout<<" Time         : "<<time<<endl;
                         cout<<" Bill Number  : "<<customerBillNo<<endl;
                         cout<<" Customer Name: "<<customername<<endl;
                         cout<<" Phone Number : "<<customerphone<<endl<<endl;
@@ -1145,11 +1311,11 @@ int main()
                         if(!fout.fail())
                         {
                         
-                            fout<<customerBillNo<<" "<<grandTotal<<" "<<customerphone<<" "<<customername;
+                            fout<<customerBillNo<<" "<<grandTotal<<" "<<customerphone<<" "<<time<<" "<<date<<" "<<customername;
 
                             for(int i=0;i<RecordCount;i++)
                             {
-                                fout<<endl<<billNo[i]<<" "<<CustomerTotal[i]<<" "<<customerPhone[i]<<" "<<customerName[i];
+                                fout<<endl<<billNo[i]<<" "<<CustomerTotal[i]<<" "<<customerPhone[i]<<" "<<customerTime[i]<<" "<<customerDateDay[i]<<" "<<customerDateMonth[i]<<" "<<customerDate[i]<<" "<<customerName[i];
                             }
                             fout.close();
                         }
@@ -1162,6 +1328,8 @@ int main()
                         if(!fout.fail())
                         {
                             fout<<left;
+                            fout<<" Date         : "<<date<<endl;
+                            fout<<" Time         : "<<time<<endl;
                             fout<<" Bill Number  : "<<customerBillNo<<endl;
                             fout<<" Customer Name: "<<customername<<endl;
                             fout<<" Phone Number : "<<customerphone<<endl<<endl;
@@ -1178,7 +1346,6 @@ int main()
                             }
                             fout<<endl<<endl;
                             fout<<" Grand total: "<<grandTotal<<endl;
-
                             cout<<endl<<" Receipt is generated successfully! Please check reciept.txt file."<<endl;
                             
                         }
@@ -1202,14 +1369,20 @@ int main()
 
 int customerRecordCount()
 {
-    string coustomerName,customerPhone;
+    string coustomerName,customerPhone,Day,Month,Date,Time;
     int customerRecordCount=0,billNo,total;
     ifstream fin;
     fin.open("customerRecord.txt");
     if (!fin.fail())
     {
-        while (fin>>billNo>>total>>customerPhone)
+        while (fin>>billNo)
         {
+            fin>>total;
+            fin>>customerPhone;
+            fin>>Time;
+            fin>>Day;
+            fin>>Month;
+            fin>>Date;
             fin.ignore();
             getline(fin, coustomerName);
             customerRecordCount++;
@@ -1224,7 +1397,7 @@ int customerRecordCount()
     return customerRecordCount;
 }
 
-void inputsFromCustomerRecordFile(int billNo[],int CustomerTotal[],string customerPhone[],string customerName[],int customerRecordCount)
+void inputsFromCustomerRecordFile(int billNo[],int CustomerTotal[],string customerPhone[],string customerTime[],string customerDateDay[],string customerDateMonth[],string customerDate[],string customerName[],int customerRecordCount)
 {
     ifstream fin;
     fin.open("customerRecord.txt");
@@ -1236,6 +1409,10 @@ void inputsFromCustomerRecordFile(int billNo[],int CustomerTotal[],string custom
             fin >> billNo[i];
             fin >> CustomerTotal[i];
             fin>>customerPhone[i];
+            fin>>customerTime[i];
+            fin>>customerDateDay[i];
+            fin>>customerDateMonth[i];
+            fin>>customerDate[i];
             fin.ignore();
             getline(fin, customerName[i]);
         }
@@ -1349,4 +1526,11 @@ void inputsFromAdminFile(string fileAdminNames[], int fileAdminPins[], int fileA
         cout << endl;
         cout << "Error!\a Could not open Admin.txt file" << endl;
     }
+}
+void timeAndDate( string &currentDate,string &exactTime)
+{
+    time_t now = time(0);
+   string fulltime = ctime(&now);
+    currentDate = fulltime.substr(0, 10);
+    exactTime = fulltime.substr(11, 8);
 }
