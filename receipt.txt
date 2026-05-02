@@ -1,0 +1,12 @@
+ Date          : Sat May  2
+ Time          : 09:53:34
+ Bill Number   : 9
+ Customer Name : tyty
+ Phone Number  : 2112121212
+
+ Item Code     Item Name               Item Price     Item Quantity 
+
+ 1111           banana                   25             1              
+
+
+ Grand total: 25
