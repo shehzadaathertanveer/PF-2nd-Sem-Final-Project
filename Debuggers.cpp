@@ -1833,31 +1833,70 @@ int main()
                             {
                                 fout <<left;
 
-                                fout <<" Date          : " <<date <<endl;
-                                fout <<" Time          : " <<time <<endl;
-                                fout <<" Bill Number   : " <<customerBillNo <<endl;
-                                fout <<" Customer Name : " <<customername <<endl;
-                                fout <<" Phone Number  : " <<customerphone <<endl<<endl;
-                        
-                                fout <<" " <<setw(14) <<"Item Code "
-                                    <<setw(24) <<"Item Name "
-                                    <<setw(14) <<"Item Price"
-                                    <<setw(15) <<" Item Quantity "
-                                    <<setw(15) <<"Item Total"
-                                    <<endl <<endl;
+                                fout <<"Date: " <<date <<endl;
+                                fout <<"Time: " <<time <<endl;
+                                fout <<"Bill Number: " <<customerBillNo <<endl;
+                                fout <<"Customer Name: " <<customername <<endl;
+                                fout <<"Phone Number: " <<customerphone <<endl;
+
+                                for(int i=0 ; i<48 ;i++)
+                                {
+                                    fout <<"-";
+                                }
+                                
+                                fout<<endl<<"                      Original Bill "<<endl;
+
+                                for(int i=0 ; i<48 ;i++)
+                                {
+                                    fout <<"-";
+                                }
+                                fout<<endl <<"Product Details: " <<endl <<endl;
+                                fout<<"Code\tName\tPrice\tQnty\tTotal"
+                                    <<endl;
+
+                                for(int i=0 ; i<48 ;i++)
+                                {
+                                    fout <<"-";
+                                }
+
+                                fout<<endl<<"                      Sales Items "<<endl;
+
+                                for(int i=0 ; i<48 ;i++)
+                                {
+                                    fout <<"-";
+                                }
+                                fout<<endl;
 
                                 for(int i = 0 ; i < boughtItemCount ; i++)
                                 {
-                                    fout<<" " <<setw(15) <<boughtItemCodes[i]
-                                        <<setw(25) << boughtItemNames[i]
-                                        <<setw(15) << boughtItemPrices[i]
-                                        <<setw(15) << BoughtItemQuantity[i]
-                                        <<setw(15) << boughtItemtotal[i] <<endl;
+                                    fout<<boughtItemCodes[i] <<"\t" << boughtItemNames[i] <<"\t" << boughtItemPrices[i] <<"\t" <<BoughtItemQuantity[i] <<"\t" << boughtItemtotal[i] <<endl;
                                 }
 
-                                fout <<endl <<endl;
-                                fout << " Grand total: " <<grandTotal <<endl;
-                                cout <<endl <<" Receipt is generated successfully! Please check reciept.txt file."<<endl;                         
+                                 fout <<endl;
+                        
+                                for(int i=0 ; i<48 ;i++)
+                                {
+                                    fout <<"-";
+                                }
+                                fout <<endl;
+                                fout << "Invoice Value: " <<grandTotal <<endl;
+
+                                for(int i=0 ; i<48 ;i++)
+                                {
+                                    fout <<"-";
+                                }
+
+                                fout <<endl;
+
+                                for(int i=0 ; i<57 ;i++)
+                                {
+                                    fout <<".";
+                                }
+                                fout <<endl <<"This is a computer generated receipt and it does not require any signatures " <<endl;
+
+                                fout.close();
+
+                                cout <<endl <<" Receipt is generated successfully! Please check receipt.txt file."<<endl;                         
                             }
                             else
                             {

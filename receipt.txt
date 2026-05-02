@@ -1,12 +1,25 @@
- Date          : Sat May  2
- Time          : 09:53:34
- Bill Number   : 9
- Customer Name : tyty
- Phone Number  : 2112121212
+Date: Sat May  2
+Time: 12:42:46
+Bill Number: 20
+Customer Name: Abdullah Arif
+Phone Number: 0321 4567892
+------------------------------------------------
+                      Original Bill 
+------------------------------------------------
+Product Details: 
 
- Item Code     Item Name               Item Price     Item Quantity 
+Code	Name	Price	Qnty	Total
+------------------------------------------------
+                      Sales Items 
+------------------------------------------------
+1111	banana	25	22	550
+1212	table	500	1	500
+1234	map	500	4	2000
+3434	tap	510	1	510
+5656	tty	60	2	120
 
- 1111           banana                   25             1              
-
-
- Grand total: 25
+------------------------------------------------
+Invoice Value: 3680
+------------------------------------------------
+.........................................................
+This is a computer generated receipt and it does not require any signatures 
