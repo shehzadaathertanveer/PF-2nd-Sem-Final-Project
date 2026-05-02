@@ -1529,17 +1529,18 @@ int main()
                     else if(choice2 == 2) //generating bill
                     {
                         char anotherReceipt = 'y';
-
+                        int donecheck = 0;
                         do
                         {
                             int boughtItemPrice = 0;
-                            int remainingItemQuantity = 0;
                             int boughtItemCount = 0;
                             int itemTotal = 0;
 
                             int choice2 = 2 , choice3;
 
                             int itemCount=StockFileCount();
+
+                            int remainingItemQuantity[500]= {0};
 
                             string boughtItemCodes[500];
                             int boughtItemtotal[500] = {0};
@@ -1626,10 +1627,10 @@ int main()
 
                                     if(boughtItemQuantity <= itemQuantity[boughtItemNumber])
                                     {
-                                        boughtItemPrice = itemPrice[boughtItemNumber];
-                                        remainingItemQuantity = itemQuantity[boughtItemNumber] - boughtItemQuantity;
-                                        itemTotal = boughtItemPrice * boughtItemQuantity;
                                         itemQuantity[boughtItemNumber] -= boughtItemQuantity;
+
+                                        boughtItemPrice = itemPrice[boughtItemNumber];
+                                        itemTotal = boughtItemPrice * boughtItemQuantity;
 
                                         boughtItemCodes[boughtItemCount] = boughtItem;
                                         boughtItemNames[boughtItemCount] = itemName[boughtItemNumber];
@@ -1639,31 +1640,6 @@ int main()
 
                                         boughtItemCount++;
          
-                                        ofstream fout;
-
-                                        fout . open("stock.txt");
-
-                                        if( ! fout . fail())
-                                        {
-                                            for(int i = 0 ; i < itemCount ; i++)
-                                            {
-                                                if(boughtItem == itemCode[i])
-                                                {
-                                                    fout <<itemCode[i] <<" ";
-                                                    fout <<remainingItemQuantity <<" ";
-                                                    fout <<itemPrice[i] <<" ";
-                                                    fout <<itemName[i] <<endl;
-                                                }
-                                                else
-                                                {
-                                                    fout <<itemCode[i] <<" ";
-                                                    fout <<itemQuantity[i] <<" ";
-                                                    fout <<itemPrice[i] <<" ";
-                                                    fout <<itemName[i] <<endl;
-                                                }
-                                           }
-  
-                                            fout . close();
 
                                             cout <<endl <<" Do you wish to purchase another Item (y/n): ";
                                             cin >> again;
@@ -1675,12 +1651,10 @@ int main()
                                                 cout <<" Do you wish to purchase another Item (y/n): ";
                                                 cin >> again;
                                                 cin . ignore();
+                                                cout <<endl;
                                             }
-                                        }
-                                        else
-                                        {
-                                            cout <<endl <<" Error\a could not update stock file after purchasing"<<endl;
-                                        }
+                                            donecheck =0;
+                                       
                                     }
                                     else
                                     {
@@ -1699,6 +1673,7 @@ int main()
                                             cin >> again;
                                             cin . ignore();
                                         }
+                                        donecheck = 1;
                                     }
                                 }
                                 else
@@ -1715,9 +1690,11 @@ int main()
                                         cin >> again;
                                         cin . ignore();
                                     }
+                                    donecheck = 1;
                                 }                            
                             } while(again != 'n' && again != 'N');
 
+                            
                             string time, date;
 
                             timeAndDate(date,time);
@@ -1844,7 +1821,7 @@ int main()
                                     fout <<"-";
                                 }
                                 
-                                fout<<endl<<"                      Original Bill "<<endl;
+                                fout<<endl<<"                        Original Bill "<<endl;
 
                                 for(int i=0 ; i<48 ;i++)
                                 {
@@ -1859,7 +1836,7 @@ int main()
                                     fout <<"-";
                                 }
 
-                                fout<<endl<<"                      Sales Items "<<endl;
+                                fout<<endl<<"                          Sales Items "<<endl;
 
                                 for(int i=0 ; i<48 ;i++)
                                 {
@@ -1888,11 +1865,6 @@ int main()
 
                                 fout <<endl;
 
-                                for(int i=0 ; i<57 ;i++)
-                                {
-                                    fout <<".";
-                                }
-                                fout <<endl <<"This is a computer generated receipt and it does not require any signatures " <<endl;
 
                                 fout.close();
 
@@ -1902,6 +1874,31 @@ int main()
                             {
                                 cout <<endl <<" Error!\a in generating receipt file."<<endl;
                             }
+
+                            if(donecheck == 0)
+                            {
+                               ofstream fout;
+
+                                fout . open("stock.txt");
+
+                                if( ! fout . fail())
+                                {
+                                    for(int i = 0 ; i < itemCount ; i++)
+                                    {
+                                        fout <<itemCode[i] <<" ";
+                                        fout <<itemQuantity[i] <<" ";
+                                        fout <<itemPrice[i] <<" ";
+                                        fout <<itemName[i] <<endl;
+                                    }
+
+                                    fout . close();
+                                }   
+                                else
+                                {
+                                    cout <<endl <<" Error!\a Could not open stock.txt file for updating stock after generating bill" << endl;
+                                }
+                            }
+                            cout<<endl<<"Stock is updated successfully after generating bill!"<<endl;
 
                             cout <<endl <<" Do you wish to generate another receipt? (Y/N): ";
                             cin >> anotherReceipt;
