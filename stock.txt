@@ -1,100 +1,102 @@
-2342 45	250	Coca Cola 2L	
-2341 40	200	Coca Cola 1.5L	
-2340 76	100	Coca Cola 0.5L	
-4513 25	70 Aqua Water 1L	
-4512 50	40 Aqua Water 0.5L	
-4212 22	100	Lays 38.5g	
-4211 40	60 Lays 24.2g	
-4210 62	20 Lays 12.6g	
-5512 22	50 CocoMo Friends pack	
-2778 33	75 Shan Biryani Masala	
-2779 20	150	Shan Biryani Masala Box	
-2343 30	240	Sprite 2L	
-2344 35	190	Sprite 1.5L	
-2345 50	95 Sprite 0.5L	
-2346 28	245	Fanta 2L	
-2347 42	195	Fanta 1.5L	
-2348 60	90 Fanta 0.5L	
-4514 100 25	Aqua Water Cup 250ml	
-4515 15	350	Aqua Water Gallon 5L	
-4213 45	110	Kurkure Red Chilli 40g	
-4214 55	65 Kurkure Cheese 25g	
-4215 30	120	Cheetos Flaming Hot 45g	
-4216 20	150	Pringles Original Small	
-4217 18	450	Pringles Sour Cream Large	
-5513 40	30 Prince Biscuit Half Roll	
-5514 25	80 Oreo Family Pack	
-5515 50	20 Tiger Biscuit Tick Pack	
-5516 35 100	Tuc Biscuit Family Pack	
-5517 15	250	Nutella Go Breadsticks	
-2780 40	85 Shan Korma Masala	
-2781 22	90 Shan Nihari Masala	
-2782 18	120	Shan Haleem Mix	
-2783 25	300	National Ketchup 500g	
-2784 30	550	National Ketchup 1kg	
-2785 45	180	National Chilli Garlic 250g	
-1010 15	450	Tapal Danedar Tea 450g	
-1011 20	950	Tapal Danedar Tea 900g	
-1012 50	200	Lipton Tea Bags 25s	
-1013 25	600	Nescafe Classic 100g	
-1014 12	1200 Nescafe Gold 100g	
-3310 40	160	Olpers Milk 250ml	
-3311 30	280	Olpers Milk 1L	
-3312 20	420	MilkPak Cream 200ml	
-3313 15	850	Nido Powder Milk 390g	
-6610 25	140	Lux Soap Soft Touch	
-6611 30	135	Safeguard Lemon Fresh	
-6612 15	450	Dettol Handwash Refill	
-6613 20	650	Lifebuoy Shampoo 370ml	
-6614 12	800	Pantene Conditioner 180ml	
-6615 40	220	Colgate Toothpaste 75g	
-6616 25	350	Sensodyne Rapid Relief	
-7710 18	900	Ariel Detergent 1kg	
-7711 15	1700 Surf Excel 2kg	
-7712 40	250	Vim Dishwash Gel 500ml	
-7713 60	60 Vim Dishwash Bar	
-7714 25	320	Harpic Toilet Cleaner	
-8810 10	2500 Dalda Cooking Oil 5L	
-8811 20	520	Dalda Cooking Oil 1L	
-8812 15	480	Habib Vegetable Ghee 1kg	
-9910 30	150	Bake Parlor Spaghetti	
-9911 25	140	Bake Parlor Macaroni	
-9912 40	60 Maggi Noodles Chicken	
-9913 35	65 Knorr Noodles Chatpata	
-1120 50	15 Dawn Bread Small	
-1121 30	220	Dawn Bread Large	
-1122 20	180	Dawn Bun 4 Pack	
-1230 15	450	Youngs Mayonnaise 500ml	
-1231 25	200	Mitchells Mixed Fruit Jam	
-1232 10	600	Langnese Honey 250g	
-1440 40	120	Dairy Milk Chocolate Small	
-1441 20	350	Dairy Milk Fruit & Nut	
-1442 30	100	Snickers Candy Bar	
-1443 25	110	Mars Chocolate Bar	
-1444 50	50 KitKat 2 Finger	
-1550 15	1200 Pampers Baby Wipes	
-1551 8 2800 Pampers Diapers Large	
-1660 100 10	Matchbox 1 Unit	
-1661 20	150	Cricket Lighter	
-1662 15	400	Mortein Insect Killer	
-1663 30	120	Rose Petal Tissues	
-1664 20	300	Rose Petal Kitchen Roll	
-1770 45	90 7Up Free 0.5L	
-1771 25	240	7Up 2L	
-1772 30	100	Mountain Dew 0.5L	
-1773 15	280	Red Bull Energy Drink	
-1774 22	150	Milo Chocolate Drink	
-1880 35	55 Peak Freans Sooper	
-1881 40	60 Peak Freans Rio	
-1882 25	110	LU Bakeri Nan Khatai	
-1883 15	200	Bisconni Chocolatto	
-1990 20	450	Knorr Chicken Cubes 12s	
-1991 50	15 Candyland Chilli Milli	
-1992 40	20 Candyland Fantie	
-2020 15	380	Tang Orange 375g	
-2021 12	750	Tang Mango 750g	
-2121 25	180	Shezan Mango Juice 1L	
-2122 60	40 Nestle Fruita Vitals 200ml	
-2222 15	550	EveryDay Tea Whitener	
-2323 20	320	Blue Band Margarine 250g	
-2424 10	900	Puck Cheese Spread 500g	
+1234 5 400 Tang Mango 400g
+1212 28 780 Tang Special 500g
+2342 45 250 Coca Cola 2L
+2341 40 200 Coca Cola 1.5L
+2340 76 100 Coca Cola 0.5L
+4513 25 70 Aqua Water 1L
+4512 50 40 Aqua Water 0.5L
+4212 22 100 Lays 38.5g
+4211 40 60 Lays 24.2g
+4210 62 20 Lays 12.6g
+5512 22 50 CocoMo Friends pack
+2778 33 75 Shan Biryani Masala
+2779 20 150 Shan Biryani Masala Box
+2343 30 240 Sprite 2L
+2344 35 190 Sprite 1.5L
+2345 50 95 Sprite 0.5L
+2346 28 245 Fanta 2L
+2347 42 195 Fanta 1.5L
+2348 60 90 Fanta 0.5L
+4514 100 25 Aqua Water Cup 250ml
+4515 15 350 Aqua Water Gallon 5L
+4213 45 110 Kurkure Red Chilli 40g
+4214 55 65 Kurkure Cheese 25g
+4215 30 120 Cheetos Flaming Hot 45g
+4216 20 150 Pringles Original Small
+4217 18 450 Pringles Sour Cream Large
+5513 40 30 Prince Biscuit Half Roll
+5514 25 80 Oreo Family Pack
+5515 50 20 Tiger Biscuit Tick Pack
+5516 35 100 Tuc Biscuit Family Pack
+5517 15 250 Nutella Go Breadsticks
+2780 40 85 Shan Korma Masala
+2781 22 90 Shan Nihari Masala
+2782 18 120 Shan Haleem Mix
+2783 25 300 National Ketchup 500g
+2784 30 550 National Ketchup 1kg
+2785 45 180 National Chilli Garlic 250g
+1010 15 450 Tapal Danedar Tea 450g
+1011 20 950 Tapal Danedar Tea 900g
+1012 50 200 Lipton Tea Bags 25s
+1013 25 600 Nescafe Classic 100g
+1014 12 1200 Nescafe Gold 100g
+3310 40 160 Olpers Milk 250ml
+3311 30 280 Olpers Milk 1L
+3312 20 420 MilkPak Cream 200ml
+3313 15 850 Nido Powder Milk 390g
+6610 25 140 Lux Soap Soft Touch
+6611 30 135 Safeguard Lemon Fresh
+6612 15 450 Dettol Handwash Refill
+6613 20 650 Lifebuoy Shampoo 370ml
+6614 12 800 Pantene Conditioner 180ml
+6615 40 220 Colgate Toothpaste 75g
+6616 25 350 Sensodyne Rapid Relief
+7710 18 900 Ariel Detergent 1kg
+7711 15 1700 Surf Excel 2kg
+7712 40 250 Vim Dishwash Gel 500ml
+7713 60 60 Vim Dishwash Bar
+7714 25 320 Harpic Toilet Cleaner
+8810 10 2500 Dalda Cooking Oil 5L
+8811 20 520 Dalda Cooking Oil 1L
+8812 15 480 Habib Vegetable Ghee 1kg
+9910 30 150 Bake Parlor Spaghetti
+9911 25 140 Bake Parlor Macaroni
+9912 40 60 Maggi Noodles Chicken
+9913 35 65 Knorr Noodles Chatpata
+1120 50 15 Dawn Bread Small
+1121 30 220 Dawn Bread Large
+1122 20 180 Dawn Bun 4 Pack
+1230 15 450 Youngs Mayonnaise 500ml
+1231 25 200 Mitchells Mixed Fruit Jam
+1232 10 600 Langnese Honey 250g
+1440 40 120 Dairy Milk Chocolate Small
+1441 20 350 Dairy Milk Fruit & Nut
+1442 30 100 Snickers Candy Bar
+1443 25 110 Mars Chocolate Bar
+1444 50 50 KitKat 2 Finger
+1550 14 1200 Pampers Baby Wipes
+1551 8 2800 Pampers Diapers Large
+1660 100 10 Matchbox 1 Unit
+1661 20 150 Cricket Lighter
+1662 15 400 Mortein Insect Killer
+1663 28 120 Rose Petal Tissues
+1664 20 300 Rose Petal Kitchen Roll
+1770 44 90 7Up Free 0.5L
+1771 22 240 7Up 2L
+1772 30 100 Mountain Dew 0.5L
+1773 15 280 Red Bull Energy Drink
+1774 22 150 Milo Chocolate Drink
+1880 33 55 Peak Freans Sooper
+1881 40 60 Peak Freans Rio
+1882 25 110 LU Bakeri Nan Khatai
+1883 15 200 Bisconni Chocolatto
+1990 20 450 Knorr Chicken Cubes 12s
+1991 50 15 Candyland Chilli Milli
+1992 40 20 Candyland Fantie
+2020 15 380 Tang Orange 375g
+2021 9 750 Tang Mango 750g
+2121 22 180 Shezan Mango Juice 1L
+2122 60 40 Nestle Fruita Vitals 200ml
+2222 15 550 EveryDay Tea Whitener
+2323 20 320 Blue Band Margarine 250g
+2424 10 900 Puck Cheese Spread 500g	

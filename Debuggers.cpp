@@ -289,25 +289,29 @@ int main()
 
                                             cout <<" " 
                                                 <<setw(14) <<"Item Code "
-                                                <<setw(24) <<"Item Name "
-                                                <<setw(14) <<"Item Price"
-                                                <<setw(15) <<"Item Quantity " <<endl <<endl;
+                                                <<setw(42) <<"Item Name "
+                                                <<setw(15) <<"Item Price"
+                                                <<setw(16) <<"Item Quantity " <<endl <<endl;
 
                                             for(int i = 0 ; i < itemCount ; i++)
                                             {
                                                 if(itemQuantity[i]==0)
                                                 {
+                                                    cout <<left;
+
                                                     cout <<" " <<setw(15) <<itemCode[i]
-                                                    <<setw(25) <<itemName[i]
-                                                    <<setw(15) <<itemPrice[i]
-                                                    <<setw(15) <<"Out of Stock" <<endl;
+                                                    <<setw(41) <<itemName[i]
+                                                    <<setw(16) <<itemPrice[i]
+                                                    <<setw(16) <<"Out of Stock" <<endl;
                                                 }
                                                 else
                                                 {
+                                                    cout <<left;
+
                                                     cout <<" " <<setw(15) <<itemCode[i]
-                                                    <<setw(25) <<itemName[i]
-                                                    <<setw(15) <<itemPrice[i]
-                                                    <<setw(15) <<itemQuantity[i] <<endl;
+                                                    <<setw(41) <<itemName[i]
+                                                    <<setw(16) <<itemPrice[i]
+                                                    <<setw(16) <<itemQuantity[i] <<endl;
                                                 }
                                             }
                                             cout <<endl <<endl;
@@ -1565,9 +1569,9 @@ int main()
                             cout << left;
 
                             cout <<" " <<setw(14) <<"Item Code "
-                                <<setw(24) <<"Item Name "
-                                <<setw(14) <<"Item Price"
-                                <<setw(15) <<" Item Quantity " <<endl <<endl;
+                                <<setw(43) <<"Item Name "
+                                <<setw(15) <<"Item Price"
+                                <<setw(16) <<" Item Quantity " <<endl <<endl;
 
                             for(int i = 0 ; i < itemCount ; i++)
                             {
@@ -1575,16 +1579,16 @@ int main()
                                 if(itemQuantity[i]==0)
                                 {
                                     cout <<" " <<setw(15) <<itemCode[i]
-                                    <<setw(25) <<itemName[i]
-                                    <<setw(15) <<itemPrice[i]
-                                    <<setw(15) <<"Out of Stock" <<endl;
+                                    <<setw(43) <<itemName[i]
+                                    <<setw(16) <<itemPrice[i]
+                                    <<setw(16) <<"Out of Stock" <<endl;
                                 }
                                 else
                                 {
                                 cout <<" " <<setw(15) <<itemCode[i]
-                                    <<setw(25) <<itemName[i]
+                                    <<setw(43) <<itemName[i]
                                     <<setw(15) <<itemPrice[i]
-                                    <<setw(15) <<itemQuantity[i] <<endl;
+                                    <<setw(16) <<itemQuantity[i] <<endl;
                                 }
                             }
 
@@ -1743,18 +1747,18 @@ int main()
                             cout <<" Phone Number  : " <<customerphone <<endl <<endl;
                         
                             cout <<" " <<setw(14) <<"Item Code "
-                                <<setw(24) <<"Item Name "
-                                <<setw(14) <<"Item Price"
-                                <<setw(14) <<" Item Quantity "
-                                <<setw(15) <<"Item Total" <<endl <<endl;
+                                <<setw(42) <<"Item Name "
+                                <<setw(15) <<"Item Price"
+                                <<setw(15) <<" Item Quantity "
+                                <<setw(16) <<"Item Total" <<endl <<endl;
 
                             for(int i=0 ; i < boughtItemCount ; i++)
                             {
                                 cout <<" " <<setw(15) <<boughtItemCodes[i]
-                                    <<setw(25) <<boughtItemNames[i]
+                                    <<setw(42) <<boughtItemNames[i]
                                     <<setw(15) <<boughtItemPrices[i]
                                     <<setw(15) <<BoughtItemQuantity[i] 
-                                    <<setw(15) <<boughtItemtotal[i] <<endl;
+                                    <<setw(16) <<boughtItemtotal[i] <<endl;
 
                                 grandTotal += boughtItemtotal[i];
                             }
@@ -1827,8 +1831,8 @@ int main()
                                 {
                                     fout <<"-";
                                 }
-                                fout<<endl <<"Product Details: " <<endl <<endl;
-                                fout<<"Code\tName\tPrice\tQnty\tTotal"
+                                fout<<endl <<"Product Details: " <<endl
+                                    <<"Code\tPrice\tQuantity\tTotal"
                                     <<endl;
 
                                 for(int i=0 ; i<48 ;i++)
@@ -1846,10 +1850,9 @@ int main()
 
                                 for(int i = 0 ; i < boughtItemCount ; i++)
                                 {
-                                    fout<<boughtItemCodes[i] <<"\t" << boughtItemNames[i] <<"\t" << boughtItemPrices[i] <<"\t" <<BoughtItemQuantity[i] <<"\t" << boughtItemtotal[i] <<endl;
+                                    fout<< boughtItemNames[i] <<endl 
+                                    <<boughtItemCodes[i] <<"\t" << boughtItemPrices[i] <<"\t" <<BoughtItemQuantity[i] <<"\t" << boughtItemtotal[i] <<endl;
                                 }
-
-                                 fout <<endl;
                         
                                 for(int i=0 ; i<48 ;i++)
                                 {

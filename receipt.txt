@@ -1,21 +1,24 @@
 Date: Sat May  2
-Time: 13:47:14
-Bill Number: 22
-Customer Name: ather
-Phone Number: 03454345667
+Time: 15:06:45
+Bill Number: 6
+Customer Name: Asim
+Phone Number: 0301-1256900
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
 Product Details: 
-
-Code	Name	Price	Qnty	Total
+Code	Price	Quantity	Total
 ------------------------------------------------
                           Sales Items 
 ------------------------------------------------
-1234	map	500	5	2500
-3434	tap	510	3	1530
-
+Shezan Mango Juice 1L
+2121	180	3	540
+Tang Special 500g
+1212	780	1	780
+Rose Petal Tissues
+1663	120	2	240
+7Up Free 0.5L
+1770	90	1	90
 ------------------------------------------------
-Invoice Value: 4030
+Invoice Value: 1650
 ------------------------------------------------
-.........................................................
