@@ -32,7 +32,7 @@ int main()
 
     cout <<endl <<setw(136) <<"Welcome to Stock Management and Billing Program by Debbugers!" <<endl <<endl;
 
-    int choice1 , choice2 , choice3;
+    char choice1 , choice2 , choice3;
     char firstTimeExit = 'n';
 
     do
@@ -54,7 +54,7 @@ int main()
             cin . ignore();
             cout << endl;
 
-            while(choice1 > 2 || choice1 < 0)
+            while(choice1 != '0' && choice1 != '1' && choice1 != '2')
             {
                 cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                 cout <<" Please select your role:" <<endl;
@@ -67,15 +67,15 @@ int main()
                 cout <<endl;
             }
 
-            if(choice1 == 1)//Admin Permissions
+            if(choice1 == '1')//Admin Permissions
             {
-                int choice2;
+                char choice2;
 
                 do
                 {
                     ofstream fout;
 
-                    int choice3, choice4;
+                    char choice3, choice4;
                     int adminCount = adminFileCount();
                     int adminPin[adminCount] = {0};
                     string adminname[adminCount];
@@ -84,9 +84,7 @@ int main()
 
                     inputsFromAdminFile(adminname, adminPin, adminCount);
 
-                    char againAdmin = 'y';
-
-                    againAdmin = 'n'; 
+                    char againAdmin = 'n';
 
                     cout<<setw(118)<<"-----ADMIN CREDENTIALS-----"<<endl;
 
@@ -154,7 +152,7 @@ int main()
                             cin >> choice2;
                             cin . ignore();
 
-                            while (choice2 < 0 || choice2 > 5)
+                            while (choice2 != '0' && choice2 != '1' && choice2 != '2' || choice2 != '3' && choice2 != '4' && choice2 != '5')
                             {
                                 cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                                 cout << " Please select an options " << endl;
@@ -169,7 +167,7 @@ int main()
                                 cin . ignore();
                             }
 
-                            if (choice2 == 0)//exit program
+                            if (choice2 == '0')//exit program
                             {
                                 char exit='n';
 
@@ -195,9 +193,9 @@ int main()
 
                                 }while (exit == 'y'|| exit == 'Y');
                             }
-                            else if (choice2 == 1) //stock updating
+                            else if (choice2 == '1') //stock updating
                             {
-                                int choice = 0;
+                                char choice = '0';
 
                                 do
                                 {
@@ -208,7 +206,7 @@ int main()
                                     cout <<setw(115) <<"====================" <<endl;
                                     cout <<endl;
 
-                                    choice = 0;
+                                    choice = '0';
 
                                     cout <<endl << " Please select one of following " << endl;
                                     cout << " 0. Exit Program" << endl;
@@ -222,7 +220,7 @@ int main()
                                     cin >> choice;
                                     cin . ignore();
 
-                                    while (choice < 0 || choice > 6)
+                                    while (choice != '0' && choice != '1' && choice != '2' && choice != '3' && choice != '4' && choice1 != '5' && choice != '6')
                                     {
                                         cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                         cout << " Please select one of following " << endl; 
@@ -238,7 +236,7 @@ int main()
                                         cin . ignore();
                                     }
 
-                                    if(choice==0) //exit program
+                                    if(choice == '0') //exit program
                                     {
                                         char exit='n';
 
@@ -264,7 +262,7 @@ int main()
 
                                         } while (exit == 'y' || exit == 'Y');
                                     }
-                                    else if (choice == 1) //viewing stock
+                                    else if (choice == '1') //viewing stock
                                     {  
                                         char continueChoice = 'y';
 
@@ -337,9 +335,9 @@ int main()
 
                                         }while(continueChoice != 'y' && continueChoice != 'Y');
                                     }
-                                    else if (choice == 2) //adding new item
+                                    else if (choice == '2') //adding new item
                                     {
-                                        char choice;
+                                        char choiceAgainAdd;
 
                                         cout << endl <<setw(119) << "-----ADDING A NEW ITEM-----" << endl <<endl;
 
@@ -489,17 +487,17 @@ int main()
                                         }
 
                                         cout << endl <<" Do you wish to add more items? (y/n): ";
-                                        cin >> choice;
+                                        cin >> choiceAgainAdd;
                                         cin . ignore();
 
                                         while(choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N')
                                         {
                                             cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                             cout << endl <<" Do you wish to add more items? (y/n): ";
-                                            cin >> choice;
+                                            cin >> choiceAgainAdd;
                                         }                        
                                     }
-                                    else if (choice == 3) //editing quantity of an item
+                                    else if (choice == '3') //editing quantity of an item
                                     {
                                         cout <<endl <<setw(117) << "-----EDITING QUANTITY-----" << endl <<endl;
                                         char again = 'y';
@@ -520,7 +518,8 @@ int main()
                                             cin >> searchCode;
                                             cin . ignore();
 
-                                            char choice;
+                                            char choiceEdit;
+
                                             int changeQuantity = 0;
                                             int found = 0, itemIndex = 0 ,itemCheck = 0 ;
 
@@ -536,14 +535,14 @@ int main()
                                             if(found==1)
                                             {
                                                 cout << " Please enter '+' to increase the quantity (or) enter '-' to decrease the quantity of the item: ";
-                                                cin >> choice;
+                                                cin >> choiceEdit;
                                                 cin . ignore();
 
-                                                while(choice != '+' && choice != '-')
+                                                while(choiceEdit != '+' && choiceEdit!= '-')
                                                 {
                                                     cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                                     cout << " Please enter '+' to increase the quantity (or) enter '-' to decrease the quantity of the item: ";
-                                                    cin >> choice;
+                                                    cin >> choiceEdit;
                                                     cin . ignore();
                                                 }
 
@@ -559,12 +558,12 @@ int main()
                                                     cin . ignore();
                                                 }
  
-                                                if (choice == '+')
+                                                if (choiceEdit == '+')
                                                 {
                                                     itemQuantityFile[itemIndex] += changeQuantity;
                                                     itemCheck = 1;
                                                 }
-                                                else if (choice == '-')
+                                                else if (choiceEdit == '-')
                                                 {
                                                     if (itemQuantityFile[itemIndex] >= changeQuantity)
                                                     {
@@ -635,7 +634,7 @@ int main()
                                             }
                                         } while (again != 'n' && again != 'N'); 
                                     }   
-                                    else if (choice == 4) //editing price of an item
+                                    else if (choice == '4') //editing price of an item
                                     {
                                         cout <<endl <<setw(118) << "-----EDITING PRICE-----" << endl <<endl;
 
@@ -657,7 +656,7 @@ int main()
                                             cin >> searchCode;
                                             cin . ignore();
 
-                                            char choice;
+                                            char choiceEdit;
                                             int changePrice = 0;
                                             int found = 0 , itemNumber = 0 , itemCheck = 0;
 
@@ -673,14 +672,14 @@ int main()
                                             if(found==1)
                                             {
                                                 cout << " Please enter '+' to increase the price (or) enter '-' to decrease the price of the item: ";
-                                                cin >> choice;
+                                                cin >> choiceEdit;
                                                 cin . ignore();
 
-                                                while(choice != '+' && choice != '-')
+                                                while(choiceEdit != '+' && choiceEdit != '-')
                                                 {
                                                     cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                                     cout << " Please enter '+' to increase the price (or) enter '-' to decrease the price of the item: ";
-                                                    cin >> choice;
+                                                    cin >> choiceEdit;
                                                     cin . ignore();
                                                 }
 
@@ -696,12 +695,12 @@ int main()
                                                     cin . ignore();
                                                 }
 
-                                                if (choice == '+')
+                                                if (choiceEdit == '+')
                                                     {
                                                         itemPriceFile[itemNumber] += changePrice;
                                                         itemCheck = 1;
                                                     }
-                                                else if (choice == '-')
+                                                else if (choiceEdit == '-')
                                                 {
                                                     if (itemPriceFile[itemNumber] >= changePrice)
                                                     {
@@ -774,7 +773,7 @@ int main()
                                         }while(again != 'n' && again != 'N'); 
                                     }
 
-                                    else if (choice == 5) // deleting an item
+                                    else if (choice == '5') // deleting an item
                                     {
                                         cout <<endl <<setw(117) << "-----DELETING ITEM-----" << endl <<endl;
 
@@ -856,9 +855,9 @@ int main()
 
                                        }while (again != 'n' && again != 'N');
                                     }   
-                                }while(choice != 6);
+                                }while(choice != '6');
                             }   
-                            else if (choice2 == 2)//customer record management
+                            else if (choice2 == '2')//customer record management
                             {
                                 int billNumber;
                                 int customerRcordCount1 = customerRecordCount();
@@ -901,12 +900,12 @@ int main()
                                     if(found == 1)
                                     {
                                         cout <<endl <<" Record found!" << endl <<endl;
-                                        cout <<" Bill number             : " <<customerBill[foundBill] <<endl;
-                                        cout <<" Customer name           : " <<customerName[foundBill] <<endl;
-                                        cout <<" Customer phone number   : " <<customerPhone[foundBill] <<endl;
-                                        cout <<" Time of bill generation : " <<billTime[foundBill] <<endl;
-                                        cout <<" Date of bill generation : " <<billDay[foundBill] <<" " <<billMonth[foundBill] <<" " <<billDate[foundBill] <<endl;
-                                        cout <<" Total amount of bill    : " <<customerTotal[foundBill] <<endl <<endl;
+                                        cout <<" Bill Number        : " <<customerBill[foundBill] <<endl;
+                                        cout <<" Customer Name      : " <<customerName[foundBill] <<endl;
+                                        cout <<" Customer Contact   : " <<customerPhone[foundBill] <<endl;
+                                        cout <<" Time of Purchase   : " <<billTime[foundBill] <<endl;
+                                        cout <<" Date of Purchase   : " <<billDay[foundBill] <<" " <<billMonth[foundBill] <<" " <<billDate[foundBill] <<endl;
+                                        cout <<" Amount of bill     : " <<customerTotal[foundBill] <<endl <<endl;
 
                                         cout << endl <<" Do you wish to view another record? (y/n): ";
                                         cin >> continueChoice;
@@ -938,7 +937,7 @@ int main()
 
                                 }while(continueChoice == 'y' || continueChoice == 'Y');
                             }
-                            else if (choice2 == 3) //adding new admin
+                            else if (choice2 == '3') //adding new admin
                             {
                                 cout <<endl <<setw(118) << "-----ADDING NEW ADMIN-----" << endl <<endl;
 
@@ -1008,7 +1007,7 @@ int main()
                                     }
                                 }
                             }
-                            else if (choice2 == 4) //editing admin's username or pin
+                            else if (choice2 == '4') //editing admin's username or pin
                             {
                                 char newUserTryAgain = 'n';
 
@@ -1030,7 +1029,7 @@ int main()
                                     cin >> choice4;
                                     cin . ignore();
 
-                                    while (choice4 < 0 || choice4 > 3)
+                                    while (choice4 != '0' && choice4 != '1' && choice4 != '2' && choice4 != '3' )
                                     {
                                         cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                         cout <<endl<< " Please select one of following:" << endl;
@@ -1043,7 +1042,7 @@ int main()
                                         cin . ignore();
                                     }
                                     
-                                    if (choice4 == 0) //exit program
+                                    if (choice4 == '0') //exit program
                                     {
                                          char exit = 'n';
                                         do                
@@ -1068,7 +1067,7 @@ int main()
 
                                         }while(exit == 'y' || exit == 'Y');                        
                                     }
-                                    else if (choice4 == 1) // changing username
+                                    else if (choice4 == '1') // changing username
                                     { 
                                         cout <<endl <<setw(117) << "-----CHANGING USERNAME-----" << endl <<endl;
                                         
@@ -1115,8 +1114,8 @@ int main()
                                         
                                         if(newUserCheck == 0 && (newUserTryAgain == 'n' || newUserTryAgain == 'N'))
                                         {
-                                            choice4 = 3;
-                                            choice2 = 5;
+                                            choice4 = '3';
+                                            choice2 = '5';
 
                                             fout . open("Admin.txt");
 
@@ -1145,7 +1144,7 @@ int main()
                                             }
                                         }
                                     }
-                                    else if (choice4 == 2) // changing pin
+                                    else if (choice4 == '2') // changing pin
                                     {
                                         cout << endl <<setw(117) << "-----CHANGING PIN-----" << endl <<endl;
 
@@ -1196,8 +1195,8 @@ int main()
                                         
                                         if( newUserCheck == 0 && (newUserTryAgain == 'n'|| newUserTryAgain == 'N'))
                                         {                                        
-                                            choice4 = 3;
-                                            choice2 = 5;
+                                            choice4 = '3';
+                                            choice2 = '5';
 
                                             fout . open("Admin.txt");
 
@@ -1226,19 +1225,21 @@ int main()
                                             }
                                         }
                                     }
-                                } while (choice4 != 3);
+                                } while (choice4 != '3');
                             }
-                        } while (choice2 != 5);
+                        } while (choice2 != '5');
                     }
                     else
                     {
-                        choice2 = 5;
+                        choice2 = '5';
                     }
-                }while (choice2 != 5);
+                }while (choice2 != '5');
             }
-            else if (choice1 == 2) //user work ara
+            else if (choice1 == '2') //user work ara
             { 
                 cout<<endl <<setw (115) << "-----WELCOME USER-----" << endl <<endl;
+
+                char choice5;
 
                 do
                 {
@@ -1250,7 +1251,6 @@ int main()
                     cout <<setw(113) <<"===================" <<endl;
                     cout <<endl;
 
-                    int choice3;
                     ofstream fout;
                     ifstream fin;
 
@@ -1260,11 +1260,11 @@ int main()
                     cout <<" 2. Generate Bill" <<endl;
                     cout <<" 3. Back" <<endl;
                     cout <<" Enter your choice: ";
-                    cin >> choice2;
+                    cin >> choice5;
                     cin . ignore();
                    
 
-                    while( choice2 < 0 || choice2 > 3)
+                    while( choice5 != '0' && choice5 != '1' && choice5 != '2' && choice5 != '3')
                     { 
                         cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                         cout <<" PLease select one of following:" <<endl;
@@ -1273,13 +1273,13 @@ int main()
                         cout <<" 2. Generate Bill" <<endl;
                         cout <<" 3. Back" <<endl;
                         cout <<" Enter your choice: ";
-                        cin >> choice2;
+                        cin >> choice5;
                         cin . ignore();
                     }
 
                     cout<<endl;
 
-                    if( choice2 == 0) //exit program
+                    if( choice5 == '0') //exit program
                     {
                         char exit = 'n';
 
@@ -1305,9 +1305,11 @@ int main()
 
                         }while(exit == 'y' || exit == 'Y'); 
                     }
-                    else if(choice2 == 1) //searching an item from stock
+                    else if(choice5 == '1') //searching an item from stock
                     {
                         char continueChoice = 'y';
+
+                        char choice6;
 
                         do
                         {
@@ -1324,10 +1326,10 @@ int main()
                             cout <<" 2. Search item by item code" <<endl;
                             cout <<" 3. Back"<<endl;
                             cout <<" Enter your choice: ";
-                            cin >> choice3;
+                            cin >> choice6;
                             cin . ignore();
 
-                            while( choice3 < 0 || choice3 > 3)
+                            while(choice6 != '0' && choice6 != '1' && choice6 != '2' && choice6 != '3')
                             {
                                 cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                 
@@ -1337,7 +1339,7 @@ int main()
                                 cout <<" 2. Search item by item code" <<endl;
                                 cout <<" 3. Back" <<endl;
                                 cout <<" Enter your choice: ";
-                                cin >> choice3;
+                                cin >> choice6;
                                 cin . ignore();
                                
                             }
@@ -1353,7 +1355,7 @@ int main()
 
                             inputsFromstockFile(fileItemCodes, fileItemQuantity, fileItemPrice, fileItemNames, fileItemCount);
 
-                            if(choice3 == 0) //exit program
+                            if(choice6 == '0') //exit program
                             {
                                 char exit = 'n';
 
@@ -1379,7 +1381,7 @@ int main()
 
                                 }while (exit == 'y' || exit == 'Y'); 
                             }
-                            else if(choice3 == 1) //searching item by name
+                            else if(choice6 == '1') //searching item by name
                             {  
                                 cout << endl <<setw(120) << "-----SEARCHING ITEM BY NAME-----" << endl <<endl;
                                 
@@ -1453,7 +1455,7 @@ int main()
 
                                 }while(continueChoice == 'y' || continueChoice == 'Y');
                             }
-                            else if(choice3==2) //searching item by code
+                            else if(choice6 == '2') //searching item by code
                             {
                                 cout << endl << setw(120) << "-----SEARCHING ITEM BY CODE-----" << endl <<endl;
 
@@ -1528,9 +1530,9 @@ int main()
                                }while(continueChoice == 'y' || continueChoice == 'Y');
                             }
 
-                        }while(choice3 != 3);
+                        }while(choice6 != '3');
                     }
-                    else if(choice2 == 2) //generating bill
+                    else if(choice5 == '2') //generating bill
                     {
                         char anotherReceipt = 'y';
                         int donecheck = 0;
@@ -1916,9 +1918,9 @@ int main()
                             }                           
                         } while(anotherReceipt != 'n' && anotherReceipt != 'N');
                     }
-                }while(choice2 != 3);
+                }while(choice5 != '3');
             }
-        }while(choice1 != 0); 
+        }while(choice1 != '0'); 
 
         cout << " Do you really wish to exit program (y/n): ";
         cin >> firstTimeExit;
