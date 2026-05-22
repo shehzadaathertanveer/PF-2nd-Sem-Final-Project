@@ -1,8 +1,8 @@
-Date: Sat May  2
-Time: 15:06:45
-Bill Number: 6
-Customer Name: Asim
-Phone Number: 0301-1256900
+Date: Fri May 22
+Time: 20:06:27
+Bill Number: 12
+Customer Name: abdullah 
+Phone Number: 0327-1454899
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
@@ -11,14 +11,8 @@ Code	Price	Quantity	Total
 ------------------------------------------------
                           Sales Items 
 ------------------------------------------------
-Shezan Mango Juice 1L
-2121	180	3	540
-Tang Special 500g
-1212	780	1	780
-Rose Petal Tissues
-1663	120	2	240
-7Up Free 0.5L
-1770	90	1	90
+Peak Freans Sooper
+1880	55	2	110
 ------------------------------------------------
-Invoice Value: 1650
+Invoice Value: 107
 ------------------------------------------------

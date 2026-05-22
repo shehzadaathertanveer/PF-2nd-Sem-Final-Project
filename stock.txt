@@ -86,7 +86,7 @@
 1772 30 100 Mountain Dew 0.5L
 1773 15 280 Red Bull Energy Drink
 1774 22 150 Milo Chocolate Drink
-1880 33 55 Peak Freans Sooper
+1880 31 55 Peak Freans Sooper
 1881 40 60 Peak Freans Rio
 1882 25 110 LU Bakeri Nan Khatai
 1883 15 200 Bisconni Chocolatto
@@ -97,6 +97,6 @@
 2021 9 750 Tang Mango 750g
 2121 22 180 Shezan Mango Juice 1L
 2122 60 40 Nestle Fruita Vitals 200ml
-2222 15 550 EveryDay Tea Whitener
-2323 20 320 Blue Band Margarine 250g
-2424 10 900 Puck Cheese Spread 500g	
+2222 13 550 EveryDay Tea Whitener
+2323 10 320 Blue Band Margarine 250g
+2424 2 900 Puck Cheese Spread 500g	
