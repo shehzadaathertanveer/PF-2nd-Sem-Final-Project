@@ -1,18 +1,28 @@
-Date: Fri May 22
-Time: 20:06:27
-Bill Number: 12
-Customer Name: abdullah 
-Phone Number: 0327-1454899
+Date: Sun May 24
+Time: 22:24:20
+Bill Number: 18
+Customer Name: ahmed
+Phone Number: 0321-134231123
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
 Product Details: 
-Code	Price	Quantity	Total
+Price	Quantity	Discount	Total
 ------------------------------------------------
                           Sales Items 
 ------------------------------------------------
-Peak Freans Sooper
-1880	55	2	110
+Tang Orange 375g
+380	3	136.8	1003
+Tang Mango 750g
+750	4	63	2937
+Blue Band Margarine 250g
+320	2	6.4	633
+Puck Cheese Spread 500g	
+900	6	0	5400
+Peak Freans Rio
+60	4	0	240
 ------------------------------------------------
-Invoice Value: 107
+Total Value: 10212.5
+Discount Value: 214.473
+Invoice Value: 9998
 ------------------------------------------------

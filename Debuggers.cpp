@@ -15,7 +15,9 @@ Shehzada Ather Roll# BITF25A047, Abdul Moiz Roll# BITF25A059
 using namespace std;
 
 //function prototypes
-
+double discountOnWholeBill();
+int discountItemsCount();
+void inputsFromDiscountItemsFile(string[], double[], int );
 int customerRecordCount();
 void inputsFromCustomerRecordFile(int[], int[], string[], string[], string[], string[], string[], string[], int);
 int adminFileCount();
@@ -105,7 +107,23 @@ int main()
 
                         cout << " Please enter your PIN: ";
                         cin >> userPin;
-                        cin . ignore(); 
+                        
+                        while(cin . fail() )
+                        {
+                            cin . clear();
+                            cin . ignore(1000,'\n');
+
+                            cout << endl
+                                << setw(118) << "-----INVALID INPUT!-----\a " << endl
+                                << endl;
+                            cout << endl;
+
+                            cout<< " PIN can only contain intergers (0-9)" <<endl;
+                            cout << " Please enter your PIN again: ";
+                            cin >> userPin;
+                        }
+
+                        cin . ignore();
 
                         if (adminNumber == -1 || userPin != adminPin[adminNumber])
                         { 
@@ -141,27 +159,29 @@ int main()
                             cout . fill(' ');
                             cout <<setw(115) <<"====================" <<endl <<endl;
                    
-                            cout <<endl << " Please select an option " << endl;
+                            cout << " Please select an options " << endl;
                             cout << " 0. Exit Program" << endl;
                             cout << " 1. View and manage stock " << endl;
-                            cout << " 2. View customer records " << endl;
-                            cout << " 3. Add an Admin" << endl;
-                            cout << " 4. Change User Name or PIN " << endl;
-                            cout << " 5. Back" << endl;
-                            cout << " Enter your choice: ";
+                            cout << " 2. Manage discounts "<<endl;
+                            cout << " 3. View customer records " << endl;
+                            cout << " 4. Add an Admin" << endl;
+                            cout << " 5. Change User Name or PIN " << endl;
+                            cout << " 6. Back" << endl;
+                            cout << " Please enter your choice: ";
                             cin >> choice2;
                             cin . ignore();
 
-                            while (choice2 != '0' && choice2 != '1' && choice2 != '2' || choice2 != '3' && choice2 != '4' && choice2 != '5')
+                            while (choice2 != '0' && choice2 != '1' && choice2 != '2' && choice2 != '3' && choice2 != '4' && choice2 != '5' && choice2 != '6')
                             {
                                 cout<<endl<<setw(118)<<"-----INVALID INPUT!-----\a "<<endl<<endl;
                                 cout << " Please select an options " << endl;
                                 cout << " 0. Exit Program" << endl;
                                 cout << " 1. View and manage stock " << endl;
-                                cout << " 2. View customer records " << endl;
-                                cout << " 3. Add an Admin" << endl;
-                                cout << " 4. Change User Name or PIN " << endl;
-                                cout << " 5. Back" << endl;
+                                cout << " 2. Manage discounts "<<endl;
+                                cout << " 3. View customer records " << endl;
+                                cout << " 4. Add an Admin" << endl;
+                                cout << " 5. Change User Name or PIN " << endl;
+                                cout << " 6. Back" << endl;
                                 cout << " Please enter your choice: ";
                                 cin >> choice2;
                                 cin . ignore();
@@ -220,7 +240,7 @@ int main()
                                     cin >> choice;
                                     cin . ignore();
 
-                                    while (choice != '0' && choice != '1' && choice != '2' && choice != '3' && choice != '4' && choice1 != '5' && choice != '6')
+                                    while (choice != '0' && choice != '1' && choice != '2' && choice != '3' && choice != '4' && choice != '5' && choice != '6')
                                     {
                                         cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                         cout << " Please select one of following " << endl; 
@@ -354,15 +374,23 @@ int main()
 
                                         cout << " Please enter the number of new items you wish to add: ";
                                         cin >> newItems;
-                                        cin . ignore();
 
-                                        while(newItems <= 0)
+                                         while(cin.fail() || newItems <= 0 )
                                         {
-                                            cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
-                                            cout << " Please enter a valid number of new items you wish to add (value > 0): ";
+                                            cin.clear();
+                                            cin.ignore(1000,'\n');
+
+                                            cout << endl
+                                            << setw(118) << "-----INVALID INPUT!-----\a " << endl
+                                            << endl;
+                                            cout << endl;
+
+                                            cout<<" Item Quantity can only contain intergers (0-9) and it must be positive (value > 0) "<<endl;
+                                            cout << " Please again enter the number of new items you wish to add: ";
                                             cin >> newItems;
-                                            cin . ignore();
                                         }
+
+                                        cin . ignore();
 
                                         string newItemCode[newItems];
                                         int newItemQuantity[newItems] = {0};
@@ -406,27 +434,43 @@ int main()
 
                                             cout << " Enter item's quantity: ";
                                             cin >> newItemQuantity[i];
-                                            cin . ignore();
 
-                                            while (newItemQuantity[i] < 0)
+                                            while(cin.fail() || newItemQuantity[i] < 0)
                                             {
-                                                cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
-                                                cout << " Value can not be negative! Enter a valid quantity of the item : ";
+                                                cin.clear();
+                                                cin.ignore(1000,'\n');
+
+                                                cout << endl
+                                                << setw(118) << "-----INVALID INPUT!-----\a " << endl
+                                                << endl;
+                                                cout << endl;
+
+                                                cout<<" Item Quantity can only contain intergers (0-9) and value must be positive (value >= 0) "<<endl;
+                                                cout << " Enter item's quantity again: ";
                                                 cin >> newItemQuantity[i];
-                                                cin . ignore();
                                             }
+
+                                            cin . ignore();
 
                                             cout << " Enter item's price: ";
                                             cin >> newItemPrice[i];
-                                            cin . ignore();
-
-                                            while(newItemPrice[i] < 0)
+                                           
+                                            while(cin.fail() || newItemPrice[i] < 0)
                                             {
-                                                cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
-                                                cout << " Value can not be negative! Enter a valid price of the item : ";
+                                                cin.clear();
+                                                cin.ignore(1000,'\n');
+
+                                                cout << endl
+                                                << setw(118) << "-----INVALID INPUT!-----\a " << endl
+                                                << endl;
+                                                cout << endl;
+
+                                                cout<<" Item Price can only contain intergers (0-9) and value must be positive (value >= 0)"<<endl;
+                                                cout << " Enter item's Price again: ";
                                                 cin >> newItemPrice[i];
-                                                cin . ignore();
                                             }
+
+                                            cin.ignore();
 
                                             do
                                             {
@@ -490,7 +534,7 @@ int main()
                                         cin >> choiceAgainAdd;
                                         cin . ignore();
 
-                                        while(choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N')
+                                        while(choiceAgainAdd != 'y' && choiceAgainAdd != 'Y' && choiceAgainAdd != 'n' && choiceAgainAdd!= 'N')
                                         {
                                             cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                             cout << endl <<" Do you wish to add more items? (y/n): ";
@@ -548,16 +592,24 @@ int main()
 
                                                 cout << " Please enter change in quantity: ";
                                                 cin >> changeQuantity;
-                                                cin . ignore();
 
-                                                while (changeQuantity<0)
+                                                while(cin.fail() || changeQuantity<0)
                                                 {
-                                                    cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
-                                                    cout << " Value can not be negative! Please enter a valid change in quantity: ";
+                                                    cin.clear();
+                                                    cin.ignore(1000,'\n');
+
+                                                    cout << endl
+                                                    << setw(118) << "-----INVALID INPUT!-----\a " << endl
+                                                    << endl;
+                                                    cout << endl;
+
+                                                    cout<<" Item Quantity can only contain intergers (0-9) and value must be positive (value >= 0)"<<endl;
+                                                    cout << " Please again enter change in quantity: ";
                                                     cin >> changeQuantity;
-                                                    cin . ignore();
                                                 }
- 
+
+                                                cin . ignore();
+                                                
                                                 if (choiceEdit == '+')
                                                 {
                                                     itemQuantityFile[itemIndex] += changeQuantity;
@@ -685,15 +737,23 @@ int main()
 
                                                 cout << " Please enter change in price of the item: ";
                                                 cin >> changePrice;
-                                                cin . ignore();
 
-                                                while (changePrice < 0)
+                                                while(cin.fail() || changePrice < 0)
                                                 {
-                                                    cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
-                                                    cout << " Value can not be negative! Please enter a valid change in price of the item: ";
+                                                    cin.clear();
+                                                    cin.ignore(1000,'\n');
+
+                                                    cout << endl
+                                                    << setw(118) << "-----INVALID INPUT!-----\a " << endl
+                                                    << endl;
+                                                    cout << endl;
+
+                                                    cout<<" Item price can only contain intergers (0-9) and value must be positive (value >= 0)"<<endl;
+                                                    cout << " Please again enter change in price of the item: ";
                                                     cin >> changePrice;
-                                                    cin . ignore();
                                                 }
+
+                                                cin . ignore();
 
                                                 if (choiceEdit == '+')
                                                     {
@@ -856,7 +916,412 @@ int main()
                                        }while (again != 'n' && again != 'N');
                                     }   
                                 }while(choice != '6');
-                            }   
+                            }
+                            else if(choice2 == '2')//discount management
+                            {
+                                char discountChoices;
+
+                                do
+                                {
+                                    cout <<setw(119) <<"=========================" <<endl;
+                                    cout . fill('.');
+                                    cout <<setw(119) <<"|  MANAGINNG DISCOUNTS  |" <<setw(90) <<"";
+                                    cout . fill(' ');
+                                    cout <<setw(119) <<"=========================" <<endl;
+                                    cout <<endl;
+
+
+                                    cout <<endl << " Please select one of following:" << endl;
+                                    cout << " 0. Exit" << endl;
+                                    cout << " 1. Manage Discounts on Items" << endl;
+                                    cout << " 2. Manage Discount on bill" << endl;
+                                    cout << " 3. Back" << endl;
+                                    cout << " Enter choice: ";
+                                    cin >> discountChoices;
+                                    cin . ignore();
+
+                                    while (discountChoices != '0' && discountChoices != '1' && discountChoices != '2' && discountChoices != '3' )
+                                    {
+                                        cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                        cout <<endl << " Please select one of following:" << endl;
+                                        cout << " 0. Exit" << endl;
+                                        cout << " 1. Manage Discounts on Items" << endl;
+                                        cout << " 2. Manage Discount on bill" << endl;
+                                        cout << " 3. Back" << endl;
+                                        cout << " Enter choice: ";
+                                        cin >> discountChoices;
+                                        cin . ignore();
+                                    }
+
+                                    if(discountChoices == '0')//exit
+                                    {
+                                        char exit = 'n';
+                                        do                
+                                        {
+                                            cout <<" Do you really wish to exit program (y/n): ";
+                                            cin >> exit;
+                                            cin . ignore();
+
+                                            while (exit != 'y' && exit != 'Y' && exit != 'n' && exit != 'N')
+                                            {
+                                                cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                cout <<" Do you really wish to exit program (y/n): ";
+                                                cin >> exit;
+                                                cin . ignore();
+                                            }
+                                    
+                                           if(exit == 'y' || exit == 'Y')
+                                            {   
+                                                cout << endl << " Thank you for using the program" << endl;
+                                                return 0;
+                                            }
+
+                                        }while(exit == 'y' || exit == 'Y');     
+                                    }
+                                    else if(discountChoices == '1')//discounts on items
+                                    { 
+                                        char itemDiscountChoice;
+                                        do 
+                                        {
+                                            cout <<setw(119) <<"=========================" <<endl;
+                                            cout . fill('.');
+                                            cout <<setw(119) <<"|   DISCOUNT ON ITEMS   |" <<setw(90) <<"";
+                                            cout . fill(' ');
+                                            cout <<setw(119) <<"=========================" <<endl;
+                                            cout <<endl;
+
+                                            cout <<endl << " Please select one of following:" << endl;
+                                            cout << " 0. Exit" << endl;
+                                            cout << " 1. Add Discount on Items" << endl;
+                                            cout << " 2. Delete Discount on Item" << endl;
+                                            cout << " 3. Back" << endl;
+                                            cout << " Enter choice: ";
+                                            cin >> itemDiscountChoice;
+                                            cin . ignore();
+
+                                            while (itemDiscountChoice != '0' && itemDiscountChoice != '1' && itemDiscountChoice != '2' && itemDiscountChoice != '3' )
+                                            {
+                                                cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                cout <<endl << " Please select one of following:" << endl;
+                                                cout << " 0. Exit" << endl;
+                                                cout << " 1. Add Discount on Items" << endl;
+                                                cout << " 2. Delete Discount on Item" << endl;
+                                                cout << " 3. Back" << endl;
+                                                cout << " Enter choice: ";
+                                                cin >> itemDiscountChoice;
+                                                cin . ignore();
+                                            }
+
+                                            if(itemDiscountChoice == '0')//exit
+                                            {
+                                                char exit = 'n';
+                                                do                
+                                                {
+                                                    cout <<" Do you really wish to exit program (y/n): ";
+                                                    cin >> exit;
+                                                    cin . ignore();
+
+                                                    while (exit != 'y' && exit != 'Y' && exit != 'n' && exit != 'N')
+                                                    {
+                                                        cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                        cout <<" Do you really wish to exit program (y/n): ";
+                                                        cin >> exit;
+                                                        cin . ignore();
+                                                    }
+                                    
+                                                    if(exit == 'y' || exit == 'Y')
+                                                    {   
+                                                        cout << endl << " Thank you for using the program" << endl;
+                                                        return 0;
+                                                    }
+                                                }while(exit == 'y' || exit == 'Y');     
+                                            }
+                                            else if(itemDiscountChoice == '1') //adding item discounts
+                                            {
+                                                cout  <<endl << setw(115) << "-----ADDING DISCOUNTS-----" << endl <<endl;
+                                                
+                                                int Count = StockFileCount();
+
+                                                string StockItemCodeFile[Count]; 
+                                                int StockItemQuantityFile[Count] = {0};
+                                                int StockItemPriceFile[Count] = {0};
+                                                string StockItemNameFile[Count];
+                               
+                                                inputsFromstockFile(StockItemCodeFile, StockItemQuantityFile, StockItemPriceFile, StockItemNameFile, Count);                                                
+
+                                                int discountItemCount = discountItemsCount();
+                                                string discountItemCode[discountItemCount];
+                                                double discountItemprecentage[discountItemCount]={0};
+
+                                                inputsFromDiscountItemsFile(discountItemCode,discountItemprecentage,discountItemCount);
+
+                                                ofstream fout;
+
+                                                fout.open("DiscountedItems.txt");
+                                                
+                                                if(!fout.fail())
+                                                { 
+                                                    char AgainTRY;
+                                                    string  itemcodeDIS;
+                                                    double itemDIS;
+                                                    int DisINDEX,flag1=0;
+
+                                                    do
+                                                    {
+                                                        flag1 = 0;
+
+                                                        cout<<endl<<" Please enter Item code of the item you wish to add disscount on: ";
+                                                        cin>>itemcodeDIS;
+                                                        cin.ignore();
+
+                                                        for(int i = 0; i < Count ; i++)
+                                                        {
+                                                            if( StockItemCodeFile[i] == itemcodeDIS)
+                                                            { 
+                                                                flag1 = 1;
+                                                            }
+                                                        }
+
+                                                      
+                                                        for(int i = 0; i < discountItemCount ; i++)
+                                                        {
+                                                            if( discountItemCode[i] == itemcodeDIS)
+                                                            { 
+                                                                flag1 = -1;
+                                                                DisINDEX=i;
+                                                            }
+                                                        }
+
+                                                        if(flag1 == -1)
+                                                        {
+                                                            cout<<endl<<"This Item already has a discount of "<<discountItemprecentage[DisINDEX]<<"% Please delete this Item and try again to change it's discount "<<endl<<endl;
+                                                            
+                                                            cout<<" Do you wish to add discount on another item (y/n)?: ";
+                                                            cin>>AgainTRY;
+                                                            cin.ignore();
+
+                                                            while(AgainTRY != 'y' && AgainTRY != 'Y' && AgainTRY != 'n' && AgainTRY != 'N')
+                                                            {
+                                                                cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                                cout<<" Do you wish to add discount on another item (y/n)?: ";
+                                                                cin>>AgainTRY;
+                                                                cin.ignore();
+                                                            }
+
+
+                                                        }
+                                                        else if(flag1 == 1)
+                                                        {
+                                                            cout<<" Please enter percentage of discount you wish to add on this item: ";
+                                                            cin>>itemDIS;
+                                                            cin.ignore();
+
+                                                            while(cin.fail()||itemDIS<0)
+                                                            {
+                                                                cin.clear();
+                                                                cin.ignore(1000,'\n');
+
+                                                                cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                                cout<<" Discount Value can not be a letter and It must be Positive (value > 0)"<<endl;
+                                                                cout<<" Please enter percentage of discount you wish to add on this item: ";
+                                                                cin>>itemDIS;
+                                                                cin.ignore();
+                                                            }
+
+                                                            fout<<itemcodeDIS<<" "<<itemDIS<<endl;
+
+                                                            cout<<" Do you wish to add discount on another item (y/n)?: ";
+                                                            cin>>AgainTRY;
+                                                            cin.ignore();
+
+                                                            while(AgainTRY != 'y' && AgainTRY != 'Y' && AgainTRY != 'n' && AgainTRY != 'N')
+                                                            {
+                                                                cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                                cout<<" Do you wish to add discount on another item (y/n)?: ";
+                                                                cin>>AgainTRY;
+                                                                cin.ignore();
+                                                            }
+                                                        }
+                                                        else if( flag1 == 0)
+                                                        {
+                                                            cout<<endl<<" Item not found!"<<endl;
+                                                            cout<<" Do you wish to try again (y/n)?: ";
+                                                            cin>>AgainTRY;
+                                                            cin.ignore();
+
+                                                            while(AgainTRY != 'y' && AgainTRY != 'Y' && AgainTRY != 'n' && AgainTRY != 'N')
+                                                            {
+                                                                cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                                cout<<" Do you wish to try again (y/n)?: ";
+                                                                cin>>AgainTRY;
+                                                                cin.ignore();
+                                                            }
+                                                        }
+
+                                                    }while( AgainTRY != 'n' && AgainTRY != 'N');
+
+                                                    for(int i=0;i<discountItemCount;i++)
+                                                    {
+                                                        fout<<discountItemCode[i]<<" "<<discountItemprecentage[i]<<endl;
+                                                    }
+
+                                                    fout.close();
+
+                                                    cout<<endl<<endl<<" All the Discounts and edits have been saved successfully"<<endl<<endl;
+                                                }
+                                                else
+                                                {
+                                                    cout << endl;
+                                                    cout << "Error!\a Could not open DiscountedItems.txt file" << endl;   
+                                                }
+
+                                            }
+                                            else if(itemDiscountChoice == '2') // deleting item discounts 
+                                            {
+                                                cout  <<endl << setw(115) << "-----DELETING DISCOUNTS-----" << endl <<endl;
+
+                                                ofstream fout;
+
+                                                char AgainTRY;
+                                                string  itemcodeDEL;
+                                                double itemDEL;
+                                                int DELitemIndex=-1 , flag2 = 0;
+                                                flag2 = 0;
+
+                                                do
+                                                {
+                                                    flag2 = 0;;
+
+                                                    int discountItemCount = discountItemsCount();
+                                                    string discountItemCode[discountItemCount];
+                                                    double discountItemprecentage[discountItemCount]={0};
+
+                                                    inputsFromDiscountItemsFile(discountItemCode,discountItemprecentage,discountItemCount);
+
+                                                    cout<<endl<<" Please enter Item code of the item you wish to delete disscount of: ";
+                                                    cin>>itemcodeDEL;
+
+                                                     for(int i=0;i<discountItemCount;i++)
+                                                    {
+                                                        if( discountItemCode[i]==itemcodeDEL)
+                                                        {
+                                                            DELitemIndex=i;
+                                                            flag2=1;
+                                                        }
+                                                    }
+
+                                                    if(flag2 == 1)
+                                                    {
+                                                        fout.open("DiscountedItems.txt");
+                                                        
+                                                        if(!fout.fail())
+                                                        { 
+                                                            for(int i=0;i<discountItemCount;i++)
+                                                            {
+                                                                if( DELitemIndex != i)
+                                                                {
+                                                                    fout<<discountItemCode[i]<<" "<<discountItemprecentage[i]<<endl;    
+                                                                }
+                                                            }
+
+                                                            fout.close();
+                                                        }
+                                                        else
+                                                        {
+                                                            cout << endl;
+                                                            cout << "Error!\a Could not open DiscountedItems.txt file" << endl;   
+                                                        }                                                    
+                                                    }
+                                                    else
+                                                    {
+                                                        cout<<endl<<" Item not found!"<<endl;
+                                                        cout<<" Do you wish to try again (y/n)?: ";
+                                                        cin>>AgainTRY;
+                                                        cin.ignore();
+
+                                                        while(AgainTRY != 'y' && AgainTRY != 'Y' && AgainTRY != 'n' && AgainTRY != 'N')
+                                                        {
+                                                            cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                            cout<<" Do you wish to try again (y/n)?: ";
+                                                            cin>>AgainTRY;
+                                                            cin.ignore();
+                                                        }
+                                                    }
+
+                                                    cout<<endl<<endl<<" Item Deleted Successfully"<<endl<<endl;
+
+                                                    cout<<" Do you wish to Delete Discount of another item (y/n)?: ";
+                                                    cin>>AgainTRY;
+                                                    cin.ignore();
+
+                                                    while(AgainTRY != 'y' && AgainTRY != 'Y' && AgainTRY != 'n' && AgainTRY != 'N')
+                                                    {
+                                                        cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                        cout<<" Do you wish to Delete Discount of another item (y/n)?: ";
+                                                        cin>>AgainTRY;
+                                                        cin.ignore();
+                                                    }
+                                                                                                                       
+                                                }while(AgainTRY != 'n' && AgainTRY != 'N');
+                                            }
+                                        }while(itemDiscountChoice != '3');
+                                    }
+                                    else if(discountChoices == '2')//discount on bill
+                                    {
+                                        float discountPrecentage = 0;
+                                        char EditOption;
+
+                                        cout  <<endl << setw(115) << "-----DISCOUNT ON BILL-----" << endl <<endl;
+
+                                        cout <<" Current Percentage of discount is "<<discountOnWholeBill()<<endl<<endl;
+
+                                        cout<<" Do you wish to edit current discount percentage? (y/n):";
+                                        cin>>EditOption;
+
+                                        while( EditOption != 'y' && EditOption != 'Y' && EditOption != 'n' && EditOption != 'N')
+                                        {
+                                            cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                            cout<<" Do you wish to edit current discount percentage? (y/n):";
+                                            cin>>EditOption;
+
+                                        }
+                                        
+                                        if(EditOption == 'y' ||  EditOption == 'Y')
+                                        {
+                                            cout<<endl<<" Please enter percentage of discount on whole bill: ";
+                                            cin>> discountPrecentage;
+
+                                            while(cin.fail() || discountPrecentage < 0)
+                                            {
+                                                cin.clear();
+                                                cin.ignore(1000,'\n');
+
+                                                cout <<endl <<setw(118)<<"-----INVALID INPUT!-----\a " <<endl <<endl;
+
+                                                cout<<"Percentaeg value can not contain letters and it must be positive (value >= 0)"<<endl;
+                                                cout<<" Please enter percentage of discount on whole bill: ";
+                                                cin>> discountPrecentage;
+                                            }
+
+                                            cin.ignore();
+                                            
+                                            ofstream fout;
+
+                                            fout.open("DiscountOnBill.txt");
+                                            if(!fout.fail())
+                                            {
+                                                fout<<discountPrecentage;                 
+                                                fout.close();
+                                            }
+                                            else
+                                            {
+                                                cout << endl;
+                                                cout << "Error!\a Could not open DiscountOnBill.txt file" << endl;
+                                            }
+                                        }
+                                    }
+                                }while(discountChoices!='3');
+                            }
                             else if (choice2 == '2')//customer record management
                             {
                                 int billNumber;
@@ -886,6 +1351,22 @@ int main()
                         
                                     cout <<endl<<" Please enter Bill Number of the record you wish to view: ";
                                     cin >> billNumber;
+
+                                    while(cin.fail())
+                                    {
+                                        cin.clear();
+                                        cin.ignore(1000,'\n');
+
+                                        cout << endl
+                                            << setw(118) << "-----INVALID INPUT!-----\a " << endl
+                                            << endl;
+                                        cout << endl;
+
+                                        cout<<" Bill Number of the record can only contain intergers (0-9)"<<endl;
+                                        cout <<endl<<" Please again enter Bill Number of the record you wish to view: ";
+                                        cin >> billNumber;
+                                    }
+
                                     cin . ignore();
 
                                     for(int i=0 ; i<customerRcordCount1 ; i++)
@@ -1115,7 +1596,7 @@ int main()
                                         if(newUserCheck == 0 && (newUserTryAgain == 'n' || newUserTryAgain == 'N'))
                                         {
                                             choice4 = '3';
-                                            choice2 = '5';
+                                            choice2 = '6';
 
                                             fout . open("Admin.txt");
 
@@ -1196,7 +1677,7 @@ int main()
                                         if( newUserCheck == 0 && (newUserTryAgain == 'n'|| newUserTryAgain == 'N'))
                                         {                                        
                                             choice4 = '3';
-                                            choice2 = '5';
+                                            choice2 = '6';
 
                                             fout . open("Admin.txt");
 
@@ -1227,13 +1708,13 @@ int main()
                                     }
                                 } while (choice4 != '3');
                             }
-                        } while (choice2 != '5');
+                        } while (choice2 != '6');
                     }
                     else
                     {
-                        choice2 = '5';
+                        choice2 = '6';
                     }
-                }while (choice2 != '5');
+                }while (choice2 != '6');
             }
             else if (choice1 == '2') //user work ara
             { 
@@ -1536,14 +2017,99 @@ int main()
                     {
                         char anotherReceipt = 'y';
                         int donecheck = 0;
+
+                        char discountChoice;
+
                         do
                         {
                             int boughtItemPrice = 0;
                             int boughtItemCount = 0;
                             int itemTotal = 0;
 
-                            int choice2 = 2 , choice3;
+                            char discountType;
 
+                            do
+                            {
+                                cout << endl;
+                                cout << " Do you wish to give discount? (y/n): ";
+                                cin >> discountChoice;
+                                cin.ignore();
+
+                                while(discountChoice != 'y' && discountChoice != 'Y' && discountChoice != 'N' && discountChoice != 'n')
+                                {
+                                    cout<<endl<<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                    cout << " Do you wish to give discount? (y/n): " << endl;
+                                    cin >> discountChoice;
+                                    cin.ignore();
+                                }
+
+
+                                 if (discountChoice == 'y' || discountChoice == 'Y')
+                                {
+                                    do
+                                    {
+
+                                        cout << setw(114) << "====================" << endl;
+                                        cout.fill('.');
+                                        cout << setw(114) << "| DISCOUNT OPTIONS |" << setw(95) << "";
+                                        cout.fill(' ');
+                                        cout << setw(114) << "====================" << endl;
+                                        cout << endl;
+
+                                        cout << " Please select one of following "<<endl;
+                                        cout << " 0. Exit program"<<endl;
+                                        cout << " 1. Discount of whole bill" << endl;
+                                        cout << " 2. Discount of specific items" << endl;
+                                        cout << " 3. Back "<<endl;
+                                        cout << " Enter your choice: ";
+                                        cin >> discountType;
+                                        cin.ignore();
+
+                                        while( discountType != '0' && discountType != '1' && discountType != '2' && discountType != '3')
+                                        {
+                                            cout<<endl<<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                            cout << " Please select one of following "<<endl;
+                                            cout << " 0. Exit program"<<endl;
+                                            cout << " 1. Discount of whole bill" << endl;
+                                            cout << " 2. Discount of specific items" << endl;
+                                            cout << " 3. Back "<<endl;
+                                            cout << " Enter your choice: ";
+                                            cin >> discountType;
+                                            cin.ignore();
+
+                                        }
+
+                                        if(discountType == '0') //exit program
+                                        {
+                                            char exit = 'n';
+
+                                            do                
+                                            {
+                                                cout <<" Do you really wish to exit program (y/n): ";
+                                                cin >> exit;
+                                                cin . ignore();
+
+                                                while(exit != 'y' && exit != 'Y' && exit != 'n' && exit != 'N')
+                                                {
+                                                    cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                                    cout <<" Do you really wish to exit program (y/n): ";
+                                                    cin >> exit;
+                                                    cin . ignore();
+                                                }
+
+                                                if(exit == 'y' || exit == 'Y')
+                                                {   
+                                                    cout << endl << " Thank you for using the program" << endl;
+                                                    return 0;
+                                                }
+
+                                            }while (exit == 'y' || exit == 'Y'); 
+                                        }
+
+                                    }while(  discountType != '1' && discountType != '2' && discountType != '3');
+                                }
+                            }while(discountChoice != 'n' && discountChoice != 'N' && discountType != '1' && discountType != '2');
+                            
                             int itemCount=StockFileCount();
 
                             int remainingItemQuantity[500]= {0};
@@ -1554,6 +2120,8 @@ int main()
                             int BoughtItemQuantity[500] = {0};
                             string boughtItemNames[500];
 
+                            double itemDiscountArray[500] = {0};
+
                             string itemCode[itemCount];
                             int itemQuantity[itemCount] = {0};
                             int itemPrice[itemCount] = {0};
@@ -1561,42 +2129,59 @@ int main()
 
                             inputsFromstockFile(itemCode, itemQuantity, itemPrice, itemName, itemCount);
 
-                            cout <<setw(114) <<"===================" <<endl;
-                            cout . fill('.');
-                            cout <<setw(114) <<"| AVAILBLE STOCK  |" <<setw(95) <<"";
-                            cout . fill(' ');
-                            cout <<setw(114) <<"===================" <<endl;
-                            cout <<endl;
-                        
-                            cout << left;
+                            char viewStockItem;
 
-                            cout <<" " <<setw(14) <<"Item Code "
-                                <<setw(43) <<"Item Name "
-                                <<setw(15) <<"Item Price"
-                                <<setw(16) <<" Item Quantity " <<endl <<endl;
+                            cout <<endl<< " Do you wish to view whole stock for checking items (y/n): ";
+                            cin >> viewStockItem;
+                            cin.ignore();
 
-                            for(int i = 0 ; i < itemCount ; i++)
+                            while(viewStockItem!= 'y' && viewStockItem != 'Y' && viewStockItem != 'N' && viewStockItem!= 'n')
                             {
-
-                                if(itemQuantity[i]==0)
-                                {
-                                    cout <<" " <<setw(15) <<itemCode[i]
-                                    <<setw(43) <<itemName[i]
-                                    <<setw(16) <<itemPrice[i]
-                                    <<setw(16) <<"Out of Stock" <<endl;
-                                }
-                                else
-                                {
-                                cout <<" " <<setw(15) <<itemCode[i]
-                                    <<setw(43) <<itemName[i]
-                                    <<setw(15) <<itemPrice[i]
-                                    <<setw(16) <<itemQuantity[i] <<endl;
-                                }
+                                cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                cout << " Do you wish to view whole stock for checking items codes (y/n): ";
+                                cin >> viewStockItem;
+                                cin . ignore();
                             }
 
-                            cout <<endl <<endl;
+                            if(viewStockItem == 'y' || viewStockItem =='Y')
+                            {
+                                cout <<setw(114) <<"===================" <<endl;
+                                cout . fill('.');
+                                cout <<setw(114) <<"| AVAILBLE STOCK  |" <<setw(95) <<"";
+                                cout . fill(' ');
+                                cout <<setw(114) <<"===================" <<endl;
+                                cout <<endl;
+                        
+                                cout << left;
 
-                            cout<<right;
+                                cout <<" " <<setw(14) <<"Item Code "
+                                    <<setw(43) <<"Item Name "
+                                    <<setw(15) <<"Item Price"
+                                    <<setw(16) <<" Item Quantity " <<endl <<endl;
+
+                                for(int i = 0 ; i < itemCount ; i++)
+                                {
+
+                                    if(itemQuantity[i]==0)
+                                    {
+                                        cout <<" " <<setw(15) <<itemCode[i]
+                                        <<setw(43) <<itemName[i]
+                                        <<setw(16) <<itemPrice[i]
+                                        <<setw(16) <<"Out of Stock" <<endl;
+                                    }
+                                    else
+                                    {
+                                    cout <<" " <<setw(15) <<itemCode[i]
+                                        <<setw(43) <<itemName[i]
+                                        <<setw(15) <<itemPrice[i]
+                                        <<setw(16) <<itemQuantity[i] <<endl;
+                                    }
+                                }
+
+                                cout <<endl <<endl;
+
+                                cout<<right;
+                            }
 
                             cout <<setw(111) <<"=============" <<endl;
                             cout . fill('.');
@@ -1631,12 +2216,51 @@ int main()
                                     cin >> boughtItemQuantity;
                                     cin . ignore();
 
+                                    while(cin.fail())
+                                    {
+                                        cin.clear();
+                                        cin.ignore(1000,'\n');
+
+                                        cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
+
+                                        cout<<" This value cannot be a letter please enter an integeral value "<<endl;
+                                        cout <<" Please enter the quantity of item: ";
+                                        cin >> boughtItemQuantity;
+                                        cin . ignore();
+                                    }
+
                                     if(boughtItemQuantity <= itemQuantity[boughtItemNumber])
                                     {
                                         itemQuantity[boughtItemNumber] -= boughtItemQuantity;
 
                                         boughtItemPrice = itemPrice[boughtItemNumber];
                                         itemTotal = boughtItemPrice * boughtItemQuantity;
+
+                                        double discount=0;
+
+                                        if(discountChoice == 'y' && discountType == '2')
+                                        {
+                                            int dicsountedItemCount = discountItemsCount();
+
+                                            double ItemDiscounts[dicsountedItemCount];
+                                            string DiscountedItemCode[dicsountedItemCount];
+
+                                            inputsFromDiscountItemsFile(DiscountedItemCode,ItemDiscounts,dicsountedItemCount);
+                                
+                                            discount = 0;
+
+                                            for(int i=0 ;i<dicsountedItemCount; i++)
+                                            {
+                                                if(boughtItem == DiscountedItemCode[i])
+                                                {
+                                                    discount = itemTotal * (ItemDiscounts[i] / 100);
+                                                }
+                                                                         
+                                            }
+                                        }
+
+                                        itemDiscountArray[boughtItemCount ]= discount;
+                                        itemTotal = itemTotal - itemDiscountArray[boughtItemCount];   
 
                                         boughtItemCodes[boughtItemCount] = boughtItem;
                                         boughtItemNames[boughtItemCount] = itemName[boughtItemNumber];
@@ -1647,20 +2271,19 @@ int main()
                                         boughtItemCount++;
          
 
-                                            cout <<endl <<" Do you wish to purchase another Item (y/n): ";
+                                        cout <<endl <<" Do you wish to purchase another Item (y/n): ";
+                                        cin >> again;
+                                        cin . ignore();
+
+                                        while(again != 'y' && again != 'Y' && again != 'n' && again != 'N')
+                                        {
+                                            cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
+                                            cout <<" Do you wish to purchase another Item (y/n): ";
                                             cin >> again;
                                             cin . ignore();
-
-                                            while(again != 'y' && again != 'Y' && again != 'n' && again != 'N')
-                                            {
-                                                cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
-                                                cout <<" Do you wish to purchase another Item (y/n): ";
-                                                cin >> again;
-                                                cin . ignore();
-                                                cout <<endl;
-                                            }
-                                            donecheck =0;
-                                       
+                                            cout <<endl;
+                                        }
+                                        donecheck =0;                                       
                                     }
                                     else
                                     {
@@ -1722,7 +2345,7 @@ int main()
                             int grandTotal = 0;
                             string customername, customerphone;
 
-                            cout <<" Please enter coustomer name: ";
+                            cout <<endl<<endl<<" Please enter coustomer name: ";
                             getline (cin,customername);
 
                             cout<<" Please enter coustomer phone number: ";
@@ -1752,6 +2375,7 @@ int main()
                                 <<setw(42) <<"Item Name "
                                 <<setw(15) <<"Item Price"
                                 <<setw(15) <<" Item Quantity "
+                                <<setw(15) <<" Item Discount "
                                 <<setw(16) <<"Item Total" <<endl <<endl;
 
                             for(int i=0 ; i < boughtItemCount ; i++)
@@ -1760,14 +2384,35 @@ int main()
                                     <<setw(42) <<boughtItemNames[i]
                                     <<setw(15) <<boughtItemPrices[i]
                                     <<setw(15) <<BoughtItemQuantity[i] 
+                                    <<setw(15) <<itemDiscountArray[i]
                                     <<setw(16) <<boughtItemtotal[i] <<endl;
 
                                 grandTotal += boughtItemtotal[i];
                             }
 
-                            cout <<endl <<endl;
-                            cout <<endl <<" Grand total: " <<grandTotal <<endl;
+                            double totalDiscountOnBill = 0;
 
+                            if (discountChoice == 'y' && discountType == '2')
+                            {
+                                double discountPercenTage = discountOnWholeBill();
+
+                                totalDiscountOnBill = grandTotal * (discountPercenTage/100);
+
+                                grandTotal -= totalDiscountOnBill;
+                                
+                            }
+                            else
+                            {
+                                for (int i = 0 ; i < boughtItemCount;i++)
+                                {
+                                    totalDiscountOnBill += itemDiscountArray[i];
+                                }
+                            }
+
+                            cout <<endl <<endl<<endl;
+                            cout <<" Total: " <<grandTotal+totalDiscountOnBill <<endl;
+                            cout <<" Discount: "<<totalDiscountOnBill<<endl;
+                            cout <<" Invoice: "<<grandTotal<<endl;
                             cout << right;
 
                             for(int i = 0 ; i < 209 ; i++)
@@ -1834,7 +2479,7 @@ int main()
                                     fout <<"-";
                                 }
                                 fout<<endl <<"Product Details: " <<endl
-                                    <<"Code\tPrice\tQuantity\tTotal"
+                                    <<"Price\tQuantity\tDiscount\tTotal"
                                     <<endl;
 
                                 for(int i=0 ; i<48 ;i++)
@@ -1853,7 +2498,7 @@ int main()
                                 for(int i = 0 ; i < boughtItemCount ; i++)
                                 {
                                     fout<< boughtItemNames[i] <<endl 
-                                    <<boughtItemCodes[i] <<"\t" << boughtItemPrices[i] <<"\t" <<BoughtItemQuantity[i] <<"\t" << boughtItemtotal[i] <<endl;
+                                    << boughtItemPrices[i] <<"\t" <<BoughtItemQuantity[i] <<"\t"<<itemDiscountArray[i]<<"\t" << boughtItemtotal[i] <<endl;
                                 }
                         
                                 for(int i=0 ; i<48 ;i++)
@@ -1861,7 +2506,10 @@ int main()
                                     fout <<"-";
                                 }
                                 fout <<endl;
+                                fout << "Total Value: " <<grandTotal+totalDiscountOnBill <<endl;
+                                fout << "Discount Value: " <<totalDiscountOnBill<<endl;
                                 fout << "Invoice Value: " <<grandTotal <<endl;
+
 
                                 for(int i=0 ; i<48 ;i++)
                                 {
@@ -1903,6 +2551,7 @@ int main()
                                     cout <<endl <<" Error!\a Could not open stock.txt file for updating stock after generating bill" << endl;
                                 }
                             }
+
                             cout<<endl<<"Stock is updated successfully after generating bill!"<<endl;
 
                             cout <<endl <<" Do you wish to generate another receipt? (Y/N): ";
@@ -2134,4 +2783,79 @@ void timeAndDate( string &currentDate, string &exactTime)
    string fulltime = ctime(&now);
     currentDate = fulltime.substr(0, 10);
     exactTime = fulltime.substr(11, 8);
+}
+
+int discountItemsCount() 
+{
+    string discountItemCode;
+    int itemDiscount = 0, discountItemCount = 0;
+
+    ifstream fin;
+
+    fin . open("DiscountedItems.txt");
+
+    if (! fin . fail())
+    {
+        while (fin >> discountItemCode)
+        {
+            fin >> itemDiscount;
+            discountItemCount++;
+        }
+
+        fin . close();
+    }
+    else
+    {
+        cout << endl;
+        cout << "Error!\a Could not open DiscountedItems.txt" << endl;
+    }
+
+    return discountItemCount;
+
+}
+
+void inputsFromDiscountItemsFile(string fileItemcodes[], double discountOnItems [], int fileItemCount)
+{
+    ifstream fin;
+
+    fin . open("DiscountedItems.txt");
+
+    if ( ! fin . fail())
+    {
+        for (int i = 0 ; i < fileItemCount ; i++)
+        {
+            fin >> fileItemcodes[i];
+            fin >> discountOnItems[i];
+        }
+
+        fin . close();
+    }
+    else
+    {
+        cout << endl;
+        cout << "Error!\a Could not open DiscountedItems.txt file" << endl;
+    }
+}
+
+double discountOnWholeBill()
+{
+    ifstream fin;
+    
+    double percentage=0;
+
+    fin . open("DiscountOnBill.txt");
+
+    if ( ! fin . fail())
+    {
+        fin>>percentage;
+        fin . close();
+    }
+    else
+    {
+        cout << endl;
+        cout << "Error!\a Could not open DiscountOnBill.txt file" << endl;
+    }
+    
+    return percentage;
+
 }

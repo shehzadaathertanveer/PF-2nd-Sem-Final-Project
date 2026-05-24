@@ -82,21 +82,21 @@
 1663 28 120 Rose Petal Tissues
 1664 20 300 Rose Petal Kitchen Roll
 1770 44 90 7Up Free 0.5L
-1771 22 240 7Up 2L
+1771 25 240 7Up 2L
 1772 30 100 Mountain Dew 0.5L
-1773 15 280 Red Bull Energy Drink
+1773 25 280 Red Bull Energy Drink
 1774 22 150 Milo Chocolate Drink
 1880 31 55 Peak Freans Sooper
-1881 40 60 Peak Freans Rio
+1881 36 60 Peak Freans Rio
 1882 25 110 LU Bakeri Nan Khatai
 1883 15 200 Bisconni Chocolatto
 1990 20 450 Knorr Chicken Cubes 12s
 1991 50 15 Candyland Chilli Milli
 1992 40 20 Candyland Fantie
-2020 15 380 Tang Orange 375g
-2021 9 750 Tang Mango 750g
-2121 22 180 Shezan Mango Juice 1L
+2020 118 380 Tang Orange 375g
+2021 16 750 Tang Mango 750g
+2121 19 180 Shezan Mango Juice 1L
 2122 60 40 Nestle Fruita Vitals 200ml
-2222 13 550 EveryDay Tea Whitener
-2323 10 320 Blue Band Margarine 250g
-2424 2 900 Puck Cheese Spread 500g	
+2222 11 550 EveryDay Tea Whitener
+2323 21 320 Blue Band Margarine 250g
+2424 18 900 Puck Cheese Spread 500g	
