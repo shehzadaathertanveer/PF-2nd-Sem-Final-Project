@@ -93,7 +93,7 @@
 1990 20 450 Knorr Chicken Cubes 12s
 1991 50 15 Candyland Chilli Milli
 1992 40 20 Candyland Fantie
-2020 109 380 Tang Orange 375g
+2020 108 380 Tang Orange 375g
 2021 11 750 Tang Mango 750g
 2121 18 180 Shezan Mango Juice 1L
 2122 60 40 Nestle Fruita Vitals 200ml

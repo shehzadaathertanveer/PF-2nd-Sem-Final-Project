@@ -1,8 +1,8 @@
 Date: Mon May 25
-Time: 14:05:38
-Bill Number: 21
-Customer Name: faraz
-Phone Number: 0311-23455433
+Time: 17:06:55
+Bill Number: 22
+Customer Name: zahid
+Phone Number: 0333-222222
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
@@ -12,15 +12,9 @@ Price	Quantity	Discount	Total
                           Sales Items 
 ------------------------------------------------
 Tang Orange 375g
-380	3	136.8	1003.2
-Tang Mango 750g
-750	4	63	2937
-Tapal Danedar Tea 450g
-450	3	0	1350
-Puck Cheese Spread 500g	
-900	1	0	900
+380	1	0	380
 ------------------------------------------------
-Total Value: 6390
-Discount Value: 199.8
-Invoice Value: 6190.2
+Total Value: 380
+Discount Value: 7.98
+Invoice Value: 372.02
 ------------------------------------------------
