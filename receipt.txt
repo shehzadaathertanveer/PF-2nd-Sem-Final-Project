@@ -1,8 +1,8 @@
-Date: Sun May 24
-Time: 22:24:20
-Bill Number: 18
-Customer Name: ahmed
-Phone Number: 0321-134231123
+Date: Mon May 25
+Time: 14:05:38
+Bill Number: 21
+Customer Name: faraz
+Phone Number: 0311-23455433
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
@@ -12,17 +12,15 @@ Price	Quantity	Discount	Total
                           Sales Items 
 ------------------------------------------------
 Tang Orange 375g
-380	3	136.8	1003
+380	3	136.8	1003.2
 Tang Mango 750g
 750	4	63	2937
-Blue Band Margarine 250g
-320	2	6.4	633
+Tapal Danedar Tea 450g
+450	3	0	1350
 Puck Cheese Spread 500g	
-900	6	0	5400
-Peak Freans Rio
-60	4	0	240
+900	1	0	900
 ------------------------------------------------
-Total Value: 10212.5
-Discount Value: 214.473
-Invoice Value: 9998
+Total Value: 6390
+Discount Value: 199.8
+Invoice Value: 6190.2
 ------------------------------------------------

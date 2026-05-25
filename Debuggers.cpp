@@ -19,11 +19,11 @@ double discountOnWholeBill();
 int discountItemsCount();
 void inputsFromDiscountItemsFile(string[], double[], int );
 int customerRecordCount();
-void inputsFromCustomerRecordFile(int[], int[], string[], string[], string[], string[], string[], string[], int);
+void inputsFromCustomerRecordFile(int[], double[], string[], string[], string[], string[], string[], string[], int);
 int adminFileCount();
 void inputsFromAdminFile(string[], int[], int);
 int StockFileCount();
-void inputsFromstockFile(string[], int[], int[], string[], int);
+void inputsFromstockFile(string[], int[], double[], string[], int);
 void timeAndDate( string &currentDate, string &exactTime);
 
 int main()
@@ -291,7 +291,7 @@ int main()
                                             int itemCount = StockFileCount();
                                             string itemCode[itemCount];
                                             int itemQuantity[itemCount] = {0};
-                                            int itemPrice[itemCount] = {0};
+                                            double itemPrice[itemCount] = {0};
                                             string itemName[itemCount];
 
                                             inputsFromstockFile(itemCode, itemQuantity, itemPrice, itemName, itemCount);
@@ -365,7 +365,7 @@ int main()
 
                                         string itemCodeFile[count];
                                         int itemQuantityFile[count] = {0};
-                                        int itemPriceFile[count] = {0};
+                                        double itemPriceFile[count] = {0};
                                         string itemNameFile[count];
 
                                         inputsFromstockFile(itemCodeFile, itemQuantityFile, itemPriceFile, itemNameFile, count);
@@ -394,7 +394,7 @@ int main()
 
                                         string newItemCode[newItems];
                                         int newItemQuantity[newItems] = {0};
-                                        int newItemPrice[newItems] = {0};
+                                        double newItemPrice[newItems] = {0};
                                         string newItemName[newItems];
 
                                         for (int i = 0 ; i < newItems ; i++)
@@ -552,7 +552,7 @@ int main()
 
                                             string itemCodeFile[count]; 
                                             int itemQuantityFile[count] = {0};
-                                            int itemPriceFile[count] = {0};
+                                            double itemPriceFile[count] = {0};
                                             string itemNameFile[count];
                                
                                             inputsFromstockFile(itemCodeFile,itemQuantityFile,itemPriceFile,itemNameFile,count);
@@ -698,18 +698,19 @@ int main()
 
                                             string itemCodeFile[count]; 
                                             int itemQuantityFile[count] = {0};
-                                            int itemPriceFile[count] = {0};
+                                            double itemPriceFile[count] = {0};
                                             string itemNameFile[count];
                                
                                             inputsFromstockFile(itemCodeFile, itemQuantityFile, itemPriceFile, itemNameFile, count);
 
                                             string searchCode;
+
                                             cout << " Enter item code: ";
                                             cin >> searchCode;
                                             cin . ignore();
 
                                             char choiceEdit;
-                                            int changePrice = 0;
+                                            double changePrice = 0;
                                             int found = 0 , itemNumber = 0 , itemCheck = 0;
 
                                             for (int i = 0 ; i < count ; i++)
@@ -845,7 +846,7 @@ int main()
 
                                             string itemCodeFile[count]; 
                                             int itemQuantityFile[count] = {0};
-                                            int itemPriceFile[count] = {0};
+                                            double itemPriceFile[count] = {0};
                                             string itemNameFile[count];
                                
                                             inputsFromstockFile(itemCodeFile, itemQuantityFile, itemPriceFile, itemNameFile, count);
@@ -1044,9 +1045,9 @@ int main()
 
                                                 string StockItemCodeFile[Count]; 
                                                 int StockItemQuantityFile[Count] = {0};
-                                                int StockItemPriceFile[Count] = {0};
+                                                double StockItemPriceFile[Count] = {0};
                                                 string StockItemNameFile[Count];
-                               
+                                                
                                                 inputsFromstockFile(StockItemCodeFile, StockItemQuantityFile, StockItemPriceFile, StockItemNameFile, Count);                                                
 
                                                 int discountItemCount = discountItemsCount();
@@ -1328,7 +1329,7 @@ int main()
                                 int customerRcordCount1 = customerRecordCount();
 
                                 int customerBill[customerRcordCount1] = {0};
-                                int customerTotal[customerRcordCount1] = {0};
+                                double customerTotal[customerRcordCount1] = {0};
 
                                 string customerPhone[customerRcordCount1];
                                 string billTime[customerRcordCount1];
@@ -1831,7 +1832,7 @@ int main()
 
                             string fileItemCodes[fileItemCount] ;
                             int fileItemQuantity[fileItemCount] = {0};
-                            int fileItemPrice[fileItemCount] = {0};
+                            double fileItemPrice[fileItemCount] = {0};
                             string fileItemNames[fileItemCount];
 
                             inputsFromstockFile(fileItemCodes, fileItemQuantity, fileItemPrice, fileItemNames, fileItemCount);
@@ -2022,9 +2023,9 @@ int main()
 
                         do
                         {
-                            int boughtItemPrice = 0;
+                            double boughtItemPrice = 0;
                             int boughtItemCount = 0;
-                            int itemTotal = 0;
+                            double itemTotal = 0;
 
                             char discountType;
 
@@ -2115,8 +2116,8 @@ int main()
                             int remainingItemQuantity[500]= {0};
 
                             string boughtItemCodes[500];
-                            int boughtItemtotal[500] = {0};
-                            int boughtItemPrices[500] = {0};
+                            double boughtItemtotal[500] = {0};
+                            double boughtItemPrices[500] = {0};
                             int BoughtItemQuantity[500] = {0};
                             string boughtItemNames[500];
 
@@ -2124,7 +2125,7 @@ int main()
 
                             string itemCode[itemCount];
                             int itemQuantity[itemCount] = {0};
-                            int itemPrice[itemCount] = {0};
+                            double itemPrice[itemCount] = {0};
                             string itemName[itemCount];
 
                             inputsFromstockFile(itemCode, itemQuantity, itemPrice, itemName, itemCount);
@@ -2135,7 +2136,7 @@ int main()
                             cin >> viewStockItem;
                             cin.ignore();
 
-                            while(viewStockItem!= 'y' && viewStockItem != 'Y' && viewStockItem != 'N' && viewStockItem!= 'n')
+                            while(viewStockItem != 'y' && viewStockItem != 'Y' && viewStockItem != 'N' && viewStockItem!= 'n')
                             {
                                 cout <<endl <<setw(118) <<"-----INVALID INPUT!-----\a " <<endl <<endl;
                                 cout << " Do you wish to view whole stock for checking items codes (y/n): ";
@@ -2331,7 +2332,7 @@ int main()
                             int RecordCount = customerRecordCount();
                             
                             int billNo[RecordCount] = {0};
-                            int CustomerTotal[RecordCount] = {0};
+                            double CustomerTotal[RecordCount] = {0};
 
                             string customerPhone[RecordCount];
                             string customerName[RecordCount];
@@ -2342,7 +2343,7 @@ int main()
 
                             inputsFromCustomerRecordFile(billNo ,CustomerTotal, customerPhone, customerTime, customerDateDay, customerDateMonth, customerDate, customerName, RecordCount);
         
-                            int grandTotal = 0;
+                            double grandTotal = 0;
                             string customername, customerphone;
 
                             cout <<endl<<endl<<" Please enter coustomer name: ";
@@ -2392,7 +2393,7 @@ int main()
 
                             double totalDiscountOnBill = 0;
 
-                            if (discountChoice == 'y' && discountType == '2')
+                            if (discountChoice == 'y' && discountType == '1')
                             {
                                 double discountPercenTage = discountOnWholeBill();
 
@@ -2629,7 +2630,7 @@ int customerRecordCount()
     return customerRecordCount;
 }
 
-void inputsFromCustomerRecordFile(int billNo[], int CustomerTotal[], string customerPhone[], string customerTime[], string customerDateDay[], string customerDateMonth[], string customerDate[], string customerName[], int customerRecordCount)
+void inputsFromCustomerRecordFile(int billNo[], double CustomerTotal[], string customerPhone[], string customerTime[], string customerDateDay[], string customerDateMonth[], string customerDate[], string customerName[], int customerRecordCount)
 {
     ifstream fin;
 
@@ -2694,7 +2695,7 @@ int StockFileCount()
     return fileItemCount;
 }
 
-void inputsFromstockFile(string fileItemCodes[], int fileItemQuantity[], int fileItemprice[], string fileitemName[], int fileItemCount)
+void inputsFromstockFile(string fileItemCodes[], int fileItemQuantity[], double fileItemprice[], string fileitemName[], int fileItemCount)
 {
     ifstream fin;
 

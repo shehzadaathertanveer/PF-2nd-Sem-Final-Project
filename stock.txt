@@ -35,7 +35,7 @@
 2783 25 300 National Ketchup 500g
 2784 30 550 National Ketchup 1kg
 2785 45 180 National Chilli Garlic 250g
-1010 15 450 Tapal Danedar Tea 450g
+1010 8 450 Tapal Danedar Tea 450g
 1011 20 950 Tapal Danedar Tea 900g
 1012 50 200 Lipton Tea Bags 25s
 1013 25 600 Nescafe Classic 100g
@@ -93,10 +93,10 @@
 1990 20 450 Knorr Chicken Cubes 12s
 1991 50 15 Candyland Chilli Milli
 1992 40 20 Candyland Fantie
-2020 118 380 Tang Orange 375g
-2021 16 750 Tang Mango 750g
-2121 19 180 Shezan Mango Juice 1L
+2020 109 380 Tang Orange 375g
+2021 11 750 Tang Mango 750g
+2121 18 180 Shezan Mango Juice 1L
 2122 60 40 Nestle Fruita Vitals 200ml
 2222 11 550 EveryDay Tea Whitener
 2323 21 320 Blue Band Margarine 250g
-2424 18 900 Puck Cheese Spread 500g	
+2424 17 900 Puck Cheese Spread 500g	
