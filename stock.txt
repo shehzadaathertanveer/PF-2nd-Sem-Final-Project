@@ -1,4 +1,7 @@
-1234 5 400 Tang Mango 400g
+5561 56 235.5 Tulsi Supari
+2212 56 25 Spices
+4114 35 120 Imli
+1234 47 400 Tang Mango 400g
 1212 28 780 Tang Special 500g
 2342 45 250 Coca Cola 2L
 2341 40 200 Coca Cola 1.5L
@@ -76,7 +79,7 @@
 1444 50 50 KitKat 2 Finger
 1550 14 1200 Pampers Baby Wipes
 1551 8 2800 Pampers Diapers Large
-1660 100 10 Matchbox 1 Unit
+1660 93 10 Matchbox 1 Unit
 1661 20 150 Cricket Lighter
 1662 15 400 Mortein Insect Killer
 1663 28 120 Rose Petal Tissues
@@ -93,10 +96,9 @@
 1990 20 450 Knorr Chicken Cubes 12s
 1991 50 15 Candyland Chilli Milli
 1992 40 20 Candyland Fantie
-2020 108 380 Tang Orange 375g
-2021 11 750 Tang Mango 750g
-2121 18 180 Shezan Mango Juice 1L
+2020 130 370 Tang Orange 375g
+2021 7 750 Tang Mango 750g
+2121 10 180 Shezan Mango Juice 1L
 2122 60 40 Nestle Fruita Vitals 200ml
 2222 11 550 EveryDay Tea Whitener
 2323 21 320 Blue Band Margarine 250g
-2424 17 900 Puck Cheese Spread 500g	

@@ -1,8 +1,8 @@
-Date: Mon May 25
-Time: 17:06:55
-Bill Number: 22
-Customer Name: zahid
-Phone Number: 0333-222222
+Date: Sat May 30
+Time: 00:17:32
+Bill Number: 24
+Customer Name: ather
+Phone Number: 0321-2312345
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
@@ -12,9 +12,19 @@ Price	Quantity	Discount	Total
                           Sales Items 
 ------------------------------------------------
 Tang Orange 375g
-380	1	0	380
+370	2	29.6	710.4
+Tang Mango 750g
+750	4	63	2937
+Matchbox 1 Unit
+10	4	4.48	35.52
+Shezan Mango Juice 1L
+180	4	0	720
+Tang Mango 400g
+400	1	0	400
 ------------------------------------------------
-Total Value: 380
-Discount Value: 7.98
-Invoice Value: 372.02
+Total Value: 4900
+Discount Value: 97.08
+Invoice Value: 4802.92
+Cash Paid: 5000
+Customer Balance: 197.08
 ------------------------------------------------
