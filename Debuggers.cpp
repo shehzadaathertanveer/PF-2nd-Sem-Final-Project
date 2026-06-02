@@ -154,7 +154,7 @@ int main()
 
                     if (adminNumber != -1 && userPin == adminPin[adminNumber]) //admin acess givenn
                     {
-                        cout << endl << endl <<setw(122) <<" ACCESS GRANTED WELCOME ADMIN  " << endl <<endl;
+                        cout << endl << endl <<setw(120) <<" ACCESS GRANTED WELCOME ADMIN  " << endl <<endl;
 
                         do
                         { 
