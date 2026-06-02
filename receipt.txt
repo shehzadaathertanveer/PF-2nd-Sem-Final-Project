@@ -1,8 +1,8 @@
 Date: Tue Jun  2
-Time: 11:56:07
-Bill Number: 26
-Customer Name: zahid
-Phone Number: 0321-8767898
+Time: 13:51:03
+Bill Number: 32
+Customer Name: Paah Ashraf
+Phone Number: 0321-56787654
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
@@ -11,12 +11,32 @@ Price	Quantity	Discount	Total
 ------------------------------------------------
                           Sales Items 
 ------------------------------------------------
-Tang Mango 400g
-400	2	0	800
+Milo Chocolate Drink
+150	4	0	600
+Candyland Fantie
+20	2	0	40
+Peak Freans Rio
+60	9	0	540
+Nestle Fruita Vitals 200ml
+40	8	0	320
+Blue Band Margarine 250g
+320	1	0	320
+EveryDay Tea Whitener
+550	5	0	2750
+Knorr Noodles Chatpata
+65	2	0	130
+Pantene Conditioner 180ml
+800	2	0	1600
+Colgate Toothpaste 75g
+220	4	0	880
+Sensodyne Rapid Relief
+350	7	0	2450
 ------------------------------------------------
-Total Value: 800
-Discount Value: 0
-Invoice Value: 800
-Cash Paid: 1000
-Customer Balance: 200
+Percentage of discount on whole bill: 12.5
+
+Total Value: 9630
+Discount Value: 1203.75
+Invoice Value: 8426.25
+Cash Paid: 10000
+Customer Balance: 1573.75
 ------------------------------------------------

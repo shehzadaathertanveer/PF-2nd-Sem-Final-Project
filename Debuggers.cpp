@@ -2635,7 +2635,6 @@ int main()
                         int donecheck = 0;
 
                         char discountChoice;
-                        char moreItems='y';
 
                         do
                         {
@@ -2817,7 +2816,7 @@ int main()
                             do
                             {
                                 boughtItemNumber = -1;
-                                cout <<" Please enter item code of the item: ";
+                                cout << endl <<" Please enter item code of the item: ";
                                 cin >> boughtItem;
                                 cin . ignore();
 
@@ -2847,7 +2846,7 @@ int main()
 
                                     cin.ignore();
 
-                                    if(boughtItemQuantity <= itemQuantity[boughtItemNumber])
+                                    if(boughtItemQuantity <= itemQuantity[boughtItemNumber] && boughtItemQuantity != 0)
                                     {
                                         itemQuantity[boughtItemNumber] -= boughtItemQuantity;
 
@@ -2890,15 +2889,15 @@ int main()
          
 
                                         cout <<endl <<" Do you wish to purchase another Item (y/n): ";
-                                        cin >> moreItems;
+                                        cin >> again;
 
-                                        while(moreItems != 'y' && moreItems != 'Y' && moreItems != 'n' && moreItems != 'N')
+                                        while(again != 'y' && again != 'Y' && again != 'n' && again != 'N')
                                         {
                                             cin . ignore (1000,'\n');
                                             cout << endl << setw(120) << "-----<  INVALID INPUT!  >-----\a " << endl << endl <<endl;
                                 
                                             cout <<" Do you wish to purchase another Item (y/n): ";
-                                            cin >> moreItems;
+                                            cin >> again;
                                         }
 
                                         cin.ignore();
@@ -2908,9 +2907,16 @@ int main()
                                     }
                                     else
                                     {
-                                        cout <<" The quantity u entered " <<boughtItemQuantity
-                                            <<" is greater than availble quantity "
-                                            <<itemQuantity[boughtItemNumber] <<endl;
+                                        if(boughtItemQuantity==0)
+                                        {
+                                            cout <<endl << " The entered quantity can not be 0" <<endl;
+                                        }
+                                        else
+                                        {
+                                            cout <<" The quantity you entered " <<boughtItemQuantity
+                                                <<" is greater than availble quantity "
+                                                <<itemQuantity[boughtItemNumber] <<endl;
+                                        }
 
                                         cout <<endl <<" Do you wish to try again? (y/n): ";
                                         cin >> again;
@@ -2930,7 +2936,7 @@ int main()
                                 }
                                 else
                                 {
-                                    cout <<endl <<endl<<" Invalid\aInput The item code does not exist "<<endl;
+                                    cout <<endl <<endl<<" Invalid \a Input The item code does not exist "<<endl;
                                     cout <<endl<<" Do you wish to try again? (y/n): ";
                                     cin >> again;
 
@@ -2946,9 +2952,9 @@ int main()
                                     cin . ignore();
                                     donecheck = 1;
                                 }                            
-                            } while(again != 'n' && again != 'N' && moreItems !='n' && moreItems !='N');
+                            } while(again != 'n' && again != 'N');
 
-                            if( (again != 'n' && again != 'N') || moreItems == 'n' || moreItems == 'N' )
+                            if( (again != 'n' && again != 'N') || boughtItemCount > 0 )
                             {
                                 double cashGiven = 0, changeReturn = 0;
                                 string time, date;
@@ -3025,6 +3031,8 @@ int main()
                                     totalDiscountOnBill = grandTotal * (discountPercenTage/100);
 
                                     grandTotal -= totalDiscountOnBill;
+
+                                    cout<<endl<<endl<<" Percentage of discount on whole bill: "<<discountPercenTage ;
                                     
                                 }
                                 else
@@ -3154,7 +3162,17 @@ int main()
                                     {
                                         fout <<"-";
                                     }
+
                                     fout <<endl;
+
+                                    if (discountChoice == 'y' && discountType == '1')
+                                    {
+                                        double discountPercenTageNow = discountOnWholeBill();
+
+                                        fout<<"Discount on whole bill: "<<discountPercenTageNow <<"%" <<endl<<endl;
+                                        
+                                    }
+
                                     fout << "Total Value: " <<grandTotal+totalDiscountOnBill <<endl;
                                     fout << "Discount Value: " <<totalDiscountOnBill<<endl;
                                     fout << "Invoice Value: " <<grandTotal <<endl;
