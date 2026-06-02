@@ -1393,6 +1393,8 @@ int main()
                                         
                                         if(EditOption == 'y' ||  EditOption == 'Y')
                                         {
+                                            char continueChoiceDis;
+
                                             cout<<endl<<" Please enter percentage of discount on whole bill: ";
                                             cin>> discountPrecentage;
 
@@ -1423,6 +1425,20 @@ int main()
                                                 cout << endl;
                                                 cout << "Error!\a Could not open DiscountOnBill.txt file" << endl;
                                             }
+
+                                            cout <<endl <<endl <<"Please enter (y) to continue using program: ";
+                                            cin >> continueChoiceDis;
+
+                                            while (continueChoiceDis != 'y' && continueChoiceDis != 'Y')
+                                            {
+                                                cin . ignore (1000,'\n');
+                                                cout << endl << setw(120) << "-----<  INVALID INPUT!  >-----\a " << endl << endl <<endl;
+
+                                                cout <<endl <<endl <<"Please enter (y) to continue using program: ";
+                                                cin >> continueChoiceDis;
+                                            }
+
+                                            cin . ignore();
                                         }
                                     }
                                 }while(discountChoices!='3');
@@ -2619,6 +2635,7 @@ int main()
                         int donecheck = 0;
 
                         char discountChoice;
+                        char moreItems='y';
 
                         do
                         {
@@ -2873,15 +2890,15 @@ int main()
          
 
                                         cout <<endl <<" Do you wish to purchase another Item (y/n): ";
-                                        cin >> again;
+                                        cin >> moreItems;
 
-                                        while(again != 'y' && again != 'Y' && again != 'n' && again != 'N')
+                                        while(moreItems != 'y' && moreItems != 'Y' && moreItems != 'n' && moreItems != 'N')
                                         {
                                             cin . ignore (1000,'\n');
                                             cout << endl << setw(120) << "-----<  INVALID INPUT!  >-----\a " << endl << endl <<endl;
                                 
                                             cout <<" Do you wish to purchase another Item (y/n): ";
-                                            cin >> again;
+                                            cin >> moreItems;
                                         }
 
                                         cin.ignore();
@@ -2929,276 +2946,283 @@ int main()
                                     cin . ignore();
                                     donecheck = 1;
                                 }                            
-                            } while(again != 'n' && again != 'N');
+                            } while(again != 'n' && again != 'N' && moreItems !='n' && moreItems !='N');
 
-                            double cashGiven = 0, changeReturn = 0;
-                            string time, date;
-
-                            timeAndDate(date,time);
-
-                            int RecordCount = customerRecordCount();
-                            
-                            int billNo[RecordCount] = {0};
-                            double CustomerTotal[RecordCount] = {0};
-
-                            string customerPhone[RecordCount];
-                            string customerName[RecordCount];
-                            string customerTime[RecordCount];
-                            string customerDate[RecordCount];
-                            string customerDateDay[RecordCount];
-                            string customerDateMonth[RecordCount];
-
-                            inputsFromCustomerRecordFile(billNo ,CustomerTotal, customerPhone, customerTime, customerDateDay, customerDateMonth, customerDate, customerName, RecordCount);
-        
-                            double grandTotal = 0;
-                            string customername, customerphone;
-
-                            
-                            cout <<endl<<endl<<" Please enter coustomer name: ";
-                            getline (cin,customername);
-
-                            cout<<" Please enter coustomer phone number: ";
-                            getline (cin,customerphone);
-
-                            int customerBillNo = RecordCount + 1;
-
-                            cout << right;
-                             
-                           cout . fill('-');
-                            cout <<setw(116) <<"<  GENERATING RECIEPT  >" <<setw(91)<<"";
-                            cout . fill(' ');
-                            cout << endl <<endl;
-                            cout << endl;
-
-                            cout << left;
-
-                            cout <<" Date          : " <<date <<endl;
-                            cout <<" Time          : " <<time <<endl;
-                            cout <<" Bill Number   : " <<customerBillNo <<endl;
-                            cout <<" Customer Name : " <<customername <<endl;
-                            cout <<" Phone Number  : " <<customerphone <<endl <<endl;
-                        
-                            cout <<" " <<setw(14) <<"Item Code "
-                                <<setw(42) <<"Item Name "
-                                <<setw(15) <<"Item Price"
-                                <<setw(15) <<" Item Quantity "
-                                <<setw(15) <<" Item Discount "
-                                <<setw(16) <<"Item Total" <<endl <<endl;
-
-                            for(int i=0 ; i < boughtItemCount ; i++)
+                            if( (again != 'n' && again != 'N') || moreItems == 'n' || moreItems == 'N' )
                             {
-                                cout <<" " <<setw(15) <<boughtItemCodes[i]
-                                    <<setw(42) <<boughtItemNames[i]
-                                    <<setw(15) <<boughtItemPrices[i]
-                                    <<setw(15) <<BoughtItemQuantity[i] 
-                                    <<setw(15) <<itemDiscountArray[i]
-                                    <<setw(16) <<boughtItemtotal[i] <<endl;
+                                double cashGiven = 0, changeReturn = 0;
+                                string time, date;
 
-                                grandTotal += boughtItemtotal[i];
-                            }
+                                timeAndDate(date,time);
 
-                            double totalDiscountOnBill = 0;
-
-                            if (discountChoice == 'y' && discountType == '1')
-                            {
-                                double discountPercenTage = discountOnWholeBill();
-
-                                totalDiscountOnBill = grandTotal * (discountPercenTage/100);
-
-                                grandTotal -= totalDiscountOnBill;
+                                int RecordCount = customerRecordCount();
                                 
-                            }
-                            else
-                            {
-                                for (int i = 0 ; i < boughtItemCount;i++)
-                                {
-                                    totalDiscountOnBill += itemDiscountArray[i];
-                                }
-                            }
+                                int billNo[RecordCount] = {0};
+                                double CustomerTotal[RecordCount] = {0};
 
-                            cout <<endl <<endl<<endl;
-                            cout <<" Total: " <<grandTotal+totalDiscountOnBill <<endl;
-                            cout <<" Discount: "<<totalDiscountOnBill<<endl;
-                            cout <<" Invoice: "<<grandTotal<<endl;
-                            cout << right;
+                                string customerPhone[RecordCount];
+                                string customerName[RecordCount];
+                                string customerTime[RecordCount];
+                                string customerDate[RecordCount];
+                                string customerDateDay[RecordCount];
+                                string customerDateMonth[RecordCount];
 
-                            for(int i = 0 ; i < 209 ; i++)
-                            {
-                                cout <<"-";
-                            }
+                                inputsFromCustomerRecordFile(billNo ,CustomerTotal, customerPhone, customerTime, customerDateDay, customerDateMonth, customerDate, customerName, RecordCount);
+            
+                                double grandTotal = 0;
+                                string customername, customerphone;
 
-                            cout<<endl<<endl<<" Please enter cash given by customer: ";
-                            cin >> cashGiven;
-
-                            while(cin.fail() || cashGiven < grandTotal)
-                            {
-                                cin.clear();
-                                cin.ignore(1000,'\n');
-                                cout << endl << setw(120) << "-----<  INVALID INPUT!  >-----\a " << endl << endl <<endl;
-
-                                if (cashGiven < grandTotal)
-                                {
-                                    cout <<" Value can not be an alphabet and cash given cannot be less than invoice value "<<endl;
-                                }
                                 
-                                cout <<" Please enter cash given by customer: ";
+                                cout <<endl<<endl<<" Please enter coustomer name: ";
+                                getline (cin,customername);
+
+                                cout<<" Please enter coustomer phone number: ";
+                                getline (cin,customerphone);
+
+                                int customerBillNo = RecordCount + 1;
+
+                                cout << right;
+                                
+                                cout . fill('-');
+                                cout <<setw(116) <<"<  GENERATING RECIEPT  >" <<setw(91)<<"";
+                                cout . fill(' ');
+                                cout << endl <<endl;
+                                cout << endl;
+
+                                cout << left;
+
+                                cout <<" Date          : " <<date <<endl;
+                                cout <<" Time          : " <<time <<endl;
+                                cout <<" Bill Number   : " <<customerBillNo <<endl;
+                                cout <<" Customer Name : " <<customername <<endl;
+                                cout <<" Phone Number  : " <<customerphone <<endl <<endl;
+                            
+                                cout <<" " <<setw(14) <<"Item Code "
+                                    <<setw(42) <<"Item Name "
+                                    <<setw(15) <<"Item Price"
+                                    <<setw(15) <<" Item Quantity "
+                                    <<setw(15) <<" Item Discount "
+                                    <<setw(16) <<"Item Total" <<endl <<endl;
+
+                                for(int i=0 ; i < boughtItemCount ; i++)
+                                {
+                                    cout <<" " <<setw(15) <<boughtItemCodes[i]
+                                        <<setw(42) <<boughtItemNames[i]
+                                        <<setw(15) <<boughtItemPrices[i]
+                                        <<setw(15) <<BoughtItemQuantity[i] 
+                                        <<setw(15) <<itemDiscountArray[i]
+                                        <<setw(16) <<boughtItemtotal[i] <<endl;
+
+                                    grandTotal += boughtItemtotal[i];
+                                }
+
+                                double totalDiscountOnBill = 0;
+
+                                if (discountChoice == 'y' && discountType == '1')
+                                {
+                                    double discountPercenTage = discountOnWholeBill();
+
+                                    totalDiscountOnBill = grandTotal * (discountPercenTage/100);
+
+                                    grandTotal -= totalDiscountOnBill;
+                                    
+                                }
+                                else
+                                {
+                                    for (int i = 0 ; i < boughtItemCount;i++)
+                                    {
+                                        totalDiscountOnBill += itemDiscountArray[i];
+                                    }
+                                }
+
+                                cout <<endl <<endl<<endl;
+                                cout <<" Total: " <<grandTotal+totalDiscountOnBill <<endl;
+                                cout <<" Discount: "<<totalDiscountOnBill<<endl;
+                                cout <<" Invoice: "<<grandTotal<<endl;
+                                cout << right;
+
+                                for(int i = 0 ; i < 209 ; i++)
+                                {
+                                    cout <<"-";
+                                }
+
+                                cout<<endl<<endl<<" Please enter cash given by customer: ";
                                 cin >> cashGiven;
-                            }
-                            
-                            cin.ignore();
-                            cout << endl;
 
-                            changeReturn = cashGiven-grandTotal;
-
-                            cout << " Change to return: " << changeReturn << endl;
-
-                            ofstream fout;
-
-                            fout . open("customerRecord.txt");
-
-                            if( ! fout . fail())
-                            {
-                                
-                                fout <<customerBillNo <<" "
-                                    <<grandTotal <<" "
-                                    <<customerphone <<" "
-                                    <<time <<" "
-                                    <<date <<" "
-                                    <<customername;
-
-                                for(int i = 0 ; i < RecordCount ; i++)
+                                while(cin.fail() || cashGiven < grandTotal)
                                 {
-                                    fout <<endl << billNo[i] <<" "
-                                        <<CustomerTotal[i] <<" "
-                                        <<customerPhone[i] <<" "
-                                        <<customerTime[i] <<" "
-                                        <<customerDateDay[i] <<" "
-                                        <<customerDateMonth[i] <<" "
-                                        <<customerDate[i] <<" "
-                                        <<customerName[i];
-                                }
+                                    cin.clear();
+                                    cin.ignore(1000,'\n');
+                                    cout << endl << setw(120) << "-----<  INVALID INPUT!  >-----\a " << endl << endl <<endl;
 
-                                fout . close();
-                            }
-                            else
-                            {
-                                cout <<endl <<" Error\a could not update customer record file after generating receipt"<<endl;
-                            }
-
-                            fout . open("receipt.txt");
-
-                            if( ! fout . fail())
-                            {
-                                fout <<left;
-
-                                fout <<"Date: " <<date <<endl;
-                                fout <<"Time: " <<time <<endl;
-                                fout <<"Bill Number: " <<customerBillNo <<endl;
-                                fout <<"Customer Name: " <<customername <<endl;
-                                fout <<"Phone Number: " <<customerphone <<endl;
-
-                                for(int i=0 ; i<48 ;i++)
-                                {
-                                    fout <<"-";
+                                    if (cashGiven < grandTotal)
+                                    {
+                                        cout <<" Value can not be an alphabet and cash given cannot be less than invoice value "<<endl;
+                                    }
+                                    
+                                    cout <<" Please enter cash given by customer: ";
+                                    cin >> cashGiven;
                                 }
                                 
-                                fout<<endl<<"                        Original Bill "<<endl;
+                                cin.ignore();
+                                cout << endl;
 
-                                for(int i=0 ; i<48 ;i++)
-                                {
-                                    fout <<"-";
-                                }
-                                fout<<endl <<"Product Details: " <<endl
-                                    <<"Price\tQuantity\tDiscount\tTotal"
-                                    <<endl;
+                                changeReturn = cashGiven-grandTotal;
 
-                                for(int i=0 ; i<48 ;i++)
-                                {
-                                    fout <<"-";
-                                }
+                                cout << " Change to return: " << changeReturn << endl;
 
-                                fout<<endl<<"                          Sales Items "<<endl;
+                                ofstream fout;
 
-                                for(int i=0 ; i<48 ;i++)
-                                {
-                                    fout <<"-";
-                                }
-                                fout<<endl;
-
-                                for(int i = 0 ; i < boughtItemCount ; i++)
-                                {
-                                    fout<< boughtItemNames[i] <<endl 
-                                    << boughtItemPrices[i] <<"\t" <<BoughtItemQuantity[i] <<"\t"<<itemDiscountArray[i]<<"\t" << boughtItemtotal[i] <<endl;
-                                }
-                        
-                                for(int i=0 ; i<48 ;i++)
-                                {
-                                    fout <<"-";
-                                }
-                                fout <<endl;
-                                fout << "Total Value: " <<grandTotal+totalDiscountOnBill <<endl;
-                                fout << "Discount Value: " <<totalDiscountOnBill<<endl;
-                                fout << "Invoice Value: " <<grandTotal <<endl;
-                                fout << "Cash Paid: " << cashGiven <<endl;
-                                fout << "Customer Balance: " << changeReturn <<endl;
-
-
-                                for(int i=0 ; i<48 ;i++)
-                                {
-                                    fout <<"-";
-                                }
-
-                                fout <<endl;
-
-
-                                fout.close();
-
-                                cout <<endl <<" Receipt is generated successfully! Please check receipt.txt file."<<endl;                         
-                            }
-                            else
-                            {
-                                cout <<endl <<" Error!\a in generating receipt file."<<endl;
-                            }
-
-                            if(donecheck == 0)
-                            {
-                               ofstream fout;
-
-                                fout . open("stock.txt");
+                                fout . open("customerRecord.txt");
 
                                 if( ! fout . fail())
                                 {
-                                    for(int i = 0 ; i < itemCount ; i++)
+                                    
+                                    fout <<customerBillNo <<" "
+                                        <<grandTotal <<" "
+                                        <<customerphone <<" "
+                                        <<time <<" "
+                                        <<date <<" "
+                                        <<customername;
+
+                                    for(int i = 0 ; i < RecordCount ; i++)
                                     {
-                                        fout <<itemCode[i] <<" ";
-                                        fout <<itemQuantity[i] <<" ";
-                                        fout <<itemPrice[i] <<" ";
-                                        fout <<itemName[i] <<endl;
+                                        fout <<endl << billNo[i] <<" "
+                                            <<CustomerTotal[i] <<" "
+                                            <<customerPhone[i] <<" "
+                                            <<customerTime[i] <<" "
+                                            <<customerDateDay[i] <<" "
+                                            <<customerDateMonth[i] <<" "
+                                            <<customerDate[i] <<" "
+                                            <<customerName[i];
                                     }
 
                                     fout . close();
-                                }   
+                                }
                                 else
                                 {
-                                    cout <<endl <<" Error!\a Could not open stock.txt file for updating stock after generating bill" << endl;
+                                    cout <<endl <<" Error\a could not update customer record file after generating receipt"<<endl;
                                 }
-                            }
 
-                            cout<<endl<<" Stock is updated successfully after generating bill!"<<endl;
+                                fout . open("receipt.txt");
 
-                            cout <<endl <<" Do you wish to generate another receipt? (Y/N): ";
-                            cin >> anotherReceipt;
+                                if( ! fout . fail())
+                                {
+                                    fout <<left;
 
-                            while(anotherReceipt != 'y' && anotherReceipt != 'Y' && anotherReceipt != 'n' && anotherReceipt != 'N')
-                            {
-                                cin . ignore (1000,'\n');
-                                cout << endl << setw(120) << "-----<  INVALID INPUT!  >-----\a " << endl << endl <<endl;
+                                    fout <<"Date: " <<date <<endl;
+                                    fout <<"Time: " <<time <<endl;
+                                    fout <<"Bill Number: " <<customerBillNo <<endl;
+                                    fout <<"Customer Name: " <<customername <<endl;
+                                    fout <<"Phone Number: " <<customerphone <<endl;
 
-                                cout <<" Do you wish to generate another receipt? (Y/N): ";
-                                cin >> anotherReceipt;
-                            }    
+                                    for(int i=0 ; i<48 ;i++)
+                                    {
+                                        fout <<"-";
+                                    }
+                                    
+                                    fout<<endl<<"                        Original Bill "<<endl;
+
+                                    for(int i=0 ; i<48 ;i++)
+                                    {
+                                        fout <<"-";
+                                    }
+                                    fout<<endl <<"Product Details: " <<endl
+                                        <<"Price\tQuantity\tDiscount\tTotal"
+                                        <<endl;
+
+                                    for(int i=0 ; i<48 ;i++)
+                                    {
+                                        fout <<"-";
+                                    }
+
+                                    fout<<endl<<"                          Sales Items "<<endl;
+
+                                    for(int i=0 ; i<48 ;i++)
+                                    {
+                                        fout <<"-";
+                                    }
+                                    fout<<endl;
+
+                                    for(int i = 0 ; i < boughtItemCount ; i++)
+                                    {
+                                        fout<< boughtItemNames[i] <<endl 
+                                        << boughtItemPrices[i] <<"\t" <<BoughtItemQuantity[i] <<"\t"<<itemDiscountArray[i]<<"\t" << boughtItemtotal[i] <<endl;
+                                    }
                             
-                            cin . ignore();
+                                    for(int i=0 ; i<48 ;i++)
+                                    {
+                                        fout <<"-";
+                                    }
+                                    fout <<endl;
+                                    fout << "Total Value: " <<grandTotal+totalDiscountOnBill <<endl;
+                                    fout << "Discount Value: " <<totalDiscountOnBill<<endl;
+                                    fout << "Invoice Value: " <<grandTotal <<endl;
+                                    fout << "Cash Paid: " << cashGiven <<endl;
+                                    fout << "Customer Balance: " << changeReturn <<endl;
+
+
+                                    for(int i=0 ; i<48 ;i++)
+                                    {
+                                        fout <<"-";
+                                    }
+
+                                    fout <<endl;
+
+
+                                    fout.close();
+
+                                    cout <<endl <<" Receipt is generated successfully! Please check receipt.txt file."<<endl;                         
+                                }
+                                else
+                                {
+                                    cout <<endl <<" Error!\a in generating receipt file."<<endl;
+                                }
+
+                                if(donecheck == 0)
+                                {
+                                ofstream fout;
+
+                                    fout . open("stock.txt");
+
+                                    if( ! fout . fail())
+                                    {
+                                        for(int i = 0 ; i < itemCount ; i++)
+                                        {
+                                            fout <<itemCode[i] <<" ";
+                                            fout <<itemQuantity[i] <<" ";
+                                            fout <<itemPrice[i] <<" ";
+                                            fout <<itemName[i] <<endl;
+                                        }
+
+                                        fout . close();
+                                    }   
+                                    else
+                                    {
+                                        cout <<endl <<" Error!\a Could not open stock.txt file for updating stock after generating bill" << endl;
+                                    }
+                                }
+
+                                cout<<endl<<" Stock is updated successfully after generating bill!"<<endl;
+
+                                cout <<endl <<" Do you wish to generate another receipt? (Y/N): ";
+                                cin >> anotherReceipt;
+
+                                while(anotherReceipt != 'y' && anotherReceipt != 'Y' && anotherReceipt != 'n' && anotherReceipt != 'N')
+                                {
+                                    cin . ignore (1000,'\n');
+                                    cout << endl << setw(120) << "-----<  INVALID INPUT!  >-----\a " << endl << endl <<endl;
+
+                                    cout <<" Do you wish to generate another receipt? (Y/N): ";
+                                    cin >> anotherReceipt;
+                                }    
+                                
+                                cin . ignore();
+                            }
+                            else
+                            {
+                                anotherReceipt = 'n';
+                            }
 
                         } while(anotherReceipt != 'n' && anotherReceipt != 'N');
                     }
