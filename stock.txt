@@ -1,7 +1,7 @@
 5561 56 235.5 Tulsi Supari
 2212 56 25 Spices
 4114 35 120 Imli
-1234 47 400 Tang Mango 400g
+1234 45 400 Tang Mango 400g
 1212 28 780 Tang Special 500g
 2342 45 250 Coca Cola 2L
 2341 40 200 Coca Cola 1.5L

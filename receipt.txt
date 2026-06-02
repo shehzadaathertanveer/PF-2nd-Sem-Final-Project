@@ -1,8 +1,8 @@
 Date: Tue Jun  2
-Time: 11:34:28
-Bill Number: 25
-Customer Name: huta
-Phone Number: 031-9876553
+Time: 11:56:07
+Bill Number: 26
+Customer Name: zahid
+Phone Number: 0321-8767898
 ------------------------------------------------
                         Original Bill 
 ------------------------------------------------
@@ -11,10 +11,12 @@ Price	Quantity	Discount	Total
 ------------------------------------------------
                           Sales Items 
 ------------------------------------------------
+Tang Mango 400g
+400	2	0	800
 ------------------------------------------------
-Total Value: 0
+Total Value: 800
 Discount Value: 0
-Invoice Value: 0
-Cash Paid: 0
-Customer Balance: 0
+Invoice Value: 800
+Cash Paid: 1000
+Customer Balance: 200
 ------------------------------------------------
