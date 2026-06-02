@@ -76,7 +76,7 @@
 1441 20 350 Dairy Milk Fruit & Nut
 1442 30 100 Snickers Candy Bar
 1443 25 110 Mars Chocolate Bar
-1444 50 50 KitKat 2 Finger
+1444 0 50 KitKat 2 Finger
 1550 14 1200 Pampers Baby Wipes
 1551 8 2800 Pampers Diapers Large
 1660 93 10 Matchbox 1 Unit
@@ -100,5 +100,5 @@
 2021 7 750 Tang Mango 750g
 2121 5 180 Shezan Mango Juice 1L
 2122 52 40 Nestle Fruita Vitals 200ml
-2222 6 550 EveryDay Tea Whitener
+2222 4 550 EveryDay Tea Whitener
 2323 20 320 Blue Band Margarine 250g
